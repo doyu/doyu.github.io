@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "doyu.github.io",
+    "section": "",
+    "text": "yttoc\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nJun 12, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nJun 9, 2026\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/collected/yttoc-README.html",
+    "href": "posts/collected/yttoc-README.html",
+    "title": "yttoc",
+    "section": "",
+    "text": "yttoc downloads YouTube captions in the video’s original spoken language (manual captions preferred over auto-generated), parses them into normalized transcript segments, and uses an LLM to generate a structured Table of Contents with section summaries, keywords, and evidence quotes. Section titles are English; summaries are written in the caption language.\nWhat you get from a single video URL:\n\nTimestamped transcript (yttoc-raw)\nAuto-generated Table of Contents with deep links (yttoc-toc)\nPer-section summaries with keywords and quoted evidence (yttoc-sum)\n\n\n\n\n\npip install git+https://github.com/doyu/yttoc.git\nRequirements: - Python 3.9+ - yt-dlp (installed automatically) - OPENAI_API_KEY environment variable set (for yttoc-toc and yttoc-sum)\n\n\n\n\nFetch the video and generate a full ToC + summaries in three commands:\nvid=$(yttoc-fetch https://www.youtube.com/watch?v=kwSVtQ7dziU)\nyttoc-toc \"$vid\"\nyttoc-sum \"$vid\"\n\n\n# Skill Issue: Andrej Karpathy on Code Agents, AutoResearch, and the Loopy Era of AI\nChannel: No Priors: AI, Machine Learning, Tech, & Startups | Duration: 1:06:31 | 20260320\n\n1. AI agents change coding overnight 0:00-3:24 (3:24) https://youtube.com/watch?v=kwSVtQ7dziU&t=0\n2. Parallel agents, token throughput, and the new bottleneck 3:24-6:49 (3:25) ...&t=204\n3. From agents to persistent 'claws' 6:49-9:25 (2:36) ...&t=409\n...\n6. AutoResearch and removing humans from the loop 16:33-21:00 (4:27) ...&t=993\n...\n14. MicroGPT and teaching agents instead of humans 1:01:31-1:06:31 (5:00) ...&t=3691\nEach line links directly to that section in the YouTube player.\n\n\n\n## 6. AutoResearch and removing humans from the loop (16:33)\nAutoResearch is Karpathy's attempt to remove humans from the research loop\nby letting agents pursue objectives autonomously for long periods. He found\nthat even on a well-tuned small LLM training setup, the system discovered\nimprovements he had missed, reinforcing his belief in recursive self-improvement.\n**Keywords:** AutoResearch, recursive self-improvement, hyperparameter tuning,\nLLM training, DataChat, validation loss, objective metrics, automation\n**Evidence:** \"I don't want to be like the researcher in the loop...\nI'm holding the system back\" [17:17]\n\n\n\n## 6. AutoResearch and removing humans from the loop (16:33 - 21:00)\n[16:33] Auto research. Yeah. So I think like I\n[16:36] had a tweet earlier where I kind of like\n[16:38] said something along the lines of to get\n[16:40] the most out of the tools that have\n[16:41] become available now you have to remove\n[16:43] yourself as the as the bottleneck.\n...\n\n\n\nyttoc-fetch &lt;url&gt;              # Download captions (original spoken language)\nyttoc-list                     # Show cached videos\nyttoc-raw &lt;video_id&gt;           # Full transcript\nyttoc-raw &lt;vid&gt; --section 3    # Section transcript\nyttoc-toc &lt;video_id&gt;           # Generate Table of Contents\nyttoc-sum &lt;video_id&gt;           # All section summaries + full summary\nyttoc-sum &lt;vid&gt; --section 3    # Single section summary\nyttoc-map &lt;id1&gt; &lt;id2&gt; ...      # Course-wide learning map across multiple videos\n\n\n\n\nOnce several videos in a course are cached, yttoc-map builds a single Markdown learning map with three views — By Lecture / By Topic / By Keyword — each section linking to the YouTube player at the right timestamp.\nyttoc-map $(cat course-ids.txt) --title \"My Course Map\" &gt; course-map.md\nRender it as an interactive folding mindmap (single offline HTML file):\nnpx -y markmap-cli@latest --offline course-map.md -o course-map.html\nxdg-open course-map.html\n…or as a static linked page:\npandoc course-map.md -s --toc -o course-map.html\n\n\nyttoc-map is for browsing. For finding a specific topic across the whole course, pipe summaries.json through jq into fzf — fuzzy-search section titles in the left pane, see summary + keywords in the preview pane below, hit Enter to open the deep-linked YouTube URL.\nyttoc-find() {\n    for id in \"$@\"; do\n        jq -r --arg id \"$id\" '\n            .video.url as $u\n            | .sections[]\n            | [\n                ($u + \"&t=\" + (.start|tostring)),\n                ($id + \" §\" + .path + \" \" + .title),\n                .summary,\n                (.keywords | join(\", \"))\n            ] | @tsv\n        ' \"$HOME/.cache/yttoc/$id/summaries.json\"\n    done \\\n    | fzf --delimiter=$'\\t' \\\n          --with-nth=2 \\\n          --preview 'printf \"%s\\n\\nKeywords: %s\\n\" {3} {4}' \\\n          --preview-window=down:60%:wrap \\\n          --bind 'enter:execute(xdg-open {1})'\n}\nUsage — same shell-expansion style as yttoc-map:\nyttoc-find $(cat course-ids.txt)\nyttoc-find $(ls ~/.cache/yttoc)\nDrop into ~/.bashrc. Replace xdg-open with open on macOS.\nThe fzf snippet stays out of the Python package on purpose — xdg-open/open is environment-specific, fzf isn’t a Python dep, and shell composition is what shells are good at. yttoc generates the data; your shell does the searching.\n\n\n\n\nBuilt with nbdev. Source of truth is in nbs/ notebooks.\npip install -e .\nnbdev_install_hooks   # one-time after clone: trust + merge-conflict git hooks\nnbdev_prepare         # export, test, build docs"
+  },
+  {
+    "objectID": "posts/collected/yttoc-README.html#usage",
+    "href": "posts/collected/yttoc-README.html#usage",
+    "title": "yttoc",
+    "section": "",
+    "text": "pip install git+https://github.com/doyu/yttoc.git\nRequirements: - Python 3.9+ - yt-dlp (installed automatically) - OPENAI_API_KEY environment variable set (for yttoc-toc and yttoc-sum)"
+  },
+  {
+    "objectID": "posts/collected/yttoc-README.html#example-andrej-karpathy-on-code-agents-66-min",
+    "href": "posts/collected/yttoc-README.html#example-andrej-karpathy-on-code-agents-66-min",
+    "title": "yttoc",
+    "section": "",
+    "text": "Fetch the video and generate a full ToC + summaries in three commands:\nvid=$(yttoc-fetch https://www.youtube.com/watch?v=kwSVtQ7dziU)\nyttoc-toc \"$vid\"\nyttoc-sum \"$vid\"\n\n\n# Skill Issue: Andrej Karpathy on Code Agents, AutoResearch, and the Loopy Era of AI\nChannel: No Priors: AI, Machine Learning, Tech, & Startups | Duration: 1:06:31 | 20260320\n\n1. AI agents change coding overnight 0:00-3:24 (3:24) https://youtube.com/watch?v=kwSVtQ7dziU&t=0\n2. Parallel agents, token throughput, and the new bottleneck 3:24-6:49 (3:25) ...&t=204\n3. From agents to persistent 'claws' 6:49-9:25 (2:36) ...&t=409\n...\n6. AutoResearch and removing humans from the loop 16:33-21:00 (4:27) ...&t=993\n...\n14. MicroGPT and teaching agents instead of humans 1:01:31-1:06:31 (5:00) ...&t=3691\nEach line links directly to that section in the YouTube player.\n\n\n\n## 6. AutoResearch and removing humans from the loop (16:33)\nAutoResearch is Karpathy's attempt to remove humans from the research loop\nby letting agents pursue objectives autonomously for long periods. He found\nthat even on a well-tuned small LLM training setup, the system discovered\nimprovements he had missed, reinforcing his belief in recursive self-improvement.\n**Keywords:** AutoResearch, recursive self-improvement, hyperparameter tuning,\nLLM training, DataChat, validation loss, objective metrics, automation\n**Evidence:** \"I don't want to be like the researcher in the loop...\nI'm holding the system back\" [17:17]\n\n\n\n## 6. AutoResearch and removing humans from the loop (16:33 - 21:00)\n[16:33] Auto research. Yeah. So I think like I\n[16:36] had a tweet earlier where I kind of like\n[16:38] said something along the lines of to get\n[16:40] the most out of the tools that have\n[16:41] become available now you have to remove\n[16:43] yourself as the as the bottleneck.\n...\n\n\n\nyttoc-fetch &lt;url&gt;              # Download captions (original spoken language)\nyttoc-list                     # Show cached videos\nyttoc-raw &lt;video_id&gt;           # Full transcript\nyttoc-raw &lt;vid&gt; --section 3    # Section transcript\nyttoc-toc &lt;video_id&gt;           # Generate Table of Contents\nyttoc-sum &lt;video_id&gt;           # All section summaries + full summary\nyttoc-sum &lt;vid&gt; --section 3    # Single section summary\nyttoc-map &lt;id1&gt; &lt;id2&gt; ...      # Course-wide learning map across multiple videos"
+  },
+  {
+    "objectID": "posts/collected/yttoc-README.html#course-maps-across-multiple-videos",
+    "href": "posts/collected/yttoc-README.html#course-maps-across-multiple-videos",
+    "title": "yttoc",
+    "section": "",
+    "text": "Once several videos in a course are cached, yttoc-map builds a single Markdown learning map with three views — By Lecture / By Topic / By Keyword — each section linking to the YouTube player at the right timestamp.\nyttoc-map $(cat course-ids.txt) --title \"My Course Map\" &gt; course-map.md\nRender it as an interactive folding mindmap (single offline HTML file):\nnpx -y markmap-cli@latest --offline course-map.md -o course-map.html\nxdg-open course-map.html\n…or as a static linked page:\npandoc course-map.md -s --toc -o course-map.html\n\n\nyttoc-map is for browsing. For finding a specific topic across the whole course, pipe summaries.json through jq into fzf — fuzzy-search section titles in the left pane, see summary + keywords in the preview pane below, hit Enter to open the deep-linked YouTube URL.\nyttoc-find() {\n    for id in \"$@\"; do\n        jq -r --arg id \"$id\" '\n            .video.url as $u\n            | .sections[]\n            | [\n                ($u + \"&t=\" + (.start|tostring)),\n                ($id + \" §\" + .path + \" \" + .title),\n                .summary,\n                (.keywords | join(\", \"))\n            ] | @tsv\n        ' \"$HOME/.cache/yttoc/$id/summaries.json\"\n    done \\\n    | fzf --delimiter=$'\\t' \\\n          --with-nth=2 \\\n          --preview 'printf \"%s\\n\\nKeywords: %s\\n\" {3} {4}' \\\n          --preview-window=down:60%:wrap \\\n          --bind 'enter:execute(xdg-open {1})'\n}\nUsage — same shell-expansion style as yttoc-map:\nyttoc-find $(cat course-ids.txt)\nyttoc-find $(ls ~/.cache/yttoc)\nDrop into ~/.bashrc. Replace xdg-open with open on macOS.\nThe fzf snippet stays out of the Python package on purpose — xdg-open/open is environment-specific, fzf isn’t a Python dep, and shell composition is what shells are good at. yttoc generates the data; your shell does the searching."
+  },
+  {
+    "objectID": "posts/collected/yttoc-README.html#development",
+    "href": "posts/collected/yttoc-README.html#development",
+    "title": "yttoc",
+    "section": "",
+    "text": "Built with nbdev. Source of truth is in nbs/ notebooks.\npip install -e .\nnbdev_install_hooks   # one-time after clone: trust + merge-conflict git hooks\nnbdev_prepare         # export, test, build docs"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]
