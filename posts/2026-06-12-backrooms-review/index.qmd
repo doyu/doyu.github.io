@@ -1,0 +1,49 @@
+---
+title: "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World"
+date: 2026-06-12
+description: "A24's Backrooms works best when you stop reading it as dimension-hopping horror — and that's also exactly why it stops short of greatness. 6/10."
+categories: [movie, horror, a24]
+source: doyu/log@ea17be6/memo/2026-06-11_backrooms_review.md
+lang: en
+image: https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg
+---
+
+*[日本語版はこちら](index.ja.qmd)*
+
+[![Backrooms — official trailer (A24)](https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg)](https://www.youtube.com/watch?v=0HjdiohVOik)
+
+[Backrooms](https://www.imdb.com/title/tt26657236/) is Kane Parsons' feature debut for A24, starring Chiwetel Ejiofor as Clark and Renate Reinsve as Mary. **My score: 6/10.**
+
+> **Warning: full spoilers ahead, including the ending.**
+
+## The one-line take
+
+It wears the skin of liminal-space horror, but the actual film renders a broken inner world as physical space — a symbol, not a setting. Its biggest weakness is that the filmmakers didn't commit to that reading.
+
+## What if almost everything is Mary's delusion?
+
+Here is my reading: **almost everything in this film happens inside Mary's fictional world.** At minimum, the film makes far more sense watched that way.
+
+The film's own lore supports it. The Backrooms are described as a *misremembered* copy of every place that ever existed — a space that reshapes itself by projecting the memories, fears, and traumas of whoever enters. At that point the Backrooms are no longer some physical other-dimension; they are a definition of the mind itself.
+
+- What kills Clark is not an external monster but his own warped self-image fused with the pirate mascot — Pirate Clark. The moment he faces himself, that self-image devours him. That's a psychological drama, not a creature feature.
+- The story poses as Clark's downfall in the first half, then quietly swaps protagonists: Mary the therapist, her schizophrenic mother, the stone tied to her childhood memories, and her own entrapment in the maze at the end. A person whose *job* is entering other people's mental labyrinths literally enters one.
+- In the final shot, the real interrogation room where Mary sits is replicated inside the Backrooms. The film deliberately dissolves the boundary between reality and inner world as it ends.
+
+And this is the essential question the film circles: the horror premise that "the Backrooms physically exist" is, frankly, juvenile. An alternate dimension behind the wall is a teenager's fear. What is urgent for an adult is the fear that **you yourself might be mentally breaking down** — the world stays normal while you crumble (mental illness, dementia). Read this way, the film finally becomes something an adult can watch seriously.
+
+## The extension: dementia, and mental collapse as space
+
+This reading isn't limited to trauma or psychiatric illness. The core of the Backrooms' dread was never the monster — it's the cognitive dissonance of spaces no sane mind would produce: the structure of the rooms, the placement of the furniture. It resembles the fear we feel in the real world when we brush against the non-everyday — mental breakdown, dementia.
+
+- Architecture that is itself subtly wrong
+- Furniture arranged the way no one would arrange it
+- The dissonance everything together gives off
+
+This sense that *space itself is wrong* overlaps with first-person accounts of dementia. Dementia is not "memories disappearing" — it is *the map of the world breaking down*. When someone says "I want to go home" while sitting in their own house, the home they mean is not the physical one; it's the old world inside their head. Film that sensation and you would get something very like the Backrooms. Trauma, psychiatric illness, dementia — the failure modes differ, but the structure of the fear is the same: **getting lost inside your own interior space.** This film gives that structure a physical form.
+
+## Why 6/10: the metaphor it refused to define
+
+Having assembled every piece needed for that reading, the film never defines the Backrooms as a metaphor for a broken mind's world. The Async research organization, the global spread of portals, the sequel setup — it ends with half its body still on the side of sci-fi literalism.
+
+The result: you can't always tell whether an ambiguity is working negative space or just something left on the floor, and the lingering haze after the credits feels less like interpretive pleasure and more like unfinished business. Fully committed as a portrayal of a broken inner world, this could have been a masterpiece. Watched as a monster movie, it's mediocre. It stopped in between — and that's the 6.
