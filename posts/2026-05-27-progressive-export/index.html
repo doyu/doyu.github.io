@@ -72,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -164,20 +167,54 @@ ul.task-list li input[type="checkbox"] {
 <p>Canonical version: <a href="https://ninjalabo.ai/blogs/progressive-export.html">NinjaLABO</a>.</p>
 </blockquote>
 <p>LLM apps change the center of application development. Before LLM apps, developers had to write the exact sequence of API calls that satisfied a user request. The application logic lived mostly in developer-written control flow:</p>
-<pre class="text"><code>user request
--&gt; call API A
--&gt; transform output
--&gt; call API B
--&gt; handle errors
--&gt; return result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["User request"] --&gt; apiA["Call API A"]
+  apiA --&gt; transform["Transform output"]
+  transform --&gt; apiB["Call API B"]
+  apiB --&gt; errors["Handle errors"]
+  errors --&gt; result["Return result"]
+
+  classDef user fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef code fill:#f8fafc,stroke:#64748b,color:#111827;
+  class request user;
+  class apiA,transform,apiB,errors,result code;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>With LLM apps, the developer increasingly provides a set of available capabilities rather than a fixed sequence. The LLM decides which tools to call, how to interpret the outputs the computer executed, and how to sequence the work:</p>
-<pre class="text"><code>user request
--&gt; LLM understands intent
--&gt; LLM chooses tools/apps/MCPs
--&gt; LLM sequences calls
--&gt; Computer executes calls
--&gt; LLM interprets outputs
--&gt; result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["User request"] --&gt; intent["LLM understands intent"]
+  intent --&gt; choose["LLM chooses tools / apps / MCPs"]
+  choose --&gt; sequence["LLM sequences calls"]
+  sequence --&gt; execute["Computer executes calls"]
+  execute --&gt; interpret["LLM interprets outputs"]
+  interpret --&gt; result["Result"]
+
+  classDef user fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef llm fill:#ecfeff,stroke:#0891b2,color:#111827;
+  classDef system fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class request user;
+  class intent,choose,sequence,interpret llm;
+  class execute,result system;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>This does not remove application architecture. It changes what architecture means. The important design question becomes: what capability surface should the LLM operate over, which parts should remain in the LLM, and which parts should be exported into reliable external tools?</p>
 <section id="the-repl-analogy" class="level2">
 <h2 class="anchored" data-anchor-id="the-repl-analogy">The REPL Analogy</h2>
@@ -198,43 +235,140 @@ ul.task-list li input[type="checkbox"] {
 <section id="progressive-export" class="level2">
 <h2 class="anchored" data-anchor-id="progressive-export">Progressive Export</h2>
 <p>The practical development path is:</p>
-<pre class="text"><code>interactive LLM CLI exploration
--&gt; LLM CLI with skills
--&gt; LLM implements tools
--&gt; LLM exports tools to MCP
--&gt; LLM CLI with MCP tools
--&gt; app with LLM calls using MCP tools
--&gt; automated app or personal agent</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  explore["Interactive&lt;br/&gt;LLM CLI exploration"] --&gt; skills["LLM CLI&lt;br/&gt;with skills"]
+  skills --&gt; implement["LLM implements&lt;br/&gt;tools"]
+  implement --&gt; export["LLM exports&lt;br/&gt;tools to MCP"]
+  export --&gt; mcp["LLM CLI&lt;br/&gt;with MCP tools"]
+  mcp --&gt; app["App runtime&lt;br/&gt;with LLM calls"]
+  app --&gt; agent["Automated app&lt;br/&gt;or personal agent"]
+
+  classDef exploration fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef skill fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class explore exploration;
+  class skills skill;
+  class implement,export,mcp tool;
+  class app,agent appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>The first stage should be loose and interactive. Let the LLM try to do the whole task. This reveals the real shape of the task: what the LLM handles well, what it gets wrong, which tool calls repeat, where output needs to be structured, and where deterministic code is safer.</p>
 <p>The next stage is skill. A skill records a reusable procedure that the LLM can follow. This is useful while the workflow is still exploratory or mostly interactive. It reduces reinvention, but the LLM still has to read the procedure, reason through it, call commands, and interpret outputs. A skill is slow and costly because it involves external LLM calls, but as a procedure written in natural language it takes little initial implementation effort.</p>
 <p>The next stage is Tool/MCP. Once a capability becomes stable, repeated, or important for reliability, cost, or speed, it should be promoted into a typed external tool. At that point, the LLM no longer needs to carry the full procedure in context. It only needs to choose a tool and provide structured arguments.</p>
 <p>The final app can then be small. Much of the unreliable or verbose behavior has already been exported into reliable external tools. The app replaces the interactive LLM CLI with its own LLM-call “loop”, but keeps the same task knowledge, MCP boundaries, schemas, and verification rules discovered during exploration.</p>
 <p>The app becomes a thin harness (loop) around those tools: UI, scheduling, persistence, permissions, observability, verification, and the remaining LLM calls.</p>
 <p>For an OpenClaw-like or Agent-Sin-like personal agent, the path becomes:</p>
-<pre class="text"><code>human + LLM CLI explores a task
--&gt; repeated procedure becomes a skill
--&gt; stable capability becomes MCP
--&gt; app calls the LLM for intent/routing
--&gt; app calls MCP tools for execution
--&gt; scheduler/chat channel can run it without the interactive CLI</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  human["Human + LLM CLI&lt;br/&gt;explore a task"] --&gt; skill["Repeated procedure&lt;br/&gt;becomes a skill"]
+  skill --&gt; mcp["Stable capability&lt;br/&gt;becomes MCP"]
+  mcp --&gt; intent["App calls LLM&lt;br/&gt;for intent / routing"]
+  intent --&gt; execution["App calls MCP tools&lt;br/&gt;for execution"]
+  execution --&gt; channel["Scheduler / chat channel&lt;br/&gt;runs without CLI"]
+
+  classDef exploration fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef skillc fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class human exploration;
+  class skill skillc;
+  class mcp,execution tool;
+  class intent,channel appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>This path is not strictly linear. Building a skill or MCP tool often reveals new edge cases, and operating an app reveals new failure modes. Those observations should loop back into LLM CLI exploration. The loop is:</p>
-<pre class="text"><code>explore -&gt; export -&gt; operate -&gt; observe -&gt; explore again</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  explore["Explore"] --&gt; export["Export"]
+  export --&gt; operate["Operate"]
+  operate --&gt; observe["Observe"]
+  observe --&gt; explore
+
+  classDef loop fill:#f8fafc,stroke:#64748b,color:#111827;
+  class explore,export,operate,observe loop;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
 <section id="what-gets-exported" class="level2">
 <h2 class="anchored" data-anchor-id="what-gets-exported">What Gets Exported</h2>
 <p>The key movement is exporting work out of the LLM.</p>
 <p>At first, interactive LLM conversation may do everything:</p>
-<pre class="text"><code>understand request
--&gt; choose APIs
--&gt; decide sequence
--&gt; parse output
--&gt; handle errors
--&gt; summarize result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["Understand request"] --&gt; apis["Choose APIs"]
+  apis --&gt; sequence["Decide sequence"]
+  sequence --&gt; parse["Parse output"]
+  parse --&gt; errors["Handle errors"]
+  errors --&gt; summary["Summarize result"]
+
+  classDef llm fill:#ecfeff,stroke:#0891b2,color:#111827;
+  class request,apis,sequence,parse,errors,summary llm;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>As the workflow matures, repeated and fragile parts move outward:</p>
-<pre class="text"><code>LLM: understand request, route, judge, summarize
-skill: remembered procedure for interactive use
-MCP: typed reliable execution boundary
-app: automation, persistence, verification, UX</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  llm["LLM&lt;br/&gt;understand request&lt;br/&gt;route&lt;br/&gt;judge&lt;br/&gt;summarize"]
+  skill["Skill&lt;br/&gt;remembered procedure&lt;br/&gt;for interactive use"]
+  mcp["MCP&lt;br/&gt;typed reliable&lt;br/&gt;execution boundary"]
+  app["App&lt;br/&gt;automation&lt;br/&gt;persistence&lt;br/&gt;verification&lt;br/&gt;UX"]
+
+  llm --&gt; skill
+  llm --&gt; mcp
+  mcp --&gt; app
+
+  classDef llmc fill:#ecfeff,stroke:#0891b2,color:#111827;
+  classDef skillc fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class llm llmc;
+  class skill skillc;
+  class mcp tool;
+  class app appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>This is harness engineering from the application side. The goal is not to eliminate the LLM. The goal is to leave the LLM with the smallest useful role and move execution, verification, persistence, and integration into deterministic components.</p>
 </section>
 <section id="export-only-when-it-hurts" class="level2">

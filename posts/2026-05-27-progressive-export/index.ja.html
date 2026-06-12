@@ -71,6 +71,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "サーチ"
   }
 }</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -160,20 +163,54 @@ ul.task-list li input[type="checkbox"] {
 
 <p><em><a href="../../posts/2026-05-27-progressive-export/index.html">English version here</a></em></p>
 <p>LLMアプリは、アプリケーション開発の中心を変える。LLMアプリ以前、開発者はユーザーのリクエストを満たす正確な API 呼び出しシーケンスを自分で書く必要があった。アプリケーションロジックの大部分は、開発者が書いた制御フローの中にあった：</p>
-<pre class="text"><code>user request
--&gt; call API A
--&gt; transform output
--&gt; call API B
--&gt; handle errors
--&gt; return result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["User request"] --&gt; apiA["Call API A"]
+  apiA --&gt; transform["Transform output"]
+  transform --&gt; apiB["Call API B"]
+  apiB --&gt; errors["Handle errors"]
+  errors --&gt; result["Return result"]
+
+  classDef user fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef code fill:#f8fafc,stroke:#64748b,color:#111827;
+  class request user;
+  class apiA,transform,apiB,errors,result code;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>LLMアプリでは、開発者は固定のシーケンスではなく、利用可能な能力（capability）の集合を提供するようになる。どのツールを呼ぶか、コンピュータが実行した出力をどう解釈するか、作業をどう順序付けるかは LLM が決める：</p>
-<pre class="text"><code>user request
--&gt; LLM understands intent
--&gt; LLM chooses tools/apps/MCPs
--&gt; LLM sequences calls
--&gt; Computer executes calls
--&gt; LLM interprets outputs
--&gt; result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["User request"] --&gt; intent["LLM understands intent"]
+  intent --&gt; choose["LLM chooses tools / apps / MCPs"]
+  choose --&gt; sequence["LLM sequences calls"]
+  sequence --&gt; execute["Computer executes calls"]
+  execute --&gt; interpret["LLM interprets outputs"]
+  interpret --&gt; result["Result"]
+
+  classDef user fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef llm fill:#ecfeff,stroke:#0891b2,color:#111827;
+  classDef system fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class request user;
+  class intent,choose,sequence,interpret llm;
+  class execute,result system;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>これはアプリケーション・アーキテクチャをなくすわけではない。アーキテクチャの意味を変えるのだ。重要な設計上の問いはこうなる：LLM にどの能力面（capability surface）の上で動いてもらうか、どの部分を LLM の中に残すか、どの部分を信頼できる外部ツールへ書き出す（export する）か。</p>
 <section id="repl-のアナロジー" class="level2">
 <h2 class="anchored" data-anchor-id="repl-のアナロジー">REPL のアナロジー</h2>
@@ -194,43 +231,140 @@ ul.task-list li input[type="checkbox"] {
 <section id="progressive-export漸進的な書き出し" class="level2">
 <h2 class="anchored" data-anchor-id="progressive-export漸進的な書き出し">Progressive Export（漸進的な書き出し）</h2>
 <p>実践的な開発パスはこうなる：</p>
-<pre class="text"><code>interactive LLM CLI exploration
--&gt; LLM CLI with skills
--&gt; LLM implements tools
--&gt; LLM exports tools to MCP
--&gt; LLM CLI with MCP tools
--&gt; app with LLM calls using MCP tools
--&gt; automated app or personal agent</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  explore["Interactive&lt;br/&gt;LLM CLI exploration"] --&gt; skills["LLM CLI&lt;br/&gt;with skills"]
+  skills --&gt; implement["LLM implements&lt;br/&gt;tools"]
+  implement --&gt; export["LLM exports&lt;br/&gt;tools to MCP"]
+  export --&gt; mcp["LLM CLI&lt;br/&gt;with MCP tools"]
+  mcp --&gt; app["App runtime&lt;br/&gt;with LLM calls"]
+  app --&gt; agent["Automated app&lt;br/&gt;or personal agent"]
+
+  classDef exploration fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef skill fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class explore exploration;
+  class skills skill;
+  class implement,export,mcp tool;
+  class app,agent appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>最初の段階は緩く、対話的であるべきだ。LLM にタスク全体をやらせてみる。これによってタスクの本当の形が見えてくる：LLM が得意なこと、間違えること、繰り返されるツール呼び出し、出力を構造化すべき箇所、決定論的なコードの方が安全な箇所。</p>
 <p>次の段階は skill だ。skill は LLM が従える再利用可能な手順を記録する。ワークフローがまだ探索的で、人間との対話が中心の間はこれが有効だ。車輪の再発明を減らすが、LLM は依然として手順を読み、推論し、コマンドを呼び、出力を解釈しなければならない。skillは外部LLMコールを含むため遅くコスト高ではあるが、自然言語で書かれた手順書なので、初期実装の手間が少ない。</p>
 <p>その次の段階は Tool/MCP だ。ある能力が安定し、繰り返し使われ、信頼性/コスト/速度が重要になったら、型付きの外部ツールへ昇格させるべきだ。その時点で、LLM は手順全体をコンテキストに抱え続ける必要がなくなる。ツールを選び、構造化された引数を渡すだけでよい。</p>
 <p>最終的なアプリは小さくできる。信頼できない処理や冗長な処理の多くは、すでに信頼できる外部ツールへ書き出されているからだ。アプリは対話的な LLM CLI を自前の LLM 呼び出し”LOOP”に置き換えるが、探索中に発見したタスク知識、MCP の境界、スキーマ、検証ルールはそのまま引き継ぐことが出来る。</p>
 <p>アプリはそれらのツールを包む薄いハーネス(ループ)になる：UI、スケジューリング、永続化、権限、可観測性、検証、そして残りの LLM 呼び出し。</p>
 <p>OpenClaw や Agent-Sin のようなパーソナルエージェントなら、パスはこうなる：</p>
-<pre class="text"><code>human + LLM CLI explores a task
--&gt; repeated procedure becomes a skill
--&gt; stable capability becomes MCP
--&gt; app calls the LLM for intent/routing
--&gt; app calls MCP tools for execution
--&gt; scheduler/chat channel can run it without the interactive CLI</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  human["Human + LLM CLI&lt;br/&gt;explore a task"] --&gt; skill["Repeated procedure&lt;br/&gt;becomes a skill"]
+  skill --&gt; mcp["Stable capability&lt;br/&gt;becomes MCP"]
+  mcp --&gt; intent["App calls LLM&lt;br/&gt;for intent / routing"]
+  intent --&gt; execution["App calls MCP tools&lt;br/&gt;for execution"]
+  execution --&gt; channel["Scheduler / chat channel&lt;br/&gt;runs without CLI"]
+
+  classDef exploration fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef skillc fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class human exploration;
+  class skill skillc;
+  class mcp,execution tool;
+  class intent,channel appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>このパスは厳密には直線的ではない。skill や MCP ツールを作ると新しいエッジケースが見つかることが多いし、アプリを運用すると新しい故障モードが見えてくる。それらの観察は LLM CLI での探索にループバックさせるべきだ。ループはこうだ：</p>
-<pre class="text"><code>explore -&gt; export -&gt; operate -&gt; observe -&gt; explore again</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  explore["Explore"] --&gt; export["Export"]
+  export --&gt; operate["Operate"]
+  operate --&gt; observe["Observe"]
+  observe --&gt; explore
+
+  classDef loop fill:#f8fafc,stroke:#64748b,color:#111827;
+  class explore,export,operate,observe loop;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
 <section id="何が書き出されるのか" class="level2">
 <h2 class="anchored" data-anchor-id="何が書き出されるのか">何が書き出されるのか</h2>
 <p>鍵となる動きは、仕事を LLM の外へ書き出すことだ。</p>
 <p>最初は interactiveにLLM対話 がすべてをやってもいい：</p>
-<pre class="text"><code>understand request
--&gt; choose APIs
--&gt; decide sequence
--&gt; parse output
--&gt; handle errors
--&gt; summarize result</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  request["Understand request"] --&gt; apis["Choose APIs"]
+  apis --&gt; sequence["Decide sequence"]
+  sequence --&gt; parse["Parse output"]
+  parse --&gt; errors["Handle errors"]
+  errors --&gt; summary["Summarize result"]
+
+  classDef llm fill:#ecfeff,stroke:#0891b2,color:#111827;
+  class request,apis,sequence,parse,errors,summary llm;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>ワークフローが成熟するにつれて、繰り返される部分と壊れやすい部分が外へ移っていく：</p>
-<pre class="text"><code>LLM: understand request, route, judge, summarize
-skill: remembered procedure for interactive use
-MCP: typed reliable execution boundary
-app: automation, persistence, verification, UX</code></pre>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  llm["LLM&lt;br/&gt;understand request&lt;br/&gt;route&lt;br/&gt;judge&lt;br/&gt;summarize"]
+  skill["Skill&lt;br/&gt;remembered procedure&lt;br/&gt;for interactive use"]
+  mcp["MCP&lt;br/&gt;typed reliable&lt;br/&gt;execution boundary"]
+  app["App&lt;br/&gt;automation&lt;br/&gt;persistence&lt;br/&gt;verification&lt;br/&gt;UX"]
+
+  llm --&gt; skill
+  llm --&gt; mcp
+  mcp --&gt; app
+
+  classDef llmc fill:#ecfeff,stroke:#0891b2,color:#111827;
+  classDef skillc fill:#fff7ed,stroke:#ea580c,color:#111827;
+  classDef tool fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  classDef appc fill:#f8fafc,stroke:#64748b,color:#111827;
+  class llm llmc;
+  class skill skillc;
+  class mcp tool;
+  class app appc;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>これがアプリケーション側から見たハーネスエンジニアリングだ。目標は LLM を排除することではない。LLM に最小限の有用な役割だけを残し、実行・検証・永続化・統合を決定論的なコンポーネントへ移すことだ。</p>
 </section>
 <section id="痛みが出てから書き出す" class="level2">
