@@ -1,6 +1,6 @@
 ---
 title: "Backrooms (2026) レビュー — 怪物映画のフリをした「壊れている精神世界」を象徴する映画"
-date: 2026-06-12
+date: 2026-06-11
 description: "A24『Backrooms』は次元ホラーとして観るのをやめた瞬間に面白くなる——そして、そこに踏み切らなかったことが最大の弱点でもある。6/10。"
 categories: [movie, horror, a24]
 source: doyu/log@14f369f/memo/2026-06-11_backrooms_review.md

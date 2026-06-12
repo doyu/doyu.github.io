@@ -1,6 +1,6 @@
 ---
 title: "Sato and Sato (2025): A Tragedy Where No One Is to Blame"
-date: 2026-06-12
+date: 2026-03-14
 description: "Sachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck."
 categories: [movie, drama, japan]
 source: doyu/log@4a6b338/memo/2026-03-14_review_sato_sato.md

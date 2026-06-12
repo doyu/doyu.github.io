@@ -1,6 +1,6 @@
 ---
 title: "『佐藤さんと佐藤さん』— 誰も裁けない悲劇についての映画"
-date: 2026-06-12
+date: 2026-03-14
 description: "サチもタモツも、どちらも愛らしい。これがこの映画の残酷さだ。タイミングと容量と運についての、普遍の悲しさを内包した夫婦の15年間。"
 categories: [movie, drama, japan]
 source: doyu/log@4a6b338/memo/2026-03-14_review_sato_sato.md
