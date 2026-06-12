@@ -9,8 +9,8 @@
 <link>https://your-website-url.example.com/</link>
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
-<generator>quarto-1.8.27</generator>
-<lastBuildDate>Thu, 11 Jun 2026 21:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.38</generator>
+<lastBuildDate>Fri, 12 Jun 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Post With Code</title>
   <dc:creator>Harlow Malloc</dc:creator>
@@ -30,7 +30,7 @@
   <category>code</category>
   <category>analysis</category>
   <guid>https://your-website-url.example.com/posts/post-with-code/</guid>
-  <pubDate>Thu, 11 Jun 2026 21:00:00 GMT</pubDate>
+  <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
   <media:content url="https://your-website-url.example.com/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -52,7 +52,7 @@
  ]]></description>
   <category>news</category>
   <guid>https://your-website-url.example.com/posts/welcome/</guid>
-  <pubDate>Mon, 08 Jun 2026 21:00:00 GMT</pubDate>
+  <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title></title>
@@ -452,7 +452,7 @@ font-style: inherit;"># export, test, build docs</span></span></code></pre></div
 
  ]]></description>
   <guid>https://your-website-url.example.com/posts/collected/yttoc-README.html</guid>
-  <pubDate>Fri, 12 Jun 2026 15:20:49 GMT</pubDate>
+  <pubDate>Fri, 12 Jun 2026 15:21:45 GMT</pubDate>
 </item>
 </channel>
 </rss>
