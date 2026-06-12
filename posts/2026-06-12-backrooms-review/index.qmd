@@ -3,7 +3,7 @@ title: "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner 
 date: 2026-06-12
 description: "A24's Backrooms works best when you stop reading it as dimension-hopping horror — and that's also exactly why it stops short of greatness. 6/10."
 categories: [movie, horror, a24]
-source: doyu/log@ea17be6/memo/2026-06-11_backrooms_review.md
+source: doyu/log@14f369f/memo/2026-06-11_backrooms_review.md
 lang: en
 image: https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg
 ---
