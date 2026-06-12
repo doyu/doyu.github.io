@@ -1,0 +1,4 @@
+/.quarto/
+**/*.quarto_ipynb
+/posts/collected/
+/_site/
