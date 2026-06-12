@@ -4,7 +4,77 @@
     "href": "index.html",
     "title": "doyu.github.io",
     "section": "",
-    "text": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProgressive Export: Harness Engineering for LLM Apps\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nLLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.\n\n\n\n\n\nMay 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html",
+    "href": "posts/2026-05-27-progressive-export/index.html",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "",
+    "text": "日本語版はこちら\nLLM apps change the center of application development. Before LLM apps, developers had to write the exact sequence of API calls that satisfied a user request. The application logic lived mostly in developer-written control flow:\nWith LLM apps, the developer increasingly provides a set of available capabilities rather than a fixed sequence. The LLM decides which tools to call, how to interpret the outputs the computer executed, and how to sequence the work:\nThis does not remove application architecture. It changes what architecture means. The important design question becomes: what capability surface should the LLM operate over, which parts should remain in the LLM, and which parts should be exported into reliable external tools?"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#the-repl-analogy",
+    "href": "posts/2026-05-27-progressive-export/index.html#the-repl-analogy",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "The REPL Analogy",
+    "text": "The REPL Analogy\nLLM CLI can also be interpreted as the new REPL for agentic applications.\nIn the old workflow, a developer used ipython, a shell, or another REPL to understand APIs before writing production code. The REPL was where the developer discovered:\n\nwhich APIs were needed\nhow the APIs behaved\nwhat inputs and outputs looked like\nwhich errors occurred\nwhat error handling was necessary\nwhat sequence of calls satisfied the requirement\n\nAfter that exploration, the developer wrote a script, then extracted functions and modules.\nnbdev made this workflow more explicit. Exploration is executed and recorded in a notebook, library functions are implemented after that, tests are added right after each implementation (TDD), and stable functions are exported with nbdev-export into reusable modules.\nLLM CLI can be thought of as playing the same role for LLM apps. It is the place to explore the task before deciding what should become durable infrastructure."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#progressive-export",
+    "href": "posts/2026-05-27-progressive-export/index.html#progressive-export",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Progressive Export",
+    "text": "Progressive Export\nThe practical development path is:\ninteractive LLM CLI exploration\n-&gt; LLM CLI with skills\n-&gt; LLM implements tools\n-&gt; LLM exports tools to MCP\n-&gt; LLM CLI with MCP tools\n-&gt; app with LLM calls using MCP tools\n-&gt; automated app or personal agent\nThe first stage should be loose and interactive. Let the LLM try to do the whole task. This reveals the real shape of the task: what the LLM handles well, what it gets wrong, which tool calls repeat, where output needs to be structured, and where deterministic code is safer.\nThe next stage is skill. A skill records a reusable procedure that the LLM can follow. This is useful while the workflow is still exploratory or mostly interactive. It reduces reinvention, but the LLM still has to read the procedure, reason through it, call commands, and interpret outputs. A skill is slow and costly because it involves external LLM calls, but as a procedure written in natural language it takes little initial implementation effort.\nThe next stage is Tool/MCP. Once a capability becomes stable, repeated, or important for reliability, cost, or speed, it should be promoted into a typed external tool. At that point, the LLM no longer needs to carry the full procedure in context. It only needs to choose a tool and provide structured arguments.\nThe final app can then be small. Much of the unreliable or verbose behavior has already been exported into reliable external tools. The app replaces the interactive LLM CLI with its own LLM-call “loop”, but keeps the same task knowledge, MCP boundaries, schemas, and verification rules discovered during exploration.\nThe app becomes a thin harness (loop) around those tools: UI, scheduling, persistence, permissions, observability, verification, and the remaining LLM calls.\nFor an OpenClaw-like or Agent-Sin-like personal agent, the path becomes:\nhuman + LLM CLI explores a task\n-&gt; repeated procedure becomes a skill\n-&gt; stable capability becomes MCP\n-&gt; app calls the LLM for intent/routing\n-&gt; app calls MCP tools for execution\n-&gt; scheduler/chat channel can run it without the interactive CLI\nThis path is not strictly linear. Building a skill or MCP tool often reveals new edge cases, and operating an app reveals new failure modes. Those observations should loop back into LLM CLI exploration. The loop is:\nexplore -&gt; export -&gt; operate -&gt; observe -&gt; explore again"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#what-gets-exported",
+    "href": "posts/2026-05-27-progressive-export/index.html#what-gets-exported",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "What Gets Exported",
+    "text": "What Gets Exported\nThe key movement is exporting work out of the LLM.\nAt first, interactive LLM conversation may do everything:\nunderstand request\n-&gt; choose APIs\n-&gt; decide sequence\n-&gt; parse output\n-&gt; handle errors\n-&gt; summarize result\nAs the workflow matures, repeated and fragile parts move outward:\nLLM: understand request, route, judge, summarize\nskill: remembered procedure for interactive use\nMCP: typed reliable execution boundary\napp: automation, persistence, verification, UX\nThis is harness engineering from the application side. The goal is not to eliminate the LLM. The goal is to leave the LLM with the smallest useful role and move execution, verification, persistence, and integration into deterministic components."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#export-only-when-it-hurts",
+    "href": "posts/2026-05-27-progressive-export/index.html#export-only-when-it-hurts",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Export Only When It Hurts",
+    "text": "Export Only When It Hurts\nThe progression is not a rule that everything must become MCP. If an interactive LLM CLI workflow works, is used rarely, and failure is cheap, it can stay there.\nExport work only when there is pressure:\n\nrepetition: the same procedure is used often\ncost: the LLM spends too many tokens rereading or rediscovering the procedure\nreliability: mistakes are no longer acceptable\nautomation: the workflow must run without a human watching\nsharing: multiple agents, apps, or people need the same capability\nsecurity: secrets, auth, permissions, or side effects need a stronger boundary\n\nThis keeps the workflow aligned with YAGNI. Skill is often the right intermediate step because it is cheap to create and helps prove whether MCP is worth the maintenance cost."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#what-stays-in-the-llm",
+    "href": "posts/2026-05-27-progressive-export/index.html#what-stays-in-the-llm",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "What Stays in the LLM",
+    "text": "What Stays in the LLM\nThe LLM should keep work where ambiguity is useful:\n\nunderstanding open-ended user intent\nrouting between tools when the rules are not stable\nsummarizing and explaining results\njudging tradeoffs that do not have a deterministic rule\nadapting to user-specific preferences\nhandling exception patterns that are still changing\n\nDeterministic components should take over work where consistency is more valuable than flexibility:\n\nrepeated API calls\nparsing and validation\nauthentication and secrets handling\npersistence\nverification\nretries and failure classification\nlatency-sensitive or high-frequency work\n\nThis is the practical meaning of leaving the LLM with the smallest useful role."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#skill-vs-mcp",
+    "href": "posts/2026-05-27-progressive-export/index.html#skill-vs-mcp",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Skill vs MCP",
+    "text": "Skill vs MCP\nSkills are excellent while exploring and while a human is still in the loop. They are cheap to create, easy to edit, and close to how people naturally describe workflows.\nBut skills can be expensive for production app usage. A skill may consume tokens every time the LLM reads or reasons through it. It may also leave too much room for command-construction mistakes or inconsistent interpretation.\nMCP is better when the capability needs to run often, run unattended, or be shared across clients. It gives the LLM a smaller and more structured interface:\ntool_name(arguments) -&gt; structured result\nFor an app, this matters as opex and reliability. A frequently used skill can become ongoing token cost. A frequently used MCP tool becomes a stable service boundary.\nMCP also changes who can call the capability. A skill usually assumes an LLM CLI session: the LLM reads the skill, follows the procedure, and calls commands. MCP exposes a tool boundary that can be called by an LLM client, another agent, or an ordinary app. Once a capability is MCP, it no longer exists only inside an interactive LLM session.\nThis is the key step that allows the interactive CLI to disappear from the final product. The app does not need to run Claude Code or Codex as its user interface. It can make its own LLM call, expose the same MCP tools, validate the structured tool results, and return a response through its own UI, chat channel, or scheduler.\nBut replacing the CLI means the app must own the harness that the CLI used to provide implicitly:\n\ntool-call loop\ncontext injection\npermissions and approval flow\nstructured output validation\ntranscript and tool tracing\nerror handling and retry policy\nsandbox or access boundaries\n\nSo the final app is not just a raw LLM API call. It is a small LLM runtime around MCP tools."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#structured-output-still-matters",
+    "href": "posts/2026-05-27-progressive-export/index.html#structured-output-still-matters",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Structured Output Still Matters",
+    "text": "Structured Output Still Matters\nEven after work is moved into MCP tools, some LLM calls remain. Those calls should use structured output whenever possible. Pydantic-style schemas, typed results, validation, and explicit failure states are part of the harness.\nThe same principle applies at every layer:\n\nreduce ambiguous free text\ndefine typed inputs and outputs\nvalidate results\nmake failure visible\nkeep the LLM’s degrees of freedom where they are useful\n\nObservability is also part of the harness. The app should record enough information to improve the system later: tool traces, validation failures, retries, cost, latency, user corrections, and cases where the LLM needed human help."
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#source-ideas",
+    "href": "posts/2026-05-27-progressive-export/index.html#source-ideas",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Source Ideas",
+    "text": "Source Ideas\nThis framing connects three ideas from the harness engineering discussion:\n\nTejas Kumar: reliability can improve without changing the prompt when verification and deterministic handlers are added around the model\nShingo Irie: useful personal agents separate what should be done by LLMs from what should be done by programs\nNewbee/Nishimi: understanding cannot be outsourced, which is why the initial exploration stage is not waste"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.html#essay-thesis",
+    "href": "posts/2026-05-27-progressive-export/index.html#essay-thesis",
+    "title": "Progressive Export: Harness Engineering for LLM Apps",
+    "section": "Essay Thesis",
+    "text": "Essay Thesis\nLLM CLI is the new REPL for agentic applications. We first explore the task interactively, then export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and finally replace the interactive CLI with a small app runtime that calls an LLM over those reliable tools.\nThe deeper change is that application development is no longer only about writing control flow directly. It is about discovering, shaping, and hardening the harness that lets an LLM operate safely over useful capabilities. The best path is progressive export: start with the LLM, keep what benefits from ambiguity, and move the rest outward only when the pressure is real. The next step, I think, is to build a mechanism that lets the LLM implement skills automatically when they are needed (to be researched)."
   },
   {
     "objectID": "posts/2026-06-11-backrooms-review/index.html",
@@ -145,6 +215,76 @@
     "title": "Backrooms (2026) レビュー — 怪物映画のフリをした「壊れている精神世界」を象徴する映画",
     "section": "6/10の理由: メタファーと定義しきらなかったことが惜しい",
     "text": "6/10の理由: メタファーと定義しきらなかったことが惜しい\nここまで読みが成立する素材を揃えておきながら、映画はバックルームを「壊れている精神の世界観のメタファー」と定義しなかった。Async という研究組織、ポータルの世界的拡大、続編への布石——SF的実在の側に半身を残したまま終わる。\nその結果、曖昧さが「効いている余白」と「投げっぱなし」の区別がつかない箇所が残り、観終わったあとのモヤモヤが解釈の快楽を超えて未練として残る。壊れている内的心理世界の描写映画として振り切れば傑作になり得た。怪物映画として観れば凡庸。その中間に立ち止まったのがこの映画であり、それが6点の理由だ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "",
+    "text": "English version here\nLLMアプリは、アプリケーション開発の中心を変える。LLMアプリ以前、開発者はユーザーのリクエストを満たす正確な API 呼び出しシーケンスを自分で書く必要があった。アプリケーションロジックの大部分は、開発者が書いた制御フローの中にあった：\nLLMアプリでは、開発者は固定のシーケンスではなく、利用可能な能力（capability）の集合を提供するようになる。どのツールを呼ぶか、コンピュータが実行した出力をどう解釈するか、作業をどう順序付けるかは LLM が決める：\nこれはアプリケーション・アーキテクチャをなくすわけではない。アーキテクチャの意味を変えるのだ。重要な設計上の問いはこうなる：LLM にどの能力面（capability surface）の上で動いてもらうか、どの部分を LLM の中に残すか、どの部分を信頼できる外部ツールへ書き出す（export する）か。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#repl-のアナロジー",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#repl-のアナロジー",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "REPL のアナロジー",
+    "text": "REPL のアナロジー\nLLM CLI は、エージェント型アプリケーションのための新しい REPL として解釈することもできる。\nかつてのワークフローでは、開発者は本番コードを書く前に ipython やシェルなどの REPL で API を理解した。REPL は次のことを発見する場所だった：\n\nどの API が必要か\nAPI がどう振る舞うか\n入力と出力がどんな形か\nどんなエラーが起きるか\nどんなエラーハンドリングが必要か\nどの呼び出しシーケンスが要件を満たすか\n\nその探索の後で、開発者はスクリプトを書き、関数やモジュールを抽出した。\nnbdev はこのワークフローをより明示的にした。探索はノートブックの中で実行、そして記録され、その後にライブラリ関数が実装される。テストはライブラリ関数実装直後に追加され(TDD)、安定した関数は nbdev-export で再利用可能なモジュールへ書き出された。\nLLM CLI は LLMアプリに対して同じ役割を果たすと考えることが出来る。何を恒久的なインフラにすべきかを決める前に、タスクを探索する場所だ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#progressive-export漸進的な書き出し",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#progressive-export漸進的な書き出し",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "Progressive Export（漸進的な書き出し）",
+    "text": "Progressive Export（漸進的な書き出し）\n実践的な開発パスはこうなる：\ninteractive LLM CLI exploration\n-&gt; LLM CLI with skills\n-&gt; LLM implements tools\n-&gt; LLM exports tools to MCP\n-&gt; LLM CLI with MCP tools\n-&gt; app with LLM calls using MCP tools\n-&gt; automated app or personal agent\n最初の段階は緩く、対話的であるべきだ。LLM にタスク全体をやらせてみる。これによってタスクの本当の形が見えてくる：LLM が得意なこと、間違えること、繰り返されるツール呼び出し、出力を構造化すべき箇所、決定論的なコードの方が安全な箇所。\n次の段階は skill だ。skill は LLM が従える再利用可能な手順を記録する。ワークフローがまだ探索的で、人間との対話が中心の間はこれが有効だ。車輪の再発明を減らすが、LLM は依然として手順を読み、推論し、コマンドを呼び、出力を解釈しなければならない。skillは外部LLMコールを含むため遅くコスト高ではあるが、自然言語で書かれた手順書なので、初期実装の手間が少ない。\nその次の段階は Tool/MCP だ。ある能力が安定し、繰り返し使われ、信頼性/コスト/速度が重要になったら、型付きの外部ツールへ昇格させるべきだ。その時点で、LLM は手順全体をコンテキストに抱え続ける必要がなくなる。ツールを選び、構造化された引数を渡すだけでよい。\n最終的なアプリは小さくできる。信頼できない処理や冗長な処理の多くは、すでに信頼できる外部ツールへ書き出されているからだ。アプリは対話的な LLM CLI を自前の LLM 呼び出し”LOOP”に置き換えるが、探索中に発見したタスク知識、MCP の境界、スキーマ、検証ルールはそのまま引き継ぐことが出来る。\nアプリはそれらのツールを包む薄いハーネス(ループ)になる：UI、スケジューリング、永続化、権限、可観測性、検証、そして残りの LLM 呼び出し。\nOpenClaw や Agent-Sin のようなパーソナルエージェントなら、パスはこうなる：\nhuman + LLM CLI explores a task\n-&gt; repeated procedure becomes a skill\n-&gt; stable capability becomes MCP\n-&gt; app calls the LLM for intent/routing\n-&gt; app calls MCP tools for execution\n-&gt; scheduler/chat channel can run it without the interactive CLI\nこのパスは厳密には直線的ではない。skill や MCP ツールを作ると新しいエッジケースが見つかることが多いし、アプリを運用すると新しい故障モードが見えてくる。それらの観察は LLM CLI での探索にループバックさせるべきだ。ループはこうだ：\nexplore -&gt; export -&gt; operate -&gt; observe -&gt; explore again"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#何が書き出されるのか",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#何が書き出されるのか",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "何が書き出されるのか",
+    "text": "何が書き出されるのか\n鍵となる動きは、仕事を LLM の外へ書き出すことだ。\n最初は interactiveにLLM対話 がすべてをやってもいい：\nunderstand request\n-&gt; choose APIs\n-&gt; decide sequence\n-&gt; parse output\n-&gt; handle errors\n-&gt; summarize result\nワークフローが成熟するにつれて、繰り返される部分と壊れやすい部分が外へ移っていく：\nLLM: understand request, route, judge, summarize\nskill: remembered procedure for interactive use\nMCP: typed reliable execution boundary\napp: automation, persistence, verification, UX\nこれがアプリケーション側から見たハーネスエンジニアリングだ。目標は LLM を排除することではない。LLM に最小限の有用な役割だけを残し、実行・検証・永続化・統合を決定論的なコンポーネントへ移すことだ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#痛みが出てから書き出す",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#痛みが出てから書き出す",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "痛みが出てから書き出す",
+    "text": "痛みが出てから書き出す\nこの進行は「すべてを MCP にせよ」というルールではない。対話的な LLM CLI ワークフローがうまく動いていて、使用頻度が低く、失敗のコストが安いなら、そのままでいい。\n書き出すのは圧力があるときだけだ：\n\n反復：同じ手順が頻繁に使われる\nコスト：LLM が手順の再読・再発見にトークンを使いすぎる\n信頼性：もうミスが許容できない\n自動化：人間が見ていなくても動く必要がある\n共有：複数のエージェント・アプリ・人が同じ能力を必要とする\nセキュリティ：シークレット、認証、権限、副作用により強い境界が必要\n\nこれはワークフローを YAGNI に沿わせ続ける。skill が中間段階としてしばしば適切なのは、作るのが安く、MCP がメンテナンスコストに見合うかを証明するのに役立つからだ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#llm-に残るもの",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#llm-に残るもの",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "LLM に残るもの",
+    "text": "LLM に残るもの\nLLM には、曖昧さが有用な仕事を残すべきだ：\n\nオープンエンドなユーザー意図の理解\nルールがまだ安定していないときのツール間のルーティング\n結果の要約と説明\n決定論的なルールがないトレードオフの判断\nユーザー固有の好みへの適応\nまだ変化し続けている例外パターンの処理\n\n一貫性が柔軟性より価値を持つ仕事は、決定論的なコンポーネントが引き受けるべきだ：\n\n繰り返される API 呼び出し\nパースとバリデーション\n認証とシークレットの扱い\n永続化\n検証\nリトライと失敗の分類\nレイテンシに敏感な処理、高頻度の処理\n\nこれが「LLM に最小限の有用な役割だけを残す」ことの実践的な意味だ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#skill-vs-mcp",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#skill-vs-mcp",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "Skill vs MCP",
+    "text": "Skill vs MCP\nskill は、探索中や人間がループに入っている間は優れている。作るのが安く、編集しやすく、人がワークフローを自然に記述する形に近い。\nしかし skill は本番アプリでの利用にはコストが高くつきうる。LLM が skill を読んで推論するたびにトークンを消費しうるし、コマンド構築のミスや解釈の揺れの余地も残る。\n能力を頻繁に、無人で、あるいは複数のクライアント間で共有して動かす必要があるなら MCP の方がよい。MCP は LLM により小さく構造化されたインターフェースを与える：\ntool_name(arguments) -&gt; structured result\nアプリにとって、これは opex と信頼性の問題だ。頻繁に使われる skill は継続的なトークンコストになりうる。頻繁に使われる MCP ツールは安定したサービス境界になる。\nMCP は、その能力を誰が呼べるかも変える。skill は通常 LLM CLI セッションを前提とする：LLM が skill を読み、手順に従い、コマンドを呼ぶ。MCP は、LLM クライアントからも、別のエージェントからも、普通のアプリからも呼べるツール境界を公開する。能力が MCP になった時点で、それは対話的な LLM セッションの中だけの存在ではなくなる。\nこれが、最終プロダクトから対話的 CLI を消すことを可能にする鍵となるステップだ。アプリは Claude Code や Codex をユーザーインターフェースとして動かす必要はない。自前で LLM を呼び、同じ MCP ツールを公開し、構造化されたツール結果を検証し、自分の UI・チャットチャネル・スケジューラを通じてレスポンスを返せばよい。\nただし CLI を置き換えるということは、CLI が暗黙に提供していたハーネスをアプリが自前で持つということだ：\n\nツール呼び出しループ\nコンテキスト注入\n権限と承認フロー\n構造化出力のバリデーション\nトランスクリプトとツールのトレース\nエラーハンドリングとリトライポリシー\nサンドボックスやアクセス境界\n\nつまり最終的なアプリは、生の LLM API 呼び出しではない。MCP ツールを囲む小さな LLM ランタイムだ。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#それでも構造化出力は重要",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#それでも構造化出力は重要",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "それでも構造化出力は重要",
+    "text": "それでも構造化出力は重要\n仕事を MCP ツールへ移した後も、いくつかの LLM 呼び出しは残る。それらの呼び出しは可能な限り構造化出力を使うべきだ。Pydantic スタイルのスキーマ、型付きの結果、バリデーション、明示的な失敗状態はハーネスの一部だ。\n同じ原則がすべての層に当てはまる：\n\n曖昧な自由テキストを減らす\n型付きの入出力を定義する\n結果を検証する\n失敗を可視化する\nLLM の自由度は、それが有用な場所にだけ残す\n\n可観測性もハーネスの一部だ。アプリは後でシステムを改善するのに十分な情報を記録すべきだ：ツールのトレース、バリデーションの失敗、リトライ、コスト、レイテンシ、ユーザーによる修正、そして LLM が人間の助けを必要としたケース。"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#元になったアイデア",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#元になったアイデア",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "元になったアイデア",
+    "text": "元になったアイデア\nこのフレーミングは、ハーネスエンジニアリングに関する議論から3つのアイデアをつないでいる：\n\nTejas Kumar：モデルの周りに検証と決定論的なハンドラを足せば、プロンプトを変えずに信頼性を上げられる\n入江慎吾：有用なパーソナルエージェントは、LLM がやるべきこととプログラムがやるべきことを分離している\nNewbee/西見：理解は外注できない——だからこそ最初の探索段階は無駄ではない"
+  },
+  {
+    "objectID": "posts/2026-05-27-progressive-export/index.ja.html#結論",
+    "href": "posts/2026-05-27-progressive-export/index.ja.html#結論",
+    "title": "Progressive Export — LLMアプリのためのハーネスエンジニアリング",
+    "section": "結論",
+    "text": "結論\nLLM CLI はエージェント型アプリケーションの新しい REPL だ。まず対話的にタスクを探索し、繰り返される処理と壊れやすい処理を skill へ書き出し、安定した能力を MCP ツールへ昇格させ、最後に、信頼できるツール群の上で LLM を呼ぶ小さなアプリランタイムで対話的 CLI を置き換える。\nより深い変化は、アプリケーション開発がもはや制御フローを直接書くことだけではなくなった、ということだ。LLM が有用な能力の上で安全に動けるようにするハーネスを発見し、形作り、固めていくことになった。最良の道は progressive export だ：LLM から始め、曖昧さが利益になるものは残し、それ以外は、圧力が本物になったときにだけ外へ移していく。次のステップはどうやって自動的にLLMにSKILLを実装させる仕組みを作るかだと思う(要調査)。"
   },
   {
     "objectID": "about.html",
