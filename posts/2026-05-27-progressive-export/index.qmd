@@ -3,7 +3,7 @@ title: "Progressive Export: Harness Engineering for LLM Apps"
 date: 2026-05-27
 description: "LLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools."
 categories: [llm, agents, engineering]
-source: doyu/log@e5c0e27/memo/2026-05-27_agent_harness_app_development.md
+source: doyu/log@dbbb84a/memo/2026-05-27_agent_harness_app_development.md
 lang: en
 ---
 
