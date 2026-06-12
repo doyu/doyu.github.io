@@ -2,6 +2,8 @@
 title: "doyu.github.io"
 listing:
   contents: posts
+  exclude:
+    lang: ja
   feed: true
   sort: "date desc"
   type: default
