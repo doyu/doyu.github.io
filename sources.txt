@@ -1,2 +1,1 @@
 # <owner>/<repo> <path-to-markdown>  (1行1記事; #はコメント)
-doyu/yttoc README.md
