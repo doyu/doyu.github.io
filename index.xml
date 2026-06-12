@@ -10,17 +10,17 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Fri, 12 Jun 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 11 Jun 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World</title>
-  <link>https://your-website-url.example.com/posts/2026-06-12-backrooms-review/</link>
+  <link>https://your-website-url.example.com/posts/2026-06-11-backrooms-review/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p><em><a href="../../posts/2026-06-12-backrooms-review/index.ja.html">日本語版はこちら</a></em></p>
+<p><em><a href="../../posts/2026-06-11-backrooms-review/index.ja.html">日本語版はこちら</a></em></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.youtube.com/watch?v=0HjdiohVOik"><img src="https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg" class="img-fluid figure-img"></a></p>
@@ -68,20 +68,20 @@
   <category>movie</category>
   <category>horror</category>
   <category>a24</category>
-  <guid>https://your-website-url.example.com/posts/2026-06-12-backrooms-review/</guid>
-  <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+  <guid>https://your-website-url.example.com/posts/2026-06-11-backrooms-review/</guid>
+  <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
   <media:content url="https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Sato and Sato (2025): A Tragedy Where No One Is to Blame</title>
-  <link>https://your-website-url.example.com/posts/2026-06-12-sato-and-sato-review/</link>
+  <link>https://your-website-url.example.com/posts/2026-03-14-sato-and-sato-review/</link>
   <description><![CDATA[ 
 
 
 
 
 
-<p><em><a href="../../posts/2026-06-12-sato-and-sato-review/index.ja.html">日本語版はこちら</a></em></p>
+<p><em><a href="../../posts/2026-03-14-sato-and-sato-review/index.ja.html">日本語版はこちら</a></em></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="https://www.youtube.com/watch?v=dLKooLG6qAY"><img src="https://img.youtube.com/vi/dLKooLG6qAY/maxresdefault.jpg" class="img-fluid figure-img"></a></p>
@@ -126,8 +126,8 @@
   <category>movie</category>
   <category>drama</category>
   <category>japan</category>
-  <guid>https://your-website-url.example.com/posts/2026-06-12-sato-and-sato-review/</guid>
-  <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+  <guid>https://your-website-url.example.com/posts/2026-03-14-sato-and-sato-review/</guid>
+  <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
   <media:content url="https://img.youtube.com/vi/dLKooLG6qAY/maxresdefault.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
