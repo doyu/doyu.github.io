@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "doyu.github.io",
     "section": "",
-    "text": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProgressive Export: Harness Engineering for LLM Apps\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nLLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.\n\n\n\n\n\nMay 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSkills as Compound Interest: and the Principal That Depreciates Least\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nWriting skills while you work is compound interest on your labor. But what actually compounds isn’t the pile of skills — it’s the judgment of what’s worth encoding.\n\n\n\n\n\nJun 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProgressive Export: Harness Engineering for LLM Apps\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nLLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.\n\n\n\n\n\nMay 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2026-05-27-progressive-export/index.html",
@@ -145,6 +145,188 @@
     "title": "Sato and Sato (2025): A Tragedy Where No One Is to Blame",
     "section": "Knowing yourself",
     "text": "Knowing yourself\nWhat stayed with me after the film is the importance of knowing what you truly need. If Tamotsu had understood earlier who he was, he might not have collapsed everything into the single point of the bar exam. He might have found happiness more flexibly, without dragging Sachi down with him.\nOf course, that’s hindsight. No one fully understands themselves when they are young. Which is exactly why this story could happen to anyone — and exactly why this film hurts.\nKnowing yourself is, I think, a necessary condition for happiness. Not a sufficient one. You cannot control timing or luck, but if you know what you actually need, you can at least avoid grinding yourself down on the wrong battlefield.\n\nYukino Kishii’s and Hio Miyazawa’s performances are what make this “no one is at fault” story hold together. Because you can empathize with both, you can save neither. After the credits, I couldn’t get up for a while."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "",
+    "text": "日本語版はこちら"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#the-thesis",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#the-thesis",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "The thesis",
+    "text": "The thesis\nWhite-collar workers should use coding LLMs — Claude Code, Codex — and, while doing the work, write and accumulate their own skills. That accumulation compounds, and the compounding is what separates them decisively from everyone else.\nMost people stop one step too early. They are happy to build software faster with a coding LLM — finishing the object-level task in front of them. There’s a deeper move: instead of focusing only on the development task, spend even a few percent of each day writing skills that automate your own daily work.\nOrdinary work is linear: one day buys one day of output. The person who writes skills gets “today = work + skill, and from tomorrow on, the skill works for me.” Even a few percent of improvement a day, accumulated, pulls you far ahead of someone who only completes tasks. This isn’t a metaphor — it’s literally financial compound interest. Principal earns interest, that interest earns more interest; the time a skill frees up produces the next skill, which frees up more time.\nThis is also exactly what Jeremy Howard has done across his projects — nbdev → fastcore → fastai → fasthtml → solveit — building tools while doing the work, each tool becoming the foundation for the next.\nThe people who used to pull ahead on productivity were the ones who could customize Excel macros, shell scripts, Emacs and Vim. Today that’s been replaced by Claude Code skills, Codex tasks, MCP integrations, agent workflows, a personal knowledge base. Writing a skill is the act of converting labor income into capital income. And when skills A, B, C combine into A+B, A+C, A+B+C, new capabilities emerge — a superlinear growth closer to network effects than to ordinary additive reuse.\nInternalizing this is the core, and most people aren’t here yet. What follows is refinement on how to compound correctly — not a denial of the core."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#but-it-isnt-the-pile-of-skills-that-compounds",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#but-it-isnt-the-pile-of-skills-that-compounds",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "But it isn’t the pile of skills that compounds",
+    "text": "But it isn’t the pile of skills that compounds\nHere’s the trap: the skills you write are a depreciating asset. Many skills you write today are just workarounds for things the base model can’t yet do reliably. Every time the capability frontier advances, some of them quietly become useless. Bragging about the count is a vanity metric; forty junk skills lose to three you can’t let go of.\nWhat truly compounds is the meta-skill — the judgment to see what’s worth encoding. The ability to decompose a messy workflow into reusable, composable, minimal units. The eye to tell “the model will absorb this in 18 months” from “this will last.” Durable encodings carry your context, your taste, your org-specific glue, domain knowledge a general model can’t have. General capability is the worst place to invest a skill — that’s exactly what the base model will eventually do for free.\nThe video that seeded this essay (“How AI agents & Claude skills work”) said as much: the only thing you and I have that the model doesn’t is our own workflow, taste, and strategy. Lean on the model’s strengths; hand it what’s unique to you, not general knowledge. Don’t tell it to use React — it knows. “Context engineering” (“the models are already good; the difference is the harness and the context”) is the same point stated one altitude lower: the model is a commodity, and what you wrap around it is the edge."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#the-edge-is-discipline-not-information",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#the-edge-is-discipline-not-information",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "The edge is discipline, not information",
+    "text": "The edge is discipline, not information\n“Everyone already knows this,” they say. Yet knowledge is nearly free and the edge doesn’t disappear — not because it’s secret, but because nobody does the unglamorous up-front structuring. Most people treat AI sessions as disposable: get an answer, walk away, re-explain the same context tomorrow — using it like a vending machine. A handful externalize and fix their context so they never explain it twice — using it like a factory. The compounding advantage is not an information gap but a discipline gap."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#write-a-skill-every-day-is-wrong",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#write-a-skill-every-day-is-wrong",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "“Write a skill every day” is wrong",
+    "text": "“Write a skill every day” is wrong\nThis is easy to misread. Good skills come from friction, not from the calendar. You did the same task twice; you got stuck in the same place — only then is it worth encoding. Writing a skill you don’t need because “it’s the daily ritual” is over-engineering, manufacturing your own junk (YAGNI). But friction is a safe default, not the only source: if you already know the pattern, you can structure it before it hurts — that’s exactly what harness design is (you build before the friction). Telling those apart is also judgment, distinct from speculative “I might need this someday.”\nSo what you should make routine is not production but noticing. Not daily writing but daily noticing / weekly codifying. The daily question isn’t “how many did I write today?” but “which part of today’s work did I make sure I never have to do by hand again?”\nThe skill-making method in the seed video is exactly this: when you find a workflow, don’t immediately write a skill (the worst way to do it). First do it by hand with the agent, step by step; let it fail, correct it, and only after you have one successful run, encode it. The reason: the model is a new hire, not a black box — you can’t hand a new hire “make the financial report” with no context. So a skill needs the context of a successful run. Same with “scale for productivity, not for what looks cool” — don’t line up fifteen sub-agents and thirty skills when you don’t even have a workflow yet. Start with one agent, stack skills, and add sub-agents only when you truly need them."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#compounding-has-a-sinking-two-weeks",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#compounding-has-a-sinking-two-weeks",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Compounding has a “sinking two weeks”",
+    "text": "Compounding has a “sinking two weeks”\nHonestly: compounding has a J-curve — a period where you sink first. The seed conversation describes roughly two weeks of investment standing up a project where you think “is this garbage?” And the sharp observation: nobody talks about how painful that initial investment is — especially the agent-harness companies, because saying so would hurt fundraising. The compounding story always sells the upswing and hides the dip, because the seller benefits. But you don’t get the dividend until you cross the trough. The vending-machine majority can’t get past those two weeks, and stay on the side that re-explains from zero every time. The discipline gap is also about whether you wash out here."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#will-hundreds-of-skills-rot-keep-them-small-and-primitive",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#will-hundreds-of-skills-rot-keep-them-small-and-primitive",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Will hundreds of skills rot? Keep them small and primitive",
+    "text": "Will hundreds of skills rot? Keep them small and primitive\nThe worry that hundreds of skills compound into technical debt is fair. The debt doesn’t vanish — but design can keep it bounded. Two keys: keep skills small and primitive, and never lose the tie to a real task.\n\nSmall and single-purpose means failures stay localized. When a task fails, you can trace the composition to isolate which part caused it (the Unix philosophy: do one thing well).\nLoosely coupled means total complexity approaches the sum of the parts, not the product or the exponential. You maintain hundreds of atoms, not the astronomical number of their combinations.\nAnd the strongest point — you are the origin. These didn’t fall from the sky; you wrote them because your own task needed them. So the spec lives outside the skill, explicit in the real task. You don’t have to guess three years later why this exists.\n\nIt isn’t free, though. Tuning trigger conditions (the description), duplication, retiring stale skills, dependencies, discovery load — that debt persists. And the temptation to optimize — “these always run together, let’s merge them,” “specializing this for one task would be handy” — grows small atoms into large, context-dependent blobs. Hundreds of rotting skills is the failure mode of design, not the default. The remaining open problem is the correctness of composition — each part can be right while a fault hides in the order or the hand-off. That’s not solved on paper; it resolves when you actually stack them and get stuck. A broken seam isn’t a failure but information: “this is a joint a human should keep holding.” The map can only be drawn as an accumulation of broken seams."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#jeremy-howard-as-living-proof-but-the-revised-version",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#jeremy-howard-as-living-proof-but-the-revised-version",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Jeremy Howard as living proof — but the revised version",
+    "text": "Jeremy Howard as living proof — but the revised version\nThe strongest example of this thesis is Jeremy Howard. nbdev → fastcore → fastai → fasthtml → solveit. All extracted from the friction of doing object-level work because he wanted to be more productive. Need-first, not build-first. The order is reversed — he didn’t set out to become a specialist; he resolved his own frustrations and ended up one. Tools beget tools.\nBut what he proves is not the naive version — it’s the revised one. He didn’t write hundreds of disposable skills; he extracted a small number of well-factored, durable abstractions (three, not forty) and designed, refactored, tested, and documented them. Even the depreciation dynamic applies to him — much of what fastai v1 pioneered was absorbed into PyTorch itself. The artifacts depreciated; what appreciated was the eye for what to abstract."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#when-does-a-private-skill-become-an-asset-private-org-public",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#when-does-a-private-skill-become-an-asset-private-org-public",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "When does a private skill become an “asset”? private → org → public",
+    "text": "When does a private skill become an “asset”? private → org → public\nOne more constraint I’d written before: a purely private tool barely compounds as a transferable asset. Howard’s tools compounded because he published them and they became other people’s foundations. So when someone says “500 skills that reproduce my thinking = the company’s asset” — 500 private skills compound your personal productivity, but to compound as asset value you need a layer of “publish + explain.”\nHere the seed conversation adds an important distinction: don’t download other people’s skills — because (1) it’s an attack vector (security), and (2) a downloaded skill has none of your successful-run context. Which means: what compounds when published is the “portable abstraction” (a context-free tool like nbdev), not a personal skill with context baked in. The latter is inherently unportable (your task and taste are embedded). So 500 personal skills don’t automatically become an “asset” others can use. To compound as asset value, you need one more step: strip the context off the personal skill and repackage it as a portable abstraction (framework / template). That’s actually the hardest rung on the skill → public tool → infrastructure ladder.\nAnd between public and private there’s an organizational middle layer. Skills shared within a team compound far more than personal ones, if not as much as public ones. For a five-person team, forty skills made of each person’s top ten compound more as asset value than 500 private ones. This is also consistent with “don’t download other people’s skills” — intra-team sharing is the smallest unit that can share “successful-run context” (even implicitly). So it’s precisely private → org → public, with the compounding rate higher to the right and the context-transfer cost also higher to the right."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#the-compounding-metaphor-precisely",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#the-compounding-metaphor-precisely",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "The compounding metaphor, precisely",
+    "text": "The compounding metaphor, precisely\nThis shares its deep structure with the famous financial advice: resist linear immediate consumption, convert returns into return-bearing assets, reinvest, and grow exponentially. Labor income into capital income.\nWhat works especially well is Die with Zero’s memory dividend — early experiences get re-savored again and again over the rest of your life, paying dividends repeatedly. That’s not “principal-growth” compounding but “re-savoring” compounding. The experience is fixed and one-time, but it pays a dividend each time you recall it, and the dividend is realized only when re-savored.\nSkills are structurally close to this (experience is re-savored, skills are re-run / reused — the dividend pays out differently, but the structure is the same). A skill’s value is (future reuse count) × (value per use). The earlier you write it, the larger the sum of re-savorings. And a skill that’s never reused is like an experience never recalled — zero dividend, not even an asset. The yield is “frequency of re-savoring,” not “number held,” so the count is meaningless. But where the memory dividend has built-in triggers — photos, diaries, smells — a skill’s trigger is the same task recurring. So re-savoring frequency is set not only by skill quality but by the probability of the task arising on your calendar — half the yield is external. From which it follows naturally: high-frequency tasks like commit messages or PR reviews are higher priority to encode, and one-offs you shouldn’t write. That’s the yield-based justification for the design."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#three-layers-and-the-principal-that-depreciates-least",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#three-layers-and-the-principal-that-depreciates-least",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Three layers, and the principal that depreciates least",
+    "text": "Three layers, and the principal that depreciates least\n\n\n\n\n\n\n\n\nLayer\nNature of compounding\nDepreciates?\n\n\n\n\nIndividual skill\nmemory dividend (re-savoring)\nYes (the model absorbs it)\n\n\nThe skill framework itself\nthe “account” you keep dividends in\nYes (today Claude skills, tomorrow something else)\n\n\nJudgment\nthe least-depreciating principal\nBarely (it strengthens on recalibration)\n\n\n\nSkills are memory dividends; they fade and get absorbed. The framework is an account; you’ll switch eventually. Judgment isn’t invincible either — it dates when model capability, the market, or your own goals change. But unlike skills and frameworks, judgment can be recalibrated, and grows stronger each time. So across the three layers, the thing that depreciates least and grows on “interest on interest” is judgment. Keep asking what to encode, what to discard, whether this framework is still the best — that judgment is the most important asset.\nAnd judgment itself is the highest-order memory dividend. Each judgment you make is later re-savored as a sharper judgment. The accumulation of past encoding-decisions pays dividends repeatedly as taste. So:\n\nskill = the memory dividend of experience (fades, gets absorbed)\njudgment = the highest-order memory dividend, compounded from those judgment-experiences (fades least, strengthens on recalibration)\n\n(I deliberately leave habit off this ledger — the externalization reflex of asking daily “did I put today’s work outside my head?”. Habit depends on neither model nor framework and precedes judgment; it’s the soil, but it’s an act that produces assets, not an asset that pays dividends, so I treated it earlier rather than on the asset ledger. The three layers sit on top of that soil.)"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#footnote-the-naive-version-is-already-running-in-production-answerthis",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#footnote-the-naive-version-is-already-running-in-production-answerthis",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Footnote: the naive version is already running in production — AnswerThis",
+    "text": "Footnote: the naive version is already running in production — AnswerThis\nAyush Garg of AnswerThis (on YC Root Access) shows a real implementation of the naive version of this thesis: two full-timers plus a few contractors, $2M+ ARR. The core is a self-extending agent — when it hits a repetitive task it can’t yet do, it has a coding sub-agent build a tool, and that tool persists and is usable in future sessions. This matches this essay’s “friction → encode → persist → compound,” down to the trigger (recurrence = friction, not the calendar). His three kinds of memory — factual (read-copies of code/DB), behavioral (an instructions.md read every turn), procedural (self-made tools) — are an operating form of “judgment as principal / skills as dividend.”\nBut the video stays at the naive version; it lacks this essay’s refinement layer. (1) It brags about “45 self-made CLIs” as an achievement, but by this essay’s standard that’s vanity — “forty junk lose to three you can’t let go of.” (2) Its agent immediately tools-up on noticing a repetition, skipping the discipline of “don’t write immediately; first produce one successful run, then encode” (baking in successful-run context). So the video is evidence that supports this essay, not new information that updates it.\nThe one new thing: it delegates part of the “is this worth encoding?” judgment to the agent. This essay put the human at the origin of judgment (“make noticing routine, not production”). AnswerThis experiments with semi-automating the noticing itself. This lands exactly on this essay’s open parts — “manual → semi-auto” and “composition correctness can’t be solved on paper; it resolves when you stack and get stuck” — and the two warnings above (the count trap, the successful-run discipline) apply directly. So the question moves from “can it self-extend?” to “how far do you allow the delegation of judgment?” Since the least-depreciating principal is judgment, it’s the hardest thing to delegate — the moment you delegate it, you may be handing away the very principal that was supposed to compound. That’s the seam between the naive and the revised version."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.html#conclusion",
+    "href": "posts/2026-06-02-skill-compound-interest/index.html#conclusion",
+    "title": "Skills as Compound Interest: and the Principal That Depreciates Least",
+    "section": "Conclusion",
+    "text": "Conclusion\nA skill is only the “currently” best vessel as a tool. What has stayed without depreciating is judgment. Two months ago I wrote “compounding with no destination”; today I re-savored it and sharpened it further — and that act itself is the live scene of judgment, as principal, compounding. And if I hadn’t externalized it two months ago, I’d be thinking it through from scratch today. Work that lives only in your head doesn’t exist."
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "",
+    "text": "English version here"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#テーゼ",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#テーゼ",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "テーゼ",
+    "text": "テーゼ\nホワイトカラーは Claude Code / Codex のようなコーディング LLM を使い、仕事をしながら自分用の skill を書いて溜めるべきだ。それが複利になって他人と決定的に差がつく。\nほとんどの人は一歩手前で止まる。コーディング LLM でソフトウェアそのものを速く作ることに満足して、目の前の object-level のタスクをこなすところまで。だが一歩深い動きがある——目の前の開発タスクだけに集中するのではなく、自分の日々の仕事を自動化する skill を、たとえ毎日数%の時間でも書いて溜めること。\n普通の仕事は「1日＝1日分の成果」で線形だ。skill を書く人は「1日＝仕事＋skill 作成、翌日以降＝skill が働く」。毎日わずか数%の改善でも、積み重なれば、タスクをこなすだけの人を遥かに引き離す。 これは比喩ではなく、金融の複利そのものだ。元本に利息がつき、その利息がまた利息を生む——skill が空けた時間が次の skill を生み、それがまた時間を空ける。\nこれは Jeremy Howard が自分のプロジェクト群でやってきたことの正体でもある——nbdev → fastcore → fastai → fasthtml → solveit と、仕事をしながら道具を作り、前の道具が次の土台になる。\n昔、生産性で頭一つ抜けたのは Excelマクロ／シェルスクリプト／Emacs・Vim をカスタムできる人だった。今はそれが Claude Code Skills / Codex Tasks / MCP連携 / Agent Workflows / Personal Knowledge Base に置き換わっている。skill を書くとは労働所得を資本所得に変換する行為そのものだ。さらに Skill A・B・C が A+B、A+C、A+B+C と組み合わさると新しい能力が生まれる——通常の複利（足し算的な再利用）を超えた、ネットワーク効果に近い超線形の伸び。\nまずここを腑に落とすことが核心だ。ほとんどの人はここに来ていない。 以下はこの複利を正しく回すための精緻化であって、核心の否定ではない。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#だが複利するのは-skill-の山ではない",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#だが複利するのは-skill-の山ではない",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "だが複利するのは skill の山ではない",
+    "text": "だが複利するのは skill の山ではない\nここに罠がある。書いた skill そのものは減価する資産だ。 今日書く skill の多くは、ベースモデルがまだ安定してこなせないことへの回避策にすぎない。能力曲線が前に進むたびに一部は静かに無用になる。数を誇るのは虚栄の指標で、ジャンクな40個は手放せない3個に負ける。\n本当に複利するのはメタスキル——何を符号化する価値があるか見抜く判断力だ。雑然としたワークフローを再利用・合成可能な最小単位に分解する力。「これは18ヶ月後にモデルが吸収する」と「これは持続する」の境界を見抜く目。持続する符号化とは、自分の文脈・美意識・組織固有の繋ぎ込み・汎用モデルが持ち得ないドメイン知識を運ぶもの。汎用能力こそ skill 化の投資先として最悪だ。そこはモデル本体がいずれ無料で肩代わりする。\nこのエッセイのネタ元の動画（“How AI agents & Claude skills work”）でも同じ趣旨が語られている——自分が持っていてモデルが持たない唯一のものは、自分の workflow・taste・strategy だ。モデルの強みに頼り、渡すべきは自分に固有のもので、一般知識ではない。React を使えと指示するな、モデルは知っている、と。いわゆる context engineering（「モデルはもう良い。差は harness と context だ」）は、このテーゼを一段低い高度で言ったものだ——モデルはコモディティで、その周りに巻くものがエッジになる。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#差は情報ではなく規律にある",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#差は情報ではなく規律にある",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "差は情報ではなく規律にある",
+    "text": "差は情報ではなく規律にある\n「そんなことは皆知っている」と言われる。だが知識はタダ同然なのにエッジは消えない。理由は秘密だからではなく、地味な事前構造化を誰もやらないからだ。大半の人は AI セッションを使い捨てにし、答えを得て立ち去り、翌日また同じ文脈を説明し直す——自動販売機のように使う。一握りは二度説明しないために文脈を外に出して固定する——工場のように使う。複利の優位は情報の格差ではなく規律の格差だ。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#毎日-skill-を書けは間違い",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#毎日-skill-を書けは間違い",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "「毎日 skill を書け」は間違い",
+    "text": "「毎日 skill を書け」は間違い\n誤解されやすい。良い skill はカレンダーからではなく摩擦から生まれる。同じ作業を二度やった、同じ所で詰まった——その時に初めて符号化する価値が立つ。要らない skill を「日課だから」と想像で書くのは過剰設計で、自分でジャンクを量産することになる（YAGNI）。ただし摩擦は安全な既定値であって唯一の源泉ではない。既に知っているパターンなら、痛む前に構造化してよい——harness の設計はまさにそれだ（摩擦の前に組む）。それを見分けるのもまた判断であって、投機的な「将来要るかも」とは違う。\nだから routine 化すべきは生産ではなく気づきだ。daily writing ではなく daily noticing / weekly codifying。毎日問うべきは「今日いくつ書いたか」ではなく「今日の仕事のどの部分を、もう二度と手でやらなくて済むようにしたか」。\nネタ元の動画の skill 作成法がまさにこれだ。workflow を見つけてもいきなり skill を書かない（彼はそれを最悪のやり方だと言う）。まずエージェントと手作業で一歩ずつやり、失敗させ、訂正し、成功する run を一度作ってから skill 化する。理由は、モデルは新入社員であって black box ではないから——新人にいきなり『財務レポート作って』と振っても、context が無ければ動けない。だから skill には成功 run の contextが要る。“scale for productivity, not for what looks cool” も同じだ——workflow も無いのに 15 個の sub-agent と 30 個の skill を並べるな。一つのエージェントから始め、skill を積み、本当に必要になってから sub-agent を足す。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#複利には沈む2週間がある",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#複利には沈む2週間がある",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "複利には「沈む2週間」がある",
+    "text": "複利には「沈む2週間」がある\n正直に書いておく。複利には先に沈む期間（J-curve）がある。ネタ元の動画では、あるプロジェクトの立ち上げに「これはゴミか」と思う約2週間の投資期間があったと語られる。そして鋭いのは——この初期投資の辛さを誰も言わない、特に agent-harness の会社は（言えば資金調達に響くから）、という指摘だ。複利の話は伸びる部分ばかり語られ、沈む部分は売り手の都合で隠される。だが沈みを越えないと配当は始まらない。vending machine 的に使う多数派は、この2週間を越えられず、毎回ゼロから説明し直す側に留まる。規律の格差は、ここで脱落するかどうかでもある。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#数百個は腐るか小さくプリミティブに保てば負債を-bounded-にできる",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#数百個は腐るか小さくプリミティブに保てば負債を-bounded-にできる",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "数百個は腐るか——小さくプリミティブに保てば負債を bounded にできる",
+    "text": "数百個は腐るか——小さくプリミティブに保てば負債を bounded にできる\n数百の skill を抱えれば技術的負債が複利で膨らむ、という懸念はもっともだ。負債は消えない——だが設計で bounded に抑え込める。鍵は二つ。skill を小さくプリミティブに保つこと。実タスクとの紐付けを失わないこと。\n\n小さく単機能なら故障が局在する。タスクが失敗しても、どの部品が原因か合成構造をたどれば切り分けられる（Unix哲学の do one thing well）。\n疎結合なら全体の複雑さは部品の和に近づき、積にも指数にもならない。保守対象は原子の数百個であって、組み合わせの天文学的な数ではない。\nそして最強の点——自分が起点だ。 これらは外から降ってきた資産ではなく、自分のタスクが必要としたから自分が書いた。だから仕様は skill の外、実タスクに明示的に存在する。3年後に「なぜこれが存在するか」を推測する必要がない。\n\nただし無料ではない。発火条件（description）の調整、重複、古い skill の棚卸し、依存関係、discovery の負荷——これらの負債は消えず残り続ける。さらに「いつも一緒に使うから統合するか」「このタスク用に特殊化すると便利だ」という最適化の誘惑が、小さな原子を大きく文脈依存の塊へ育てる。腐る数百個は設計の失敗形であって、デフォルトではない。残った未解決問題は合成の正しさ——部品個々が正しくても、つなぐ順序や受け渡しに故障が宿りうる。これは机上で解く問題ではなく、実際に積んで詰まった時に像を結ぶ。壊れた箇所は失敗ではなく「ここは人間が握り続けるべき継ぎ目だ」という情報になる。地図は壊れた箇所の蓄積としてしか描けない。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#jeremy-howard-という生き証人ただし修正版の",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#jeremy-howard-という生き証人ただし修正版の",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "Jeremy Howard という生き証人——ただし修正版の",
+    "text": "Jeremy Howard という生き証人——ただし修正版の\nこのテーゼの最強の実例は Jeremy Howard だ。nbdev → fastcore → fastai → fasthtml → solveit。全部「自分の生産性を上げたい」から、object-level の仕事をしながら、その摩擦から抽出された。need-first であって build-first ではない。順番が逆——スペシャリストになろうとしたのではなく、自分の不満を解消したら結果的にそうなっていた。道具が道具を生む。\nただし彼が証明しているのは素朴版ではなく修正版だ。彼は使い捨ての skill を数百個書いたのではなく、少数のよく factored された持続的抽象（3個であって40個ではない）を抽出し、設計・リファクタ・テスト・ドキュメント化した。減価のダイナミクスすら彼に当てはまる——fastai v1 がpioneerした多くを PyTorch 本体が吸収した。成果物は減価し、appreciate したのは「何を抽象化すべきか見抜く目」だった。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#private-skill-はいつ資産になるかprivate-組織-public",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#private-skill-はいつ資産になるかprivate-組織-public",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "private skill はいつ「資産」になるか——private → 組織 → public",
+    "text": "private skill はいつ「資産」になるか——private → 組織 → public\nもう一つ、過去に自分で書いていた重要な制約：純粋な private tool は、transferable asset としては compound しにくい。 Howard の道具が複利したのは公開して他人の土台になったからだ。だから「自分の思考を再現する skill が500個 = 会社の資産」と言うとき——500個の private skill は個人の生産性では複利するが、資産価値として複利させるには「公開＋解説」の層が要る。\nただしここでネタ元の動画が重要な区別を足してくれる。「他人の skill をダウンロードするな」——理由は (1) 攻撃ベクトル（セキュリティ）、(2) ダウンロードした skill には君の成功 run の context が無い。つまり——公開して複利するのは「移植可能な抽象」（nbdev のような context を持たない道具）であって、context を焼き込んだ個人 skill ではない。後者は本質的に持ち運べない（あなたのタスクと taste が埋め込まれている）。だから500個の個人 skill をそのまま他人が使える「資産」になるわけではない。資産価値として複利させたいなら、個人 skill から context を剥がして移植可能な抽象（フレームワーク／テンプレート）として再パッケージする一段が要る。これが skill → 公開ツール → インフラの階段の、実は一番難しい段だ。\nそして public と private の間に組織という中間層がある。チームで共有される skill は、公開ほどではないが個人よりはるかに複利する。5人のチームなら、500個の private skill より、各人のトップ10を共有した40個の方が資産価値として複利する。これは「他人の skill をダウンロードするな」とも整合する——チーム内共有は「成功 run の context」を（暗黙にでも）共有できる最小単位だからだ。だから正確には private → 組織 → public の3層で、複利率は右ほど高く、context の移植コストも右ほど高い。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#複利という比喩を正確に",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#複利という比喩を正確に",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "複利という比喩を、正確に",
+    "text": "複利という比喩を、正確に\nこれは財務の有名な助言と同じ深層構造を持つ。線形の即時消費を我慢し、リターンを生む資産に変え、再投資して指数で伸ばす。労働所得を資本所得に。\n特に効くのは Die with Zero の memory dividend——早期の経験が、その後の人生で何度も再賞味され繰り返し配当を払う。これは「元本成長型」ではなく「再賞味型」の複利だ。経験は一回きりで固定だが、思い出すたびに配当を払い、配当は再賞味した時にしか実現しない。\nskill はこれに構造的に近い（経験は再賞味、skill は再実行・再利用——配当の出方は違うが構造は同じ）。skill の価値は （将来の再利用回数）×（1回あたりの価値）。早く書くほど再賞味の総和が増える。そして再利用されない skill は、思い出されない経験と同じで配当ゼロ——資産ですらない。利回りは「持っている数」ではなく「再賞味される頻度」だから、count は無意味だ。ただし memory dividend には写真・日記・匂いといったトリガーが内蔵されているのに対し、skill のトリガーは「同じタスクが再発すること」だ。つまり再賞味頻度を決めるのは skill の質だけではなく、カレンダー上のタスク発生確率——利回りの半分は外部要因にある。ここから自然に導ける：commit message や PR review のような高頻度タスクほど skill 化の優先度が高く、一回限りは書くな。これが設計の利回り的な正当化だ。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#層と最も減価しにくい元本",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#層と最も減価しにくい元本",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "3層と、最も減価しにくい元本",
+    "text": "3層と、最も減価しにくい元本\n\n\n\n\n\n\n\n\n層\n複利の性質\n減価するか\n\n\n\n\n個々の skill\nmemory dividend（再賞味型の配当）\nする（モデルが吸収する）\n\n\nskill フレームワーク自体\n配当を入れておく「口座」\nする（今日は Claude skill、明日は別物）\n\n\n判断（judgment）\n最も減価しにくい元本\nしにくい（再較正で強くなる）\n\n\n\nskill は memory dividend で、いずれ褪せ、吸収される。フレームワークは口座で、いずれ乗り換える。判断も無敵ではない——モデル能力・市場・自分の目的が変われば古びる。だが skill や framework と違い、判断は再較正でき、その再較正のたびに強くなる。だから三層で最も減価しにくく、「利息on利息」で育つのは判断だ。何を符号化するか、何を捨てるか、このフレームワークはまだ最良かを問い続ける——その判断こそ最も重要な資産。\nそして判断そのものが最高次の memory dividend でもある。判断を下した一回一回が、後で「より鋭い判断」として再賞味される。過去の符号化判断の蓄積が taste として何度も配当を払う。だから:\n\nskill = 経験の memory dividend（褪せる、吸収される）\n判断 = それらの判断経験が複利した、最高次の memory dividend（最も褪せにくく、再較正で強くなる）\n\n（この台帳に習慣——毎日「今日の仕事を外に出したか」と問う externalization の反射神経——を載せていないのは意図的だ。習慣はモデルにも framework にも依存せず判断に先行する土壌だが、配当を払う資産ではなく資産を生む行為だから、資産台帳ではなく前段「『毎日 skill を書け』は間違い」の節で扱った。3層はこの習慣という土壌の上に乗っている。）"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#脚注素朴版の実装が現実に走っているanswerthis",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#脚注素朴版の実装が現実に走っているanswerthis",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "脚注：素朴版の実装が現実に走っている——AnswerThis",
+    "text": "脚注：素朴版の実装が現実に走っている——AnswerThis\nYC Root Access の Ayush Garg（AnswerThis） が、このテーゼの素朴版を実装した実例を見せている（これは前節までの「ネタ元の動画」とは別のソースだ）。フルタイム2名＋契約者数名で ARR $2M超。中核は「self-extending agent——まだできない反復タスクに遭遇すると coding sub-agent にツールを作らせ、そのツールは永続化し将来のセッションでも使える」。これは本記事の「摩擦→符号化→永続化→複利」と、トリガー（カレンダーでなく反復＝摩擦）まで含めて一致する。彼が言う3種類の記憶——factual（コード/DBの読取コピー）／behavioral（毎ターン読む instructions.md）／procedural（自作ツール）——も、本記事の「judgment という元本／skill という配当」の運用形だ。\nただし動画は素朴版に留まる。本記事の精緻化の層が欠けている。(1) 動画は「45個も自作CLIがある」を成果として誇るが、本記事の基準ではそれは vanity——「ジャンクな40個は手放せない3個に負ける」。(2) 動画の agent は反復に気づくと即ツール化し、「いきなり書くな、まず手作業で成功 run を一度作ってから符号化せよ」という規律（成功 run の context 焼き込み）をスキップしている。つまり動画はこの記事を裏付ける証拠であって、更新する新情報ではない。\n新しいのは1点だけ——「これは符号化する価値があるか」という判断の一部を agent に委譲している点だ。本記事は「routine 化すべきは生産ではなく気づき（daily noticing）」と書き、人間を判断の起点に置いた。AnswerThis はその気づき自体を半自動化する実験をしている。これは本記事の未解決部分——「手動から半自動へ」と「合成の正しさは机上で解けず、積んで詰まった時に像を結ぶ」——がちょうど当たる場所であり、上の2つの警告（数の罠／成功 run 規律）がそのまま効く。だから論点は「self-extending できるか」ではなく「判断の委譲をどこまで許すか」に移る。最も減価しにくい元本が判断である以上、それを最も委譲しにくい——委譲した瞬間、複利するはずの元本を手放しかねない。ここが、素朴版と修正版を分ける継ぎ目だ。"
+  },
+  {
+    "objectID": "posts/2026-06-02-skill-compound-interest/index.ja.html#結論",
+    "href": "posts/2026-06-02-skill-compound-interest/index.ja.html#結論",
+    "title": "Skill という複利：知的労働の最小単位と、最も減価しにくい元本",
+    "section": "結論",
+    "text": "結論\nskill は道具として「今の」最良の器にすぎない。減価せず残り続けているのは、ずっと判断の方だ。2ヶ月前に「目的地なき複利」と書き、今日それを再賞味してさらに鋭くした——この行為自体が、判断という元本が複利している現場だ。そしてもし2ヶ月前に外部化していなければ、今日また一から考え直していた。頭の中だけにある仕事は、存在しないのと同じ。"
   },
   {
     "objectID": "posts/2026-03-14-sato-and-sato-review/index.ja.html",

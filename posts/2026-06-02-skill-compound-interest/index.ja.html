@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="仕事をしながら skill を書くのは、労働への複利だ。だが本当に複利するのは skill の山ではなく、何を符号化する価値があるか見抜く判断の方だ。">
+
+<title>Skill という複利：知的労働の最小単位と、最も減価しにくい元本 – doyu.github.io</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">doyu.github.io</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Skill という複利：知的労働の最小単位と、最も減価しにくい元本</h1>
+                  <div>
+        <div class="description">
+          仕事をしながら skill を書くのは、労働への複利だ。だが本当に複利するのは skill の山ではなく、何を符号化する価値があるか見抜く判断の方だ。
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">agents</div>
+                <div class="quarto-category">engineering</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">公開</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2026年6月2日</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><em><a href="../../posts/2026-06-02-skill-compound-interest/index.html">English version here</a></em></p>
+<section id="テーゼ" class="level2">
+<h2 class="anchored" data-anchor-id="テーゼ">テーゼ</h2>
+<p>ホワイトカラーは Claude Code / Codex のようなコーディング LLM を使い、<strong>仕事をしながら自分用の skill を書いて溜めるべきだ。それが複利になって他人と決定的に差がつく。</strong></p>
+<p>ほとんどの人は一歩手前で止まる。コーディング LLM で<strong>ソフトウェアそのものを速く作る</strong>ことに満足して、目の前の object-level のタスクをこなすところまで。だが一歩深い動きがある——目の前の開発タスクだけに集中するのではなく、<strong>自分の日々の仕事を自動化する skill を、たとえ毎日数%の時間でも書いて溜める</strong>こと。</p>
+<p>普通の仕事は「1日＝1日分の成果」で線形だ。skill を書く人は「1日＝仕事＋skill 作成、翌日以降＝skill が働く」。<strong>毎日わずか数%の改善でも、積み重なれば、タスクをこなすだけの人を遥かに引き離す。</strong> これは比喩ではなく、金融の複利そのものだ。元本に利息がつき、その利息がまた利息を生む——skill が空けた時間が次の skill を生み、それがまた時間を空ける。</p>
+<p>これは Jeremy Howard が自分のプロジェクト群でやってきたことの正体でもある——nbdev → fastcore → fastai → fasthtml → solveit と、仕事をしながら道具を作り、前の道具が次の土台になる。</p>
+<p>昔、生産性で頭一つ抜けたのは Excelマクロ／シェルスクリプト／Emacs・Vim をカスタムできる人だった。今はそれが Claude Code Skills / Codex Tasks / MCP連携 / Agent Workflows / Personal Knowledge Base に置き換わっている。skill を書くとは<strong>労働所得を資本所得に変換する</strong>行為そのものだ。さらに Skill A・B・C が A+B、A+C、A+B+C と組み合わさると新しい能力が生まれる——通常の複利（足し算的な再利用）を超えた、ネットワーク効果に近い超線形の伸び。</p>
+<p><strong>まずここを腑に落とすことが核心だ。ほとんどの人はここに来ていない。</strong> 以下はこの複利を<em>正しく回す</em>ための精緻化であって、核心の否定ではない。</p>
+</section>
+<section id="だが複利するのは-skill-の山ではない" class="level2">
+<h2 class="anchored" data-anchor-id="だが複利するのは-skill-の山ではない">だが複利するのは skill の山ではない</h2>
+<p>ここに罠がある。<strong>書いた skill そのものは減価する資産だ。</strong> 今日書く skill の多くは、ベースモデルがまだ安定してこなせないことへの回避策にすぎない。能力曲線が前に進むたびに一部は静かに無用になる。数を誇るのは虚栄の指標で、ジャンクな40個は手放せない3個に負ける。</p>
+<p>本当に複利するのは<strong>メタスキル——何を符号化する価値があるか見抜く判断力</strong>だ。雑然としたワークフローを再利用・合成可能な最小単位に分解する力。「これは18ヶ月後にモデルが吸収する」と「これは持続する」の境界を見抜く目。持続する符号化とは、自分の文脈・美意識・組織固有の繋ぎ込み・汎用モデルが持ち得ないドメイン知識を運ぶもの。<strong>汎用能力こそ skill 化の投資先として最悪</strong>だ。そこはモデル本体がいずれ無料で肩代わりする。</p>
+<p>このエッセイのネタ元の<a href="https://www.youtube.com/watch?v=S_oN3vlzpMw">動画（“How AI agents &amp; Claude skills work”）</a>でも同じ趣旨が語られている——自分が持っていてモデルが持たない唯一のものは、自分の workflow・taste・strategy だ。モデルの強みに頼り、渡すべきは自分に固有のもので、一般知識ではない。React を使えと指示するな、モデルは知っている、と。いわゆる context engineering（「モデルはもう良い。差は harness と context だ」）は、このテーゼを一段低い高度で言ったものだ——モデルはコモディティで、その周りに巻くものがエッジになる。</p>
+</section>
+<section id="差は情報ではなく規律にある" class="level2">
+<h2 class="anchored" data-anchor-id="差は情報ではなく規律にある">差は情報ではなく規律にある</h2>
+<p>「そんなことは皆知っている」と言われる。だが知識はタダ同然なのにエッジは消えない。理由は秘密だからではなく、地味な事前構造化を誰もやらないからだ。大半の人は AI セッションを使い捨てにし、答えを得て立ち去り、翌日また同じ文脈を説明し直す——自動販売機のように使う。一握りは二度説明しないために文脈を外に出して固定する——工場のように使う。複利の優位は情報の格差ではなく<strong>規律の格差</strong>だ。</p>
+</section>
+<section id="毎日-skill-を書けは間違い" class="level2">
+<h2 class="anchored" data-anchor-id="毎日-skill-を書けは間違い">「毎日 skill を書け」は間違い</h2>
+<p>誤解されやすい。良い skill はカレンダーからではなく<strong>摩擦から生まれる</strong>。同じ作業を二度やった、同じ所で詰まった——その時に初めて符号化する価値が立つ。要らない skill を「日課だから」と想像で書くのは過剰設計で、自分でジャンクを量産することになる（YAGNI）。ただし摩擦は<strong>安全な既定値</strong>であって唯一の源泉ではない。既に知っているパターンなら、痛む前に構造化してよい——harness の設計はまさにそれだ（摩擦の前に組む）。それを見分けるのもまた判断であって、投機的な「将来要るかも」とは違う。</p>
+<p>だから routine 化すべきは生産ではなく<strong>気づき</strong>だ。daily writing ではなく daily noticing / weekly codifying。毎日問うべきは「今日いくつ書いたか」ではなく「<strong>今日の仕事のどの部分を、もう二度と手でやらなくて済むようにしたか</strong>」。</p>
+<p>ネタ元の動画の skill 作成法がまさにこれだ。workflow を見つけても<strong>いきなり skill を書かない</strong>（彼はそれを最悪のやり方だと言う）。まずエージェントと手作業で一歩ずつやり、失敗させ、訂正し、<strong>成功する run を一度作ってから</strong> skill 化する。理由は、モデルは新入社員であって black box ではないから——新人にいきなり『財務レポート作って』と振っても、context が無ければ動けない。だから skill には<strong>成功 run の context</strong>が要る。“scale for productivity, not for what looks cool” も同じだ——workflow も無いのに 15 個の sub-agent と 30 個の skill を並べるな。一つのエージェントから始め、skill を積み、本当に必要になってから sub-agent を足す。</p>
+</section>
+<section id="複利には沈む2週間がある" class="level2">
+<h2 class="anchored" data-anchor-id="複利には沈む2週間がある">複利には「沈む2週間」がある</h2>
+<p>正直に書いておく。複利には<strong>先に沈む期間（J-curve）</strong>がある。ネタ元の動画では、あるプロジェクトの立ち上げに「これはゴミか」と思う約2週間の投資期間があったと語られる。そして鋭いのは——<strong>この初期投資の辛さを誰も言わない、特に agent-harness の会社は（言えば資金調達に響くから）</strong>、という指摘だ。複利の話は伸びる部分ばかり語られ、沈む部分は売り手の都合で隠される。だが沈みを越えないと配当は始まらない。vending machine 的に使う多数派は、この2週間を越えられず、毎回ゼロから説明し直す側に留まる。規律の格差は、ここで脱落するかどうかでもある。</p>
+</section>
+<section id="数百個は腐るか小さくプリミティブに保てば負債を-bounded-にできる" class="level2">
+<h2 class="anchored" data-anchor-id="数百個は腐るか小さくプリミティブに保てば負債を-bounded-にできる">数百個は腐るか——小さくプリミティブに保てば負債を bounded にできる</h2>
+<p>数百の skill を抱えれば技術的負債が複利で膨らむ、という懸念はもっともだ。負債は消えない——だが設計で bounded に抑え込める。鍵は二つ。<strong>skill を小さくプリミティブに保つこと。実タスクとの紐付けを失わないこと。</strong></p>
+<ul>
+<li>小さく単機能なら故障が局在する。タスクが失敗しても、どの部品が原因か合成構造をたどれば切り分けられる（Unix哲学の do one thing well）。</li>
+<li>疎結合なら全体の複雑さは部品の和に近づき、積にも指数にもならない。保守対象は原子の数百個であって、組み合わせの天文学的な数ではない。</li>
+<li>そして最強の点——<strong>自分が起点だ。</strong> これらは外から降ってきた資産ではなく、自分のタスクが必要としたから自分が書いた。だから仕様は skill の外、実タスクに明示的に存在する。3年後に「なぜこれが存在するか」を推測する必要がない。</li>
+</ul>
+<p>ただし無料ではない。発火条件（description）の調整、重複、古い skill の棚卸し、依存関係、discovery の負荷——これらの負債は消えず残り続ける。さらに「いつも一緒に使うから統合するか」「このタスク用に特殊化すると便利だ」という最適化の誘惑が、小さな原子を大きく文脈依存の塊へ育てる。腐る数百個は設計の<strong>失敗形</strong>であって、デフォルトではない。残った未解決問題は<strong>合成の正しさ</strong>——部品個々が正しくても、つなぐ順序や受け渡しに故障が宿りうる。これは机上で解く問題ではなく、実際に積んで詰まった時に像を結ぶ。壊れた箇所は失敗ではなく「ここは人間が握り続けるべき継ぎ目だ」という情報になる。地図は壊れた箇所の蓄積としてしか描けない。</p>
+</section>
+<section id="jeremy-howard-という生き証人ただし修正版の" class="level2">
+<h2 class="anchored" data-anchor-id="jeremy-howard-という生き証人ただし修正版の">Jeremy Howard という生き証人——ただし修正版の</h2>
+<p>このテーゼの最強の実例は <a href="https://www.fast.ai/">Jeremy Howard</a> だ。nbdev → fastcore → fastai → fasthtml → solveit。全部「自分の生産性を上げたい」から、object-level の仕事をしながら、その摩擦から抽出された。need-first であって build-first ではない。<strong>順番が逆</strong>——スペシャリストになろうとしたのではなく、自分の不満を解消したら結果的にそうなっていた。道具が道具を生む。</p>
+<p>ただし彼が証明しているのは素朴版ではなく<strong>修正版</strong>だ。彼は使い捨ての skill を数百個書いたのではなく、少数のよく factored された持続的抽象（3個であって40個ではない）を抽出し、設計・リファクタ・テスト・ドキュメント化した。減価のダイナミクスすら彼に当てはまる——fastai v1 がpioneerした多くを PyTorch 本体が吸収した。成果物は減価し、appreciate したのは「何を抽象化すべきか見抜く目」だった。</p>
+</section>
+<section id="private-skill-はいつ資産になるかprivate-組織-public" class="level2">
+<h2 class="anchored" data-anchor-id="private-skill-はいつ資産になるかprivate-組織-public">private skill はいつ「資産」になるか——private → 組織 → public</h2>
+<p>もう一つ、過去に自分で書いていた重要な制約：<strong>純粋な private tool は、transferable asset としては compound しにくい。</strong> Howard の道具が複利したのは公開して他人の土台になったからだ。だから「自分の思考を再現する skill が500個 = 会社の資産」と言うとき——500個の private skill は<em>個人の生産性</em>では複利するが、<em>資産価値</em>として複利させるには「公開＋解説」の層が要る。</p>
+<p>ただしここでネタ元の動画が重要な区別を足してくれる。<strong>「他人の skill をダウンロードするな」</strong>——理由は (1) 攻撃ベクトル（セキュリティ）、(2) ダウンロードした skill には<em>君の</em>成功 run の context が無い。つまり——<strong>公開して複利するのは「移植可能な抽象」（nbdev のような context を持たない道具）であって、context を焼き込んだ個人 skill ではない</strong>。後者は本質的に持ち運べない（あなたのタスクと taste が埋め込まれている）。だから500個の個人 skill をそのまま他人が使える「資産」になるわけではない。資産価値として複利させたいなら、個人 skill から context を剥がして<strong>移植可能な抽象（フレームワーク／テンプレート）として再パッケージする</strong>一段が要る。これが skill → 公開ツール → インフラの階段の、実は一番難しい段だ。</p>
+<p>そして public と private の間に<strong>組織という中間層</strong>がある。チームで共有される skill は、公開ほどではないが個人よりはるかに複利する。5人のチームなら、500個の private skill より、各人のトップ10を共有した40個の方が資産価値として複利する。これは「他人の skill をダウンロードするな」とも整合する——チーム内共有は「成功 run の context」を（暗黙にでも）共有できる最小単位だからだ。だから正確には <strong>private → 組織 → public の3層</strong>で、複利率は右ほど高く、context の移植コストも右ほど高い。</p>
+</section>
+<section id="複利という比喩を正確に" class="level2">
+<h2 class="anchored" data-anchor-id="複利という比喩を正確に">複利という比喩を、正確に</h2>
+<p>これは財務の有名な助言と同じ深層構造を持つ。線形の即時消費を我慢し、リターンを生む資産に変え、再投資して指数で伸ばす。労働所得を資本所得に。</p>
+<p>特に効くのは Die with Zero の <strong>memory dividend</strong>——早期の経験が、その後の人生で何度も再賞味され繰り返し配当を払う。これは「元本成長型」ではなく「<strong>再賞味型</strong>」の複利だ。経験は一回きりで固定だが、思い出すたびに配当を払い、配当は再賞味した時にしか実現しない。</p>
+<p>skill はこれに構造的に近い（経験は再賞味、skill は再実行・再利用——配当の出方は違うが構造は同じ）。skill の価値は <strong>（将来の再利用回数）×（1回あたりの価値）</strong>。早く書くほど再賞味の総和が増える。そして<strong>再利用されない skill は、思い出されない経験と同じで配当ゼロ——資産ですらない</strong>。利回りは「持っている数」ではなく「再賞味される頻度」だから、count は無意味だ。ただし memory dividend には写真・日記・匂いといった<strong>トリガーが内蔵</strong>されているのに対し、skill のトリガーは「<strong>同じタスクが再発すること</strong>」だ。つまり再賞味頻度を決めるのは skill の質だけではなく、カレンダー上のタスク発生確率——<strong>利回りの半分は外部要因</strong>にある。ここから自然に導ける：commit message や PR review のような<strong>高頻度タスクほど skill 化の優先度が高く</strong>、一回限りは書くな。これが設計の利回り的な正当化だ。</p>
+</section>
+<section id="層と最も減価しにくい元本" class="level2">
+<h2 class="anchored" data-anchor-id="層と最も減価しにくい元本">3層と、最も減価しにくい元本</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>層</th>
+<th>複利の性質</th>
+<th>減価するか</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>個々の skill</td>
+<td>memory dividend（再賞味型の配当）</td>
+<td>する（モデルが吸収する）</td>
+</tr>
+<tr class="even">
+<td>skill フレームワーク自体</td>
+<td>配当を入れておく「口座」</td>
+<td>する（今日は Claude skill、明日は別物）</td>
+</tr>
+<tr class="odd">
+<td><strong>判断（judgment）</strong></td>
+<td><strong>最も減価しにくい元本</strong></td>
+<td><strong>しにくい（再較正で強くなる）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>skill は memory dividend で、いずれ褪せ、吸収される。フレームワークは口座で、いずれ乗り換える。判断も無敵ではない——モデル能力・市場・自分の目的が変われば古びる。だが skill や framework と違い、<strong>判断は再較正でき、その再較正のたびに強くなる</strong>。だから三層で<strong>最も減価しにくく、「利息on利息」で育つのは判断</strong>だ。何を符号化するか、何を捨てるか、このフレームワークはまだ最良かを問い続ける——その判断こそ最も重要な資産。</p>
+<p>そして判断そのものが<strong>最高次の memory dividend</strong> でもある。判断を下した一回一回が、後で「より鋭い判断」として再賞味される。過去の符号化判断の蓄積が taste として何度も配当を払う。だから:</p>
+<ul>
+<li><strong>skill = 経験の memory dividend</strong>（褪せる、吸収される）</li>
+<li><strong>判断 = それらの判断経験が複利した、最高次の memory dividend</strong>（最も褪せにくく、再較正で強くなる）</li>
+</ul>
+<p>（この台帳に<strong>習慣</strong>——毎日「今日の仕事を外に出したか」と問う externalization の反射神経——を載せていないのは意図的だ。習慣はモデルにも framework にも依存せず判断に先行する<strong>土壌</strong>だが、配当を払う資産ではなく<em>資産を生む行為</em>だから、資産台帳ではなく前段「『毎日 skill を書け』は間違い」の節で扱った。3層はこの習慣という土壌の上に乗っている。）</p>
+</section>
+<section id="脚注素朴版の実装が現実に走っているanswerthis" class="level2">
+<h2 class="anchored" data-anchor-id="脚注素朴版の実装が現実に走っているanswerthis">脚注：素朴版の実装が現実に走っている——AnswerThis</h2>
+<p>YC Root Access の <a href="https://www.youtube.com/watch?v=DGD9b8K42lk">Ayush Garg（AnswerThis）</a> が、このテーゼの<strong>素朴版を実装した実例</strong>を見せている（これは前節までの「ネタ元の動画」とは別のソースだ）。フルタイム2名＋契約者数名で ARR $2M超。中核は「<strong>self-extending agent</strong>——まだできない反復タスクに遭遇すると coding sub-agent にツールを作らせ、そのツールは永続化し将来のセッションでも使える」。これは本記事の「摩擦→符号化→永続化→複利」と、トリガー（カレンダーでなく反復＝摩擦）まで含めて一致する。彼が言う3種類の記憶——factual（コード/DBの読取コピー）／behavioral（毎ターン読む <code>instructions.md</code>）／procedural（自作ツール）——も、本記事の「judgment という元本／skill という配当」の運用形だ。</p>
+<p>ただし動画は<strong>素朴版に留まる</strong>。本記事の精緻化の層が欠けている。(1) 動画は「<strong>45個も自作CLIがある</strong>」を成果として誇るが、本記事の基準ではそれは vanity——「ジャンクな40個は手放せない3個に負ける」。(2) 動画の agent は反復に気づくと<strong>即ツール化</strong>し、「いきなり書くな、まず手作業で<strong>成功 run を一度作ってから</strong>符号化せよ」という規律（成功 run の context 焼き込み）をスキップしている。つまり動画はこの記事を<strong>裏付ける証拠</strong>であって、更新する新情報ではない。</p>
+<p>新しいのは1点だけ——<strong>「これは符号化する価値があるか」という判断の一部を agent に委譲</strong>している点だ。本記事は「routine 化すべきは生産ではなく気づき（daily noticing）」と書き、人間を判断の起点に置いた。AnswerThis はその気づき自体を半自動化する実験をしている。これは本記事の未解決部分——「手動から半自動へ」と「合成の正しさは机上で解けず、積んで詰まった時に像を結ぶ」——がちょうど当たる場所であり、上の2つの警告（数の罠／成功 run 規律）がそのまま効く。だから論点は「self-extending できるか」ではなく<strong>「判断の委譲をどこまで許すか」</strong>に移る。最も減価しにくい元本が判断である以上、それを最も委譲しにくい——委譲した瞬間、複利するはずの元本を手放しかねない。ここが、素朴版と修正版を分ける継ぎ目だ。</p>
+</section>
+<section id="結論" class="level2">
+<h2 class="anchored" data-anchor-id="結論">結論</h2>
+<p>skill は道具として「今の」最良の器にすぎない。減価せず残り続けているのは、ずっと判断の方だ。2ヶ月前に「目的地なき複利」と書き、今日それを再賞味してさらに鋭くした——この行為自体が、判断という元本が複利している現場だ。そしてもし2ヶ月前に外部化していなければ、今日また一から考え直していた。<strong>頭の中だけにある仕事は、存在しないのと同じ。</strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
