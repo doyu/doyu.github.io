@@ -1,0 +1,109 @@
+---
+title: "Skills as Compound Interest: and the Principal That Depreciates Least"
+date: 2026-06-02
+description: "Writing skills while you work is compound interest on your labor. But what actually compounds isn't the pile of skills — it's the judgment of what's worth encoding."
+categories: [llm, agents, engineering]
+source: doyu/log@e23fe03/memo/2026-06-02_skill_compound_interest.md
+lang: en
+---
+
+*[日本語版はこちら](index.ja.qmd)*
+
+## The thesis
+
+White-collar workers should use coding LLMs — Claude Code, Codex — and, while doing the work, write and accumulate their own skills. That accumulation compounds, and the compounding is what separates them decisively from everyone else.
+
+Most people stop one step too early. They are happy to build software faster with a coding LLM — finishing the object-level task in front of them. There's a deeper move: instead of focusing only on the development task, spend even a few percent of each day writing skills that automate your own daily work.
+
+Ordinary work is linear: one day buys one day of output. The person who writes skills gets "today = work + skill, and from tomorrow on, the skill works for me." **Even a few percent of improvement a day, accumulated, pulls you far ahead of someone who only completes tasks.** This isn't a metaphor — it's literally financial compound interest. Principal earns interest, that interest earns more interest; the time a skill frees up produces the next skill, which frees up more time.
+
+This is also exactly what Jeremy Howard has done across his projects — nbdev → fastcore → fastai → fasthtml → solveit — building tools while doing the work, each tool becoming the foundation for the next.
+
+The people who used to pull ahead on productivity were the ones who could customize Excel macros, shell scripts, Emacs and Vim. Today that's been replaced by Claude Code skills, Codex tasks, MCP integrations, agent workflows, a personal knowledge base. Writing a skill is the act of **converting labor income into capital income.** And when skills A, B, C combine into A+B, A+C, A+B+C, new capabilities emerge — a superlinear growth closer to network effects than to ordinary additive reuse.
+
+**Internalizing this is the core, and most people aren't here yet.** What follows is refinement on how to compound *correctly* — not a denial of the core.
+
+## But it isn't the pile of skills that compounds
+
+Here's the trap: **the skills you write are a depreciating asset.** Many skills you write today are just workarounds for things the base model can't yet do reliably. Every time the capability frontier advances, some of them quietly become useless. Bragging about the count is a vanity metric; forty junk skills lose to three you can't let go of.
+
+What truly compounds is the **meta-skill — the judgment to see what's worth encoding.** The ability to decompose a messy workflow into reusable, composable, minimal units. The eye to tell "the model will absorb this in 18 months" from "this will last." Durable encodings carry your context, your taste, your org-specific glue, domain knowledge a general model can't have. **General capability is the worst place to invest a skill** — that's exactly what the base model will eventually do for free.
+
+The [video that seeded this essay ("How AI agents & Claude skills work")](https://www.youtube.com/watch?v=S_oN3vlzpMw) said as much: the only thing you and I have that the model doesn't is our own workflow, taste, and strategy. Lean on the model's strengths; hand it what's unique to you, not general knowledge. Don't tell it to use React — it knows. "Context engineering" ("the models are already good; the difference is the harness and the context") is the same point stated one altitude lower: the model is a commodity, and what you wrap around it is the edge.
+
+## The edge is discipline, not information
+
+"Everyone already knows this," they say. Yet knowledge is nearly free and the edge doesn't disappear — not because it's secret, but because nobody does the unglamorous up-front structuring. Most people treat AI sessions as disposable: get an answer, walk away, re-explain the same context tomorrow — using it like a vending machine. A handful externalize and fix their context so they never explain it twice — using it like a factory. The compounding advantage is not an information gap but a **discipline gap.**
+
+## "Write a skill every day" is wrong
+
+This is easy to misread. Good skills come from **friction, not from the calendar.** You did the same task twice; you got stuck in the same place — only then is it worth encoding. Writing a skill you don't need because "it's the daily ritual" is over-engineering, manufacturing your own junk (YAGNI). But friction is a *safe default*, not the only source: if you already know the pattern, you can structure it before it hurts — that's exactly what harness design is (you build before the friction). Telling those apart is also judgment, distinct from speculative "I might need this someday."
+
+So what you should make routine is not production but **noticing.** Not daily writing but daily noticing / weekly codifying. The daily question isn't "how many did I write today?" but "**which part of today's work did I make sure I never have to do by hand again?**"
+
+The skill-making method in the seed video is exactly this: when you find a workflow, **don't immediately write a skill** (the worst way to do it). First do it by hand with the agent, step by step; let it fail, correct it, and **only after you have one successful run**, encode it. The reason: the model is a new hire, not a black box — you can't hand a new hire "make the financial report" with no context. So a skill needs the *context of a successful run*. Same with "scale for productivity, not for what looks cool" — don't line up fifteen sub-agents and thirty skills when you don't even have a workflow yet. Start with one agent, stack skills, and add sub-agents only when you truly need them.
+
+## Compounding has a "sinking two weeks"
+
+Honestly: compounding has a **J-curve — a period where you sink first.** The seed conversation describes roughly two weeks of investment standing up a project where you think "is this garbage?" And the sharp observation: **nobody talks about how painful that initial investment is — especially the agent-harness companies, because saying so would hurt fundraising.** The compounding story always sells the upswing and hides the dip, because the seller benefits. But you don't get the dividend until you cross the trough. The vending-machine majority can't get past those two weeks, and stay on the side that re-explains from zero every time. The discipline gap is also about whether you wash out here.
+
+## Will hundreds of skills rot? Keep them small and primitive
+
+The worry that hundreds of skills compound into technical debt is fair. The debt doesn't vanish — but design can keep it **bounded.** Two keys: **keep skills small and primitive, and never lose the tie to a real task.**
+
+- Small and single-purpose means failures stay localized. When a task fails, you can trace the composition to isolate which part caused it (the Unix philosophy: do one thing well).
+- Loosely coupled means total complexity approaches the *sum* of the parts, not the product or the exponential. You maintain hundreds of atoms, not the astronomical number of their combinations.
+- And the strongest point — **you are the origin.** These didn't fall from the sky; you wrote them because your own task needed them. So the spec lives outside the skill, explicit in the real task. You don't have to guess three years later why this exists.
+
+It isn't free, though. Tuning trigger conditions (the `description`), duplication, retiring stale skills, dependencies, discovery load — that debt persists. And the temptation to optimize — "these always run together, let's merge them," "specializing this for one task would be handy" — grows small atoms into large, context-dependent blobs. Hundreds of rotting skills is the *failure mode* of design, not the default. The remaining open problem is **the correctness of composition** — each part can be right while a fault hides in the order or the hand-off. That's not solved on paper; it resolves when you actually stack them and get stuck. A broken seam isn't a failure but information: "this is a joint a human should keep holding." The map can only be drawn as an accumulation of broken seams.
+
+## Jeremy Howard as living proof — but the revised version
+
+The strongest example of this thesis is [Jeremy Howard](https://www.fast.ai/). nbdev → fastcore → fastai → fasthtml → solveit. All extracted from the friction of doing object-level work because he wanted to be more productive. Need-first, not build-first. **The order is reversed** — he didn't set out to become a specialist; he resolved his own frustrations and ended up one. Tools beget tools.
+
+But what he proves is not the naive version — it's the **revised** one. He didn't write hundreds of disposable skills; he extracted a small number of well-factored, durable abstractions (three, not forty) and designed, refactored, tested, and documented them. Even the depreciation dynamic applies to him — much of what fastai v1 pioneered was absorbed into PyTorch itself. The artifacts depreciated; what appreciated was the eye for *what to abstract.*
+
+## When does a private skill become an "asset"? private → org → public
+
+One more constraint I'd written before: **a purely private tool barely compounds as a transferable asset.** Howard's tools compounded because he published them and they became other people's foundations. So when someone says "500 skills that reproduce my thinking = the company's asset" — 500 private skills compound your *personal productivity*, but to compound as *asset value* you need a layer of "publish + explain."
+
+Here the seed conversation adds an important distinction: **don't download other people's skills** — because (1) it's an attack vector (security), and (2) a downloaded skill has none of *your* successful-run context. Which means: **what compounds when published is the "portable abstraction" (a context-free tool like nbdev), not a personal skill with context baked in.** The latter is inherently unportable (your task and taste are embedded). So 500 personal skills don't automatically become an "asset" others can use. To compound as asset value, you need one more step: strip the context off the personal skill and **repackage it as a portable abstraction (framework / template).** That's actually the hardest rung on the skill → public tool → infrastructure ladder.
+
+And between public and private there's an **organizational middle layer.** Skills shared within a team compound far more than personal ones, if not as much as public ones. For a five-person team, forty skills made of each person's top ten compound more as asset value than 500 private ones. This is also consistent with "don't download other people's skills" — intra-team sharing is the smallest unit that can share "successful-run context" (even implicitly). So it's precisely **private → org → public**, with the compounding rate higher to the right and the context-transfer cost also higher to the right.
+
+## The compounding metaphor, precisely
+
+This shares its deep structure with the famous financial advice: resist linear immediate consumption, convert returns into return-bearing assets, reinvest, and grow exponentially. Labor income into capital income.
+
+What works especially well is *Die with Zero*'s **memory dividend** — early experiences get re-savored again and again over the rest of your life, paying dividends repeatedly. That's not "principal-growth" compounding but **"re-savoring" compounding.** The experience is fixed and one-time, but it pays a dividend each time you recall it, and the dividend is realized only when re-savored.
+
+Skills are structurally close to this (experience is re-savored, skills are re-run / reused — the dividend pays out differently, but the structure is the same). A skill's value is **(future reuse count) × (value per use).** The earlier you write it, the larger the sum of re-savorings. And **a skill that's never reused is like an experience never recalled — zero dividend, not even an asset.** The yield is "frequency of re-savoring," not "number held," so the count is meaningless. But where the memory dividend has built-in triggers — photos, diaries, smells — a skill's trigger is **the same task recurring.** So re-savoring frequency is set not only by skill quality but by the probability of the task arising on your calendar — **half the yield is external.** From which it follows naturally: **high-frequency tasks like commit messages or PR reviews are higher priority to encode**, and one-offs you shouldn't write. That's the yield-based justification for the design.
+
+## Three layers, and the principal that depreciates least
+
+| Layer | Nature of compounding | Depreciates? |
+|---|---|---|
+| Individual skill | memory dividend (re-savoring) | Yes (the model absorbs it) |
+| The skill framework itself | the "account" you keep dividends in | Yes (today Claude skills, tomorrow something else) |
+| **Judgment** | **the least-depreciating principal** | **Barely (it strengthens on recalibration)** |
+
+Skills are memory dividends; they fade and get absorbed. The framework is an account; you'll switch eventually. Judgment isn't invincible either — it dates when model capability, the market, or your own goals change. But unlike skills and frameworks, **judgment can be recalibrated, and grows stronger each time.** So across the three layers, the thing that depreciates least and grows on "interest on interest" is **judgment.** Keep asking what to encode, what to discard, whether this framework is still the best — that judgment is the most important asset.
+
+And judgment itself is the **highest-order memory dividend.** Each judgment you make is later re-savored as a sharper judgment. The accumulation of past encoding-decisions pays dividends repeatedly as taste. So:
+
+- **skill = the memory dividend of experience** (fades, gets absorbed)
+- **judgment = the highest-order memory dividend, compounded from those judgment-experiences** (fades least, strengthens on recalibration)
+
+(I deliberately leave **habit** off this ledger — the externalization reflex of asking daily "did I put today's work outside my head?". Habit depends on neither model nor framework and precedes judgment; it's the *soil*, but it's an act that produces assets, not an asset that pays dividends, so I treated it earlier rather than on the asset ledger. The three layers sit on top of that soil.)
+
+## Footnote: the naive version is already running in production — AnswerThis
+
+[Ayush Garg of AnswerThis](https://www.youtube.com/watch?v=DGD9b8K42lk) (on YC Root Access) shows a real **implementation of the naive version** of this thesis: two full-timers plus a few contractors, $2M+ ARR. The core is a **self-extending agent** — when it hits a repetitive task it can't yet do, it has a coding sub-agent build a tool, and that tool persists and is usable in future sessions. This matches this essay's "friction → encode → persist → compound," down to the trigger (recurrence = friction, not the calendar). His three kinds of memory — factual (read-copies of code/DB), behavioral (an `instructions.md` read every turn), procedural (self-made tools) — are an operating form of "judgment as principal / skills as dividend."
+
+But the video **stays at the naive version**; it lacks this essay's refinement layer. (1) It brags about "**45 self-made CLIs**" as an achievement, but by this essay's standard that's vanity — "forty junk lose to three you can't let go of." (2) Its agent **immediately tools-up** on noticing a repetition, skipping the discipline of "don't write immediately; first produce one successful run, then encode" (baking in successful-run context). So the video is **evidence that supports** this essay, not new information that updates it.
+
+The one new thing: it **delegates part of the "is this worth encoding?" judgment to the agent.** This essay put the human at the origin of judgment ("make noticing routine, not production"). AnswerThis experiments with semi-automating the noticing itself. This lands exactly on this essay's open parts — "manual → semi-auto" and "composition correctness can't be solved on paper; it resolves when you stack and get stuck" — and the two warnings above (the count trap, the successful-run discipline) apply directly. So the question moves from "can it self-extend?" to **"how far do you allow the delegation of judgment?"** Since the least-depreciating principal is judgment, it's the hardest thing to delegate — the moment you delegate it, you may be handing away the very principal that was supposed to compound. That's the seam between the naive and the revised version.
+
+## Conclusion
+
+A skill is only the "currently" best vessel as a tool. What has stayed without depreciating is judgment. Two months ago I wrote "compounding with no destination"; today I re-savored it and sharpened it further — and that act itself is the live scene of judgment, as principal, compounding. And if I hadn't externalized it two months ago, I'd be thinking it through from scratch today. **Work that lives only in your head doesn't exist.**
