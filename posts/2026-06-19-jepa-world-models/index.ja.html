@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Yann LeCun の JEPA は、世界をピクセルで描き直すのではなく、表現空間で「それが何であるか」を予測する。その転換が表現学習・計算量・world model に対して持つ意味。">
 
-<title>doyu.github.io</title>
+<title>JEPA：世界を描かず、意味を予測する – doyu.github.io</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,101 +58,46 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
   }
 }</script>
-<script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="doyu.github.io" href="index.xml" data-external="1"></head>
-
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">doyu.github.io</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -176,197 +120,152 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">doyu.github.io</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">JEPA：世界を描かず、意味を予測する</h1>
+                  <div>
+        <div class="description">
+          Yann LeCun の JEPA は、世界をピクセルで描き直すのではなく、表現空間で「それが何であるか」を予測する。その転換が表現学習・計算量・world model に対して持つ意味。
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">agents</div>
+                <div class="quarto-category">engineering</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">公開</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2026年6月19日</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="YTI0">a24 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWdlbnRz">agents <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZHJhbWE=">drama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZW5naW5lZXJpbmc=">engineering <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aG9ycm9y">horror <span class="quarto-category-count">(1)</span></div><div class="category" data-category="amFwYW4=">japan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGxt">llm <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bW92aWU=">movie <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p><em><a href="../../posts/2026-06-19-jepa-world-models/index.html">English version here</a></em></p>
+<blockquote class="blockquote">
+<p>正式版（canonical）：<a href="https://ninjalabo.ai/blogs/jepa-world-models.html">NinjaLABO</a>（英語）。</p>
+</blockquote>
+<p>画像や動画のモデルは、たいてい「出力がどれだけきれいに見えるか」で評価される。だが Yann LeCun が <a href="https://www.youtube.com/watch?v=72Xj8k5WQX4">JEPA</a> について語るとき（“World Models: Enabling the next AI revolution”、ETH Zurich、2026年6月）、出発点はまったく別のところにある。面白い問いは「生成された動画がきれいに見えるか」ではない。「その訓練の結果として、世界を本当に理解する表現が手に入るか」だ。</p>
+<section id="間違った予測対象" class="level2">
+<h2 class="anchored" data-anchor-id="間違った予測対象">間違った予測対象</h2>
+<p>生成モデルは、欠損部や未来をそのまま再構成しようとする。画像なら隠れたピクセルを描く。動画なら次のフレームを描く。しかし現実世界では、ありうる未来もありうる細部も多すぎる。手書き数字の下半分、講義室の聴衆の顔、次の瞬間の物体の細かな揺らぎ——どれも入力から一意には決まらない。</p>
+<p>この予測不能な細部まで当てさせると、モデルは安全な手を選ぶ。可能な答えを平均しようとするのだ。結果はぼやける。だが本当の問題はぼやけた画像が出ることではない。<strong>その訓練から得られる「表現」が悪くなること</strong>が問題なのだ。LeCun の批判は「生成動画がきれいに見えるか」ではなく、「これで世界を理解する表現が学べるのか」に向いている。</p>
+</section>
+<section id="jepa-の転換" class="level2">
+<h2 class="anchored" data-anchor-id="jepa-の転換">JEPA の転換</h2>
+<p>JEPA はこの問題を、<strong>予測する「場所」を変える</strong>ことで避ける。</p>
+<p>生成型では、モデルは <code>Y</code> そのものを再構成しようとする。JEPA では、まず <code>X</code> と <code>Y</code> をそれぞれエンコードして表現 <code>s_x</code> と <code>s_y</code> を作り、<code>s_x</code> から <code>s_y</code> を予測する。</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  X["X（文脈）"] --&gt; ex["encoder_x"] --&gt; sx["s_x"]
+  Y["Y（対象）"] --&gt; ey["encoder_y"] --&gt; sy["s_y"]
+  sx --&gt; pred["Predictor(s_x, condition)"]
+  pred --&gt; approx["&amp;asymp; s_y"]
+  sy -.-&gt; approx
 
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1781827200000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1113">
-<div class="thumbnail"><a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">JEPA: Predict the Meaning, Not the Pixels</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
+  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class X,ex,sx,pred ctx;
+  class Y,ey,sy tgt;
+</pre>
 </div>
-<div class="delink listing-description"><a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-<p>Yann LeCun’s JEPA doesn’t reconstruct the world pixel by pixel — it predicts, in representation space, what a thing is. Why that shift matters for representation learning, compute, and world models.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-<div class="listing-date">
-Jun 19, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bW92aWUlMkNob3Jyb3IlMkNhMjQ=" data-listing-date-sort="1781136000000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
-<div class="thumbnail"><a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-
-<img loading="lazy" src="https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bW92aWU='); return false;">movie</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9ycm9y'); return false;">horror</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YTI0'); return false;">a24</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-<p>A24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-<div class="listing-date">
-Jun 11, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1780358400000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2696">
-<div class="thumbnail"><a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">Skills as Compound Interest: and the Principal That Depreciates Least</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-<p>Writing skills while you work is compound interest on your labor. But what actually compounds isn’t the pile of skills — it’s the judgment of what’s worth encoding.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-<div class="listing-date">
-Jun 2, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1779840000000" data-listing-file-modified-sort="1781906761787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1814">
-<div class="thumbnail"><a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">Progressive Export: Harness Engineering for LLM Apps</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-<p>LLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-<div class="listing-date">
-May 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bW92aWUlMkNkcmFtYSUyQ2phcGFu" data-listing-date-sort="1773446400000" data-listing-file-modified-sort="1781906761787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
-<div class="thumbnail"><a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-
-<img loading="lazy" src="https://img.youtube.com/vi/dLKooLG6qAY/maxresdefault.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">Sato and Sato (2025): A Tragedy Where No One Is to Blame</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bW92aWU='); return false;">movie</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZHJhbWE='); return false;">drama</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('amFwYW4='); return false;">japan</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-<p>Sachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-<div class="listing-date">
-Mar 14, 2026
-</div>
-</a>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>ここで <code>X</code> と <code>Y</code> のエンコーダは別物だ。I-JEPA では <code>encoder_y</code> は <code>encoder_x</code> の EMA コピーで、勾配を流さない（詳細は後述）。</p>
+<p>決定的なのは、<strong><code>Y</code> もエンコードすること</strong>だ。<code>Y</code> を表現に変換する段階で、予測不能な細部を捨てられる。ピクセル単位の筆跡、背景の細かな模様、たまたまそこに写っている人の顔——どれも世界を理解するために必ずしも必要ではない。表現空間に残せるのは、もっと抽象的で予測可能な情報だ。「下半分は縦棒の続きだ」「物体はこの方向に動いている」「この場面は重力に反している」。</p>
+<p>つまり JEPA は、「<code>Y</code> が正確にどう見えるか」を当てない。「<code>Y</code> が何であるか」を当てる。</p>
+</section>
+<section id="predictor-がpである" class="level2">
+<h2 class="anchored" data-anchor-id="predictor-がpである">predictor が「P」である</h2>
+<p><code>X</code> と <code>Y</code> は同じものではない。上半分と下半分、現在と未来、行動前と行動後は、それぞれ別の状態だ。だから <code>s_x</code> と <code>s_y</code> を単純に同じにするだけでは足りない。間に predictor が必要になる。</p>
+<p>この predictor が、JEPA の <code>P</code>、つまり predictive の部分である。</p>
+<p>一般の world model では、condition は行動 <code>a</code> になる。</p>
+<pre class="text"><code>Predict(s_x, a) ~= s_y</code></pre>
+<p>これは「状態 <code>s_x</code> で行動 <code>a</code> を取ると次の状態 <code>s_y</code> になる」という遷移の学習だ。この意味で、predictor は world model の中核になる。</p>
+<p>一方、I-JEPA のような静止画像の実装では行動は存在しない。そこでは condition は「どの位置のパッチを予測するか」を示す mask token / position token になる。これは action そのものではないが、「どの関係を予測するか」を指定する条件として、似た役割を持つ。</p>
+</section>
+<section id="なぜ計算も軽くなるのか" class="level2">
+<h2 class="anchored" data-anchor-id="なぜ計算も軽くなるのか">なぜ計算も軽くなるのか</h2>
+<p>JEPA は、理解の仕方だけでなく計算の仕方も変える。</p>
+<p>ピクセルを再構成する生成型では、高次元の出力を作るデコーダが必要だ。画像や動画をきれいに描くには重い計算が要る。JEPA では、出力は低次元の表現ベクトルでよい。ピクセルを描かないので、事前学習の計算が大きく減る。I-JEPA 論文では、表現空間で予測することで MAE より大幅に効率的に学習できることが示されている。「きれいな画像を生成しない」ことは、ここでは弱さではない。表現学習の目的に対しては、むしろ強さになる。</p>
+<p>ただし、これは主に<strong>事前学習</strong>の計算効率の話だ。LeCun が語るような「行動列を想像し、world model で結果を予測し、エネルギーを最小化する」推論を本格的に行うなら、推論時には探索や最適化の計算が増えうる。</p>
+</section>
+<section id="collapse-は二層目であって芯ではない" class="level2">
+<h2 class="anchored" data-anchor-id="collapse-は二層目であって芯ではない">collapse は二層目であって、芯ではない</h2>
+<p>JEPA には collapse という訓練上の病理がある。表現が全部同じ定数に潰れる現象だ。もしすべての入力が同じ表現を出せば、<code>Predict(s_x, condition) ~= s_y</code> の損失は小さくできる——だが何も学んでいない。</p>
+<p>これは重要だが、最初の理解では脇に置いてよい。collapse は「この考え方をどう安定して訓練するか」という工学的・数学的な課題であり、JEPA の概念の芯ではない。</p>
+<p>芯はもっと単純だ。</p>
+<blockquote class="blockquote">
+<p>予測不能な細部を無理に描かせるな。 予測可能な意味を、表現空間で当てさせろ。</p>
+</blockquote>
+<p>collapse 防止は、その<strong>次に</strong>学ぶべき層だ。講演では information maximization、energy-based models、contrastive methods、regularized methods という枠組みで説明される。I-JEPA 論文では、EMA target encoder、stop-gradient、非対称 predictor といった architectural constraints が使われる。この二つは、一般理論と具体実装として分けて理解した方がよい。</p>
+</section>
+<section id="lecun-の大きな構想の中での-jepa" class="level2">
+<h2 class="anchored" data-anchor-id="lecun-の大きな構想の中での-jepa">LeCun の大きな構想の中での JEPA</h2>
+<p>JEPA は単なる画像表現学習の技術ではない。講演全体を通して、LeCun は JEPA を <strong>world model を作るための部品</strong>として置いている。</p>
+<p>彼の構想では、知能は固定回数の forward pass で答えを出すことではない。知能は、内部で行動を想像し、その結果を予測し、目的に照らして最適な行動を探すことに近い。</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  perceive["現在の状態を知覚する"] --&gt; imagine["行動列を想像する"]
+  imagine --&gt; predict["world model で結果を予測する"]
+  predict --&gt; evaluate["objective / energy を評価する"]
+  evaluate --&gt; search["よりよい行動列を探索する"]
+  search --&gt; imagine
+
+  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;
+  class perceive,imagine,predict,evaluate,search step;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>ここで必要になるのは、世界の未来をピクセルで生成するモデルではなく、<strong>行動の結果を抽象表現として予測できるモデル</strong>だ。JEPA はそのための表現学習であり、遷移モデルであり、planning の土台になる。</p>
+</section>
+<section id="持ち帰り" class="level2">
+<h2 class="anchored" data-anchor-id="持ち帰り">持ち帰り</h2>
+<p>JEPA から持ち帰るべき一番大事な直感は、<strong>「生成」と「理解」を分けること</strong>だ。</p>
+<p>見た目としてもっともらしいものを作る能力と、行動に使える世界の構造を捉える能力は同じではない。生成モデルは前者に強い。LeCun が JEPA で狙っているのは後者だ。</p>
+<p>だから JEPA は、画像や動画をうまく描くための方法ではない。世界から、予測可能で行動に使える抽象を取り出すための方法である。</p>
+<p>一言で言えば——</p>
+<blockquote class="blockquote">
+<p>JEPA は、世界を描くモデルではなく、世界の意味を予測するモデルである。</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -392,12 +291,12 @@ Mar 14, 2026
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "コピーしました");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "コピーしました");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",

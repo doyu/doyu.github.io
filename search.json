@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "doyu.github.io",
     "section": "",
-    "text": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSkills as Compound Interest: and the Principal That Depreciates Least\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nWriting skills while you work is compound interest on your labor. But what actually compounds isn’t the pile of skills — it’s the judgment of what’s worth encoding.\n\n\n\n\n\nJun 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProgressive Export: Harness Engineering for LLM Apps\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nLLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.\n\n\n\n\n\nMay 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
+    "text": "JEPA: Predict the Meaning, Not the Pixels\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nYann LeCun’s JEPA doesn’t reconstruct the world pixel by pixel — it predicts, in representation space, what a thing is. Why that shift matters for representation learning, compute, and world models.\n\n\n\n\n\nJun 19, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nBackrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World\n\n\n\nmovie\n\nhorror\n\na24\n\n\n\nA24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.\n\n\n\n\n\nJun 11, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSkills as Compound Interest: and the Principal That Depreciates Least\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nWriting skills while you work is compound interest on your labor. But what actually compounds isn’t the pile of skills — it’s the judgment of what’s worth encoding.\n\n\n\n\n\nJun 2, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nProgressive Export: Harness Engineering for LLM Apps\n\n\n\nllm\n\nagents\n\nengineering\n\n\n\nLLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.\n\n\n\n\n\nMay 27, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nSato and Sato (2025): A Tragedy Where No One Is to Blame\n\n\n\nmovie\n\ndrama\n\njapan\n\n\n\nSachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.\n\n\n\n\n\nMar 14, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2026-05-27-progressive-export/index.html",
@@ -110,6 +110,62 @@
     "title": "Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World",
     "section": "Why 6/10: the metaphor it refused to define",
     "text": "Why 6/10: the metaphor it refused to define\nHaving assembled every piece needed for that reading, the film never defines the Backrooms as a metaphor for a broken mind’s world. The Async research organization, the global spread of portals, the sequel setup — it ends with half its body still on the side of sci-fi literalism.\nThe result: you can’t always tell whether an ambiguity is working negative space or just something left on the floor, and the lingering haze after the credits feels less like interpretive pleasure and more like unfinished business. Fully committed as a portrayal of a broken inner world, this could have been a masterpiece. Watched as a monster movie, it’s mediocre. It stopped in between — and that’s the 6."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html",
+    "href": "posts/2026-06-19-jepa-world-models/index.html",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "",
+    "text": "日本語版はこちら\nMost image and video models are judged by how good their output looks. Yann LeCun’s case for JEPA (“World Models: Enabling the next AI revolution”, ETH Zurich, June 2026) starts somewhere else entirely. The interesting question is not whether a generated video looks clean. It is whether the training that produces it leaves you with a representation that actually understands the world."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#the-wrong-target",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#the-wrong-target",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "The wrong target",
+    "text": "The wrong target\nA generative model tries to reconstruct the missing or future part as-is. For an image, it paints the hidden pixels. For a video, it paints the next frame. But in the real world there are far too many possible futures and far too many possible details. The bottom half of a handwritten digit, the faces of an audience in a lecture hall, the fine jitter of an object a moment from now — none of these is uniquely determined by the input.\nWhen you force a model to predict that unpredictable detail, it does the only safe thing: it averages over the possibilities. The output blurs. And the blur is not the real problem — the real problem is that the representation you get out of that training is worse. LeCun’s critique is not “does the generated video look nice?” It is “can you learn a representation that understands the world this way?”"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#what-jepa-changes",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#what-jepa-changes",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "What JEPA changes",
+    "text": "What JEPA changes\nJEPA sidesteps the problem by changing where the prediction happens.\nIn the generative setup, the model tries to reconstruct Y itself. In JEPA, you first encode both X and Y into representations s_x and s_y, and then predict s_y from s_x:\n\n\n\n\n\nflowchart LR\n  X[\"X (context)\"] --&gt; ex[\"encoder_x\"] --&gt; sx[\"s_x\"]\n  Y[\"Y (target)\"] --&gt; ey[\"encoder_y\"] --&gt; sy[\"s_y\"]\n  sx --&gt; pred[\"Predictor(s_x, condition)\"]\n  pred --&gt; approx[\"&asymp; s_y\"]\n  sy -.-&gt; approx\n\n  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;\n  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;\n  class X,ex,sx,pred ctx;\n  class Y,ey,sy tgt;\n\n\n\n\n\n\nThe two encoders are not the same. In I-JEPA, encoder_y is an EMA copy of encoder_x with no gradient flowing through it (more on that below).\nThe crucial move is that Y is encoded too. In the act of turning Y into a representation, the unpredictable detail can be thrown away. The exact pen strokes, the fine texture of a background, the face of someone who happens to be in frame — none of it is necessarily required to understand the world. What the representation can keep is the more abstract, more predictable information: “the bottom half is the continuation of a vertical stroke,” “the object is moving in this direction,” “this scene defies gravity.”\nSo JEPA does not try to predict how Y looks. It predicts what Y is."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#the-predictor-is-the-p",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#the-predictor-is-the-p",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "The predictor is the “P”",
+    "text": "The predictor is the “P”\nX and Y are not the same thing. Top half and bottom half, present and future, before-action and after-action are different states. So merely making s_x and s_y identical is not enough — you need a predictor in between.\nThat predictor is the P of JEPA — the predictive part.\nIn a general world model, the condition is an action a:\nPredict(s_x, a) ~= s_y\nThis is learning a transition: “in state s_x, taking action a lands you in state s_y.” In this sense the predictor is the core of a world model.\nIn a still-image implementation like I-JEPA there is no action. There, the condition is a mask token / position token that says which patch to predict. That is not an action as such, but it plays a similar role: a condition that specifies which relation to predict."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#why-it-is-also-cheaper",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#why-it-is-also-cheaper",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "Why it is also cheaper",
+    "text": "Why it is also cheaper\nJEPA changes not only how you understand but how you compute.\nA generative model that reconstructs pixels needs a decoder that produces a high-dimensional output. Painting images or video cleanly costs heavy compute. In JEPA the output is just a low-dimensional representation vector. Because it does not paint pixels, pretraining compute drops substantially. The I-JEPA paper shows that predicting in representation space learns far more efficiently than MAE. Not generating a clean image is not a weakness here — for the purpose of representation learning, it is a strength.\nA caveat: this is mainly about pretraining efficiency. If you actually run the kind of inference LeCun describes — imagine action sequences, predict their outcomes with a world model, and minimize an energy — then inference-time search and optimization can add cost back."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#collapse-is-a-second-layer-not-the-core",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#collapse-is-a-second-layer-not-the-core",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "Collapse is a second layer, not the core",
+    "text": "Collapse is a second layer, not the core\nJEPA has a training pathology called collapse, where the representations all flatten to the same constant. If every input emits the same representation, the Predict(s_x, condition) ~= s_y loss can be made small — but nothing has been learned.\nThis matters, but you can set it aside on a first pass. Collapse is an engineering-and-mathematics problem about how to train this idea stably; it is not the conceptual heart of JEPA.\nThe heart is simpler:\n\nDon’t force the model to paint unpredictable detail. Make it predict predictable meaning, in representation space.\n\nCollapse prevention is the next layer to learn. In the talk it is framed through information maximization, energy-based models, contrastive methods, and regularized methods. In the I-JEPA paper it is handled with architectural constraints — an EMA target encoder, stop-gradient, and an asymmetric predictor. It helps to keep these two apart: the general theory, and the specific implementation."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#jepa-inside-lecuns-bigger-picture",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#jepa-inside-lecuns-bigger-picture",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "JEPA inside LeCun’s bigger picture",
+    "text": "JEPA inside LeCun’s bigger picture\nJEPA is not merely an image-representation technique. Across the talk, LeCun places it as a component for building a world model.\nIn his picture, intelligence is not producing an answer in a fixed number of forward passes. Intelligence is closer to imagining actions internally, predicting their results, and searching for the action that best serves a goal:\n\n\n\n\n\nflowchart LR\n  perceive[\"Perceive current state\"] --&gt; imagine[\"Imagine action sequences\"]\n  imagine --&gt; predict[\"Predict outcomes with world model\"]\n  predict --&gt; evaluate[\"Evaluate objective / energy\"]\n  evaluate --&gt; search[\"Search for a better sequence\"]\n  search --&gt; imagine\n\n  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;\n  class perceive,imagine,predict,evaluate,search step;\n\n\n\n\n\n\nWhat this needs is not a model that generates the future of the world in pixels, but one that can predict the result of an action as an abstract representation. JEPA is the representation learning for that — a transition model, and a foundation for planning."
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.html#the-takeaway",
+    "href": "posts/2026-06-19-jepa-world-models/index.html#the-takeaway",
+    "title": "JEPA: Predict the Meaning, Not the Pixels",
+    "section": "The takeaway",
+    "text": "The takeaway\nThe most important intuition to carry away from JEPA is to separate “generation” from “understanding.”\nThe ability to produce something that looks plausible and the ability to capture the structure of the world you can act on are not the same. Generative models are strong at the former. What LeCun is aiming at with JEPA is the latter.\nSo JEPA is not a method for drawing images or video well. It is a method for extracting, from the world, an abstraction that is predictable and usable for action.\nIn one line:\n\nJEPA is not a model that draws the world. It is a model that predicts what the world means."
   },
   {
     "objectID": "posts/2026-03-14-sato-and-sato-review/index.html",
@@ -362,6 +418,62 @@
     "title": "『佐藤さんと佐藤さん』— 誰も裁けない悲劇についての映画",
     "section": "自分を知ること",
     "text": "自分を知ること\n映画を観た後、強く思ったのは、自分が本当に何を必要としているかを知ることの大切さだ。タモツがもっと早く「自分は何者か」を理解していれば、司法試験という一点にすべてを集約せずに済んだかもしれない。サチを巻き込まずに、もっと柔軟に幸せを見つけられたかもしれない。\nもちろんそれは結果論だ。若い頃に自分を完全に理解できる人間などいない。だからこそ、これは誰にでも起こりうる話であり、だからこそ、この映画は痛い。\n自分を知ることは、幸せの必要条件だと思う。十分条件ではないけれど。タイミングと運はコントロールできなくても、自分が何を必要としているかが分かっていれば、少なくとも間違った戦場で消耗せずに済む。\n\n岸井ゆきのと宮沢氷魚の演技が、この「誰も悪くない」物語を成立させている。どちらにも感情移入できるからこそ、どちらも救えない。観終わった後、しばらく立ち上がれなかった。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "",
+    "text": "English version here\n画像や動画のモデルは、たいてい「出力がどれだけきれいに見えるか」で評価される。だが Yann LeCun が JEPA について語るとき（“World Models: Enabling the next AI revolution”、ETH Zurich、2026年6月）、出発点はまったく別のところにある。面白い問いは「生成された動画がきれいに見えるか」ではない。「その訓練の結果として、世界を本当に理解する表現が手に入るか」だ。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#間違った予測対象",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#間違った予測対象",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "間違った予測対象",
+    "text": "間違った予測対象\n生成モデルは、欠損部や未来をそのまま再構成しようとする。画像なら隠れたピクセルを描く。動画なら次のフレームを描く。しかし現実世界では、ありうる未来もありうる細部も多すぎる。手書き数字の下半分、講義室の聴衆の顔、次の瞬間の物体の細かな揺らぎ——どれも入力から一意には決まらない。\nこの予測不能な細部まで当てさせると、モデルは安全な手を選ぶ。可能な答えを平均しようとするのだ。結果はぼやける。だが本当の問題はぼやけた画像が出ることではない。その訓練から得られる「表現」が悪くなることが問題なのだ。LeCun の批判は「生成動画がきれいに見えるか」ではなく、「これで世界を理解する表現が学べるのか」に向いている。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#jepa-の転換",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#jepa-の転換",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "JEPA の転換",
+    "text": "JEPA の転換\nJEPA はこの問題を、予測する「場所」を変えることで避ける。\n生成型では、モデルは Y そのものを再構成しようとする。JEPA では、まず X と Y をそれぞれエンコードして表現 s_x と s_y を作り、s_x から s_y を予測する。\n\n\n\n\n\nflowchart LR\n  X[\"X（文脈）\"] --&gt; ex[\"encoder_x\"] --&gt; sx[\"s_x\"]\n  Y[\"Y（対象）\"] --&gt; ey[\"encoder_y\"] --&gt; sy[\"s_y\"]\n  sx --&gt; pred[\"Predictor(s_x, condition)\"]\n  pred --&gt; approx[\"&asymp; s_y\"]\n  sy -.-&gt; approx\n\n  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;\n  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;\n  class X,ex,sx,pred ctx;\n  class Y,ey,sy tgt;\n\n\n\n\n\n\nここで X と Y のエンコーダは別物だ。I-JEPA では encoder_y は encoder_x の EMA コピーで、勾配を流さない（詳細は後述）。\n決定的なのは、Y もエンコードすることだ。Y を表現に変換する段階で、予測不能な細部を捨てられる。ピクセル単位の筆跡、背景の細かな模様、たまたまそこに写っている人の顔——どれも世界を理解するために必ずしも必要ではない。表現空間に残せるのは、もっと抽象的で予測可能な情報だ。「下半分は縦棒の続きだ」「物体はこの方向に動いている」「この場面は重力に反している」。\nつまり JEPA は、「Y が正確にどう見えるか」を当てない。「Y が何であるか」を当てる。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#predictor-がpである",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#predictor-がpである",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "predictor が「P」である",
+    "text": "predictor が「P」である\nX と Y は同じものではない。上半分と下半分、現在と未来、行動前と行動後は、それぞれ別の状態だ。だから s_x と s_y を単純に同じにするだけでは足りない。間に predictor が必要になる。\nこの predictor が、JEPA の P、つまり predictive の部分である。\n一般の world model では、condition は行動 a になる。\nPredict(s_x, a) ~= s_y\nこれは「状態 s_x で行動 a を取ると次の状態 s_y になる」という遷移の学習だ。この意味で、predictor は world model の中核になる。\n一方、I-JEPA のような静止画像の実装では行動は存在しない。そこでは condition は「どの位置のパッチを予測するか」を示す mask token / position token になる。これは action そのものではないが、「どの関係を予測するか」を指定する条件として、似た役割を持つ。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#なぜ計算も軽くなるのか",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#なぜ計算も軽くなるのか",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "なぜ計算も軽くなるのか",
+    "text": "なぜ計算も軽くなるのか\nJEPA は、理解の仕方だけでなく計算の仕方も変える。\nピクセルを再構成する生成型では、高次元の出力を作るデコーダが必要だ。画像や動画をきれいに描くには重い計算が要る。JEPA では、出力は低次元の表現ベクトルでよい。ピクセルを描かないので、事前学習の計算が大きく減る。I-JEPA 論文では、表現空間で予測することで MAE より大幅に効率的に学習できることが示されている。「きれいな画像を生成しない」ことは、ここでは弱さではない。表現学習の目的に対しては、むしろ強さになる。\nただし、これは主に事前学習の計算効率の話だ。LeCun が語るような「行動列を想像し、world model で結果を予測し、エネルギーを最小化する」推論を本格的に行うなら、推論時には探索や最適化の計算が増えうる。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#collapse-は二層目であって芯ではない",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#collapse-は二層目であって芯ではない",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "collapse は二層目であって、芯ではない",
+    "text": "collapse は二層目であって、芯ではない\nJEPA には collapse という訓練上の病理がある。表現が全部同じ定数に潰れる現象だ。もしすべての入力が同じ表現を出せば、Predict(s_x, condition) ~= s_y の損失は小さくできる——だが何も学んでいない。\nこれは重要だが、最初の理解では脇に置いてよい。collapse は「この考え方をどう安定して訓練するか」という工学的・数学的な課題であり、JEPA の概念の芯ではない。\n芯はもっと単純だ。\n\n予測不能な細部を無理に描かせるな。 予測可能な意味を、表現空間で当てさせろ。\n\ncollapse 防止は、その次に学ぶべき層だ。講演では information maximization、energy-based models、contrastive methods、regularized methods という枠組みで説明される。I-JEPA 論文では、EMA target encoder、stop-gradient、非対称 predictor といった architectural constraints が使われる。この二つは、一般理論と具体実装として分けて理解した方がよい。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#lecun-の大きな構想の中での-jepa",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#lecun-の大きな構想の中での-jepa",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "LeCun の大きな構想の中での JEPA",
+    "text": "LeCun の大きな構想の中での JEPA\nJEPA は単なる画像表現学習の技術ではない。講演全体を通して、LeCun は JEPA を world model を作るための部品として置いている。\n彼の構想では、知能は固定回数の forward pass で答えを出すことではない。知能は、内部で行動を想像し、その結果を予測し、目的に照らして最適な行動を探すことに近い。\n\n\n\n\n\nflowchart LR\n  perceive[\"現在の状態を知覚する\"] --&gt; imagine[\"行動列を想像する\"]\n  imagine --&gt; predict[\"world model で結果を予測する\"]\n  predict --&gt; evaluate[\"objective / energy を評価する\"]\n  evaluate --&gt; search[\"よりよい行動列を探索する\"]\n  search --&gt; imagine\n\n  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;\n  class perceive,imagine,predict,evaluate,search step;\n\n\n\n\n\n\nここで必要になるのは、世界の未来をピクセルで生成するモデルではなく、行動の結果を抽象表現として予測できるモデルだ。JEPA はそのための表現学習であり、遷移モデルであり、planning の土台になる。"
+  },
+  {
+    "objectID": "posts/2026-06-19-jepa-world-models/index.ja.html#持ち帰り",
+    "href": "posts/2026-06-19-jepa-world-models/index.ja.html#持ち帰り",
+    "title": "JEPA：世界を描かず、意味を予測する",
+    "section": "持ち帰り",
+    "text": "持ち帰り\nJEPA から持ち帰るべき一番大事な直感は、「生成」と「理解」を分けることだ。\n見た目としてもっともらしいものを作る能力と、行動に使える世界の構造を捉える能力は同じではない。生成モデルは前者に強い。LeCun が JEPA で狙っているのは後者だ。\nだから JEPA は、画像や動画をうまく描くための方法ではない。世界から、予測可能で行動に使える抽象を取り出すための方法である。\n一言で言えば——\n\nJEPA は、世界を描くモデルではなく、世界の意味を予測するモデルである。"
   },
   {
     "objectID": "posts/2026-06-11-backrooms-review/index.ja.html",

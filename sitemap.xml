@@ -2,42 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://your-website-url.example.com/index.html</loc>
-    <lastmod>2026-06-13T10:03:37.390Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.786Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-05-27-progressive-export/index.html</loc>
-    <lastmod>2026-06-13T10:03:37.391Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.787Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-06-11-backrooms-review/index.html</loc>
-    <lastmod>2026-06-13T10:03:37.391Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/2026-06-19-jepa-world-models/index.html</loc>
+    <lastmod>2026-06-19T22:06:01.788Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-03-14-sato-and-sato-review/index.html</loc>
-    <lastmod>2026-06-13T10:03:37.390Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.787Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-06-02-skill-compound-interest/index.html</loc>
-    <lastmod>2026-06-13T10:03:37.391Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.788Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-06-02-skill-compound-interest/index.ja.html</loc>
-    <lastmod>2026-06-13T10:03:37.391Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.787Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-03-14-sato-and-sato-review/index.ja.html</loc>
-    <lastmod>2026-06-13T10:03:37.390Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.787Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/2026-06-19-jepa-world-models/index.ja.html</loc>
+    <lastmod>2026-06-19T22:06:01.788Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-06-11-backrooms-review/index.ja.html</loc>
-    <lastmod>2026-06-13T10:03:37.391Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.788Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/posts/2026-05-27-progressive-export/index.ja.html</loc>
-    <lastmod>2026-06-13T10:03:37.390Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.787Z</lastmod>
   </url>
   <url>
     <loc>https://your-website-url.example.com/about.html</loc>
-    <lastmod>2026-06-13T10:03:37.390Z</lastmod>
+    <lastmod>2026-06-19T22:06:01.786Z</lastmod>
   </url>
 </urlset>

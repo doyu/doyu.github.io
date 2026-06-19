@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-06-19">
+<meta name="description" content="Yann LeCun’s JEPA doesn’t reconstruct the world pixel by pixel — it predicts, in representation space, what a thing is. Why that shift matters for representation learning, compute, and world models.">
 
-<title>doyu.github.io</title>
+<title>JEPA: Predict the Meaning, Not the Pixels – doyu.github.io</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +28,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,77 +72,22 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="doyu.github.io" href="index.xml" data-external="1"></head>
-
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">doyu.github.io</span>
     </a>
   </div>
@@ -153,7 +98,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -176,197 +121,152 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">doyu.github.io</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">JEPA: Predict the Meaning, Not the Pixels</h1>
+                  <div>
+        <div class="description">
+          Yann LeCun’s JEPA doesn’t reconstruct the world pixel by pixel — it predicts, in representation space, what a thing is. Why that shift matters for representation learning, compute, and world models.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">agents</div>
+                <div class="quarto-category">engineering</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 19, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="YTI0">a24 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWdlbnRz">agents <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZHJhbWE=">drama <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZW5naW5lZXJpbmc=">engineering <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aG9ycm9y">horror <span class="quarto-category-count">(1)</span></div><div class="category" data-category="amFwYW4=">japan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGxt">llm <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bW92aWU=">movie <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p><em><a href="../../posts/2026-06-19-jepa-world-models/index.ja.html">日本語版はこちら</a></em></p>
+<blockquote class="blockquote">
+<p>Canonical version: <a href="https://ninjalabo.ai/blogs/jepa-world-models.html">NinjaLABO</a>.</p>
+</blockquote>
+<p>Most image and video models are judged by how good their output looks. Yann LeCun’s case for <a href="https://www.youtube.com/watch?v=72Xj8k5WQX4">JEPA</a> (“World Models: Enabling the next AI revolution”, ETH Zurich, June 2026) starts somewhere else entirely. The interesting question is not whether a generated video looks clean. It is whether the training that produces it leaves you with a representation that actually understands the world.</p>
+<section id="the-wrong-target" class="level2">
+<h2 class="anchored" data-anchor-id="the-wrong-target">The wrong target</h2>
+<p>A generative model tries to reconstruct the missing or future part as-is. For an image, it paints the hidden pixels. For a video, it paints the next frame. But in the real world there are far too many possible futures and far too many possible details. The bottom half of a handwritten digit, the faces of an audience in a lecture hall, the fine jitter of an object a moment from now — none of these is uniquely determined by the input.</p>
+<p>When you force a model to predict that unpredictable detail, it does the only safe thing: it averages over the possibilities. The output blurs. And the blur is not the real problem — the real problem is that the <em>representation</em> you get out of that training is worse. LeCun’s critique is not “does the generated video look nice?” It is “can you learn a representation that understands the world this way?”</p>
+</section>
+<section id="what-jepa-changes" class="level2">
+<h2 class="anchored" data-anchor-id="what-jepa-changes">What JEPA changes</h2>
+<p>JEPA sidesteps the problem by changing <em>where</em> the prediction happens.</p>
+<p>In the generative setup, the model tries to reconstruct <code>Y</code> itself. In JEPA, you first encode both <code>X</code> and <code>Y</code> into representations <code>s_x</code> and <code>s_y</code>, and then predict <code>s_y</code> from <code>s_x</code>:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  X["X (context)"] --&gt; ex["encoder_x"] --&gt; sx["s_x"]
+  Y["Y (target)"] --&gt; ey["encoder_y"] --&gt; sy["s_y"]
+  sx --&gt; pred["Predictor(s_x, condition)"]
+  pred --&gt; approx["&amp;asymp; s_y"]
+  sy -.-&gt; approx
 
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1781827200000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1113">
-<div class="thumbnail"><a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">JEPA: Predict the Meaning, Not the Pixels</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
+  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class X,ex,sx,pred ctx;
+  class Y,ey,sy tgt;
+</pre>
 </div>
-<div class="delink listing-description"><a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-<p>Yann LeCun’s JEPA doesn’t reconstruct the world pixel by pixel — it predicts, in representation space, what a thing is. Why that shift matters for representation learning, compute, and world models.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-19-jepa-world-models/index.html" class="no-external">
-<div class="listing-date">
-Jun 19, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bW92aWUlMkNob3Jyb3IlMkNhMjQ=" data-listing-date-sort="1781136000000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="655">
-<div class="thumbnail"><a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-
-<img loading="lazy" src="https://img.youtube.com/vi/0HjdiohVOik/maxresdefault.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bW92aWU='); return false;">movie</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('aG9ycm9y'); return false;">horror</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YTI0'); return false;">a24</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-<p>A24’s Backrooms works best when you stop reading it as dimension-hopping horror — and that’s also exactly why it stops short of greatness. 6/10.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-11-backrooms-review/index.html" class="no-external">
-<div class="listing-date">
-Jun 11, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1780358400000" data-listing-file-modified-sort="1781906761788" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2696">
-<div class="thumbnail"><a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">Skills as Compound Interest: and the Principal That Depreciates Least</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-<p>Writing skills while you work is compound interest on your labor. But what actually compounds isn’t the pile of skills — it’s the judgment of what’s worth encoding.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-06-02-skill-compound-interest/index.html" class="no-external">
-<div class="listing-date">
-Jun 2, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bGxtJTJDYWdlbnRzJTJDZW5naW5lZXJpbmc=" data-listing-date-sort="1779840000000" data-listing-file-modified-sort="1781906761787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1814">
-<div class="thumbnail"><a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">Progressive Export: Harness Engineering for LLM Apps</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bGxt'); return false;">llm</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YWdlbnRz'); return false;">agents</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZW5naW5lZXJpbmc='); return false;">engineering</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-<p>LLM CLI is the new REPL for agentic applications: explore interactively, export repeated and fragile behavior into skills, promote stable capabilities into MCP tools, and end with a small app runtime over reliable tools.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-05-27-progressive-export/index.html" class="no-external">
-<div class="listing-date">
-May 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bW92aWUlMkNkcmFtYSUyQ2phcGFu" data-listing-date-sort="1773446400000" data-listing-file-modified-sort="1781906761787" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="672">
-<div class="thumbnail"><a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-
-<img loading="lazy" src="https://img.youtube.com/vi/dLKooLG6qAY/maxresdefault.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">Sato and Sato (2025): A Tragedy Where No One Is to Blame</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bW92aWU='); return false;">movie</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZHJhbWE='); return false;">drama</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('amFwYW4='); return false;">japan</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-<p>Sachi and Tamotsu are both lovable — and that is exactly what makes this film cruel. Fifteen years of a marriage undone by timing, capacity, and luck.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-03-14-sato-and-sato-review/index.html" class="no-external">
-<div class="listing-date">
-Mar 14, 2026
-</div>
-</a>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>The two encoders are not the same. In I-JEPA, <code>encoder_y</code> is an EMA copy of <code>encoder_x</code> with no gradient flowing through it (more on that below).</p>
+<p>The crucial move is that <strong><code>Y</code> is encoded too.</strong> In the act of turning <code>Y</code> into a representation, the unpredictable detail can be thrown away. The exact pen strokes, the fine texture of a background, the face of someone who happens to be in frame — none of it is necessarily required to understand the world. What the representation can keep is the more abstract, more predictable information: “the bottom half is the continuation of a vertical stroke,” “the object is moving in this direction,” “this scene defies gravity.”</p>
+<p>So JEPA does not try to predict <em>how <code>Y</code> looks</em>. It predicts <em>what <code>Y</code> is</em>.</p>
+</section>
+<section id="the-predictor-is-the-p" class="level2">
+<h2 class="anchored" data-anchor-id="the-predictor-is-the-p">The predictor is the “P”</h2>
+<p><code>X</code> and <code>Y</code> are not the same thing. Top half and bottom half, present and future, before-action and after-action are different states. So merely making <code>s_x</code> and <code>s_y</code> identical is not enough — you need a predictor in between.</p>
+<p>That predictor is the <code>P</code> of JEPA — the <em>predictive</em> part.</p>
+<p>In a general world model, the condition is an action <code>a</code>:</p>
+<pre class="text"><code>Predict(s_x, a) ~= s_y</code></pre>
+<p>This is learning a transition: “in state <code>s_x</code>, taking action <code>a</code> lands you in state <code>s_y</code>.” In this sense the predictor is the core of a world model.</p>
+<p>In a still-image implementation like I-JEPA there is no action. There, the condition is a mask token / position token that says <em>which patch to predict</em>. That is not an action as such, but it plays a similar role: a condition that specifies <em>which relation</em> to predict.</p>
+</section>
+<section id="why-it-is-also-cheaper" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-is-also-cheaper">Why it is also cheaper</h2>
+<p>JEPA changes not only <em>how you understand</em> but <em>how you compute</em>.</p>
+<p>A generative model that reconstructs pixels needs a decoder that produces a high-dimensional output. Painting images or video cleanly costs heavy compute. In JEPA the output is just a low-dimensional representation vector. Because it does not paint pixels, pretraining compute drops substantially. The I-JEPA paper shows that predicting in representation space learns far more efficiently than MAE. Not generating a clean image is not a weakness here — for the purpose of representation learning, it is a strength.</p>
+<p>A caveat: this is mainly about <em>pretraining</em> efficiency. If you actually run the kind of inference LeCun describes — imagine action sequences, predict their outcomes with a world model, and minimize an energy — then inference-time search and optimization can add cost back.</p>
+</section>
+<section id="collapse-is-a-second-layer-not-the-core" class="level2">
+<h2 class="anchored" data-anchor-id="collapse-is-a-second-layer-not-the-core">Collapse is a second layer, not the core</h2>
+<p>JEPA has a training pathology called collapse, where the representations all flatten to the same constant. If every input emits the same representation, the <code>Predict(s_x, condition) ~= s_y</code> loss can be made small — but nothing has been learned.</p>
+<p>This matters, but you can set it aside on a first pass. Collapse is an engineering-and-mathematics problem about <em>how to train this idea stably</em>; it is not the conceptual heart of JEPA.</p>
+<p>The heart is simpler:</p>
+<blockquote class="blockquote">
+<p>Don’t force the model to paint unpredictable detail. Make it predict predictable meaning, in representation space.</p>
+</blockquote>
+<p>Collapse prevention is the <em>next</em> layer to learn. In the talk it is framed through information maximization, energy-based models, contrastive methods, and regularized methods. In the I-JEPA paper it is handled with architectural constraints — an EMA target encoder, stop-gradient, and an asymmetric predictor. It helps to keep these two apart: the general theory, and the specific implementation.</p>
+</section>
+<section id="jepa-inside-lecuns-bigger-picture" class="level2">
+<h2 class="anchored" data-anchor-id="jepa-inside-lecuns-bigger-picture">JEPA inside LeCun’s bigger picture</h2>
+<p>JEPA is not merely an image-representation technique. Across the talk, LeCun places it as a <em>component for building a world model</em>.</p>
+<p>In his picture, intelligence is not producing an answer in a fixed number of forward passes. Intelligence is closer to imagining actions internally, predicting their results, and searching for the action that best serves a goal:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  perceive["Perceive current state"] --&gt; imagine["Imagine action sequences"]
+  imagine --&gt; predict["Predict outcomes with world model"]
+  predict --&gt; evaluate["Evaluate objective / energy"]
+  evaluate --&gt; search["Search for a better sequence"]
+  search --&gt; imagine
+
+  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;
+  class perceive,imagine,predict,evaluate,search step;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>What this needs is not a model that generates the future of the world in pixels, but one that can predict the <em>result of an action</em> as an abstract representation. JEPA is the representation learning for that — a transition model, and a foundation for planning.</p>
+</section>
+<section id="the-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="the-takeaway">The takeaway</h2>
+<p>The most important intuition to carry away from JEPA is to <strong>separate “generation” from “understanding.”</strong></p>
+<p>The ability to produce something that looks plausible and the ability to capture the structure of the world you can act on are not the same. Generative models are strong at the former. What LeCun is aiming at with JEPA is the latter.</p>
+<p>So JEPA is not a method for drawing images or video well. It is a method for extracting, from the world, an abstraction that is predictable and usable for action.</p>
+<p>In one line:</p>
+<blockquote class="blockquote">
+<p>JEPA is not a model that draws the world. It is a model that predicts what the world means.</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

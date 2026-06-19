@@ -10,7 +10,127 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
 <generator>quarto-1.9.38</generator>
-<lastBuildDate>Thu, 11 Jun 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 19 Jun 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>JEPA: Predict the Meaning, Not the Pixels</title>
+  <link>https://your-website-url.example.com/posts/2026-06-19-jepa-world-models/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><em><a href="../../posts/2026-06-19-jepa-world-models/index.ja.html">日本語版はこちら</a></em></p>
+<blockquote class="blockquote">
+<p>Canonical version: <a href="https://ninjalabo.ai/blogs/jepa-world-models.html">NinjaLABO</a>.</p>
+</blockquote>
+<p>Most image and video models are judged by how good their output looks. Yann LeCun’s case for <a href="https://www.youtube.com/watch?v=72Xj8k5WQX4">JEPA</a> (“World Models: Enabling the next AI revolution”, ETH Zurich, June 2026) starts somewhere else entirely. The interesting question is not whether a generated video looks clean. It is whether the training that produces it leaves you with a representation that actually understands the world.</p>
+<section id="the-wrong-target" class="level2">
+<h2 class="anchored" data-anchor-id="the-wrong-target">The wrong target</h2>
+<p>A generative model tries to reconstruct the missing or future part as-is. For an image, it paints the hidden pixels. For a video, it paints the next frame. But in the real world there are far too many possible futures and far too many possible details. The bottom half of a handwritten digit, the faces of an audience in a lecture hall, the fine jitter of an object a moment from now — none of these is uniquely determined by the input.</p>
+<p>When you force a model to predict that unpredictable detail, it does the only safe thing: it averages over the possibilities. The output blurs. And the blur is not the real problem — the real problem is that the <em>representation</em> you get out of that training is worse. LeCun’s critique is not “does the generated video look nice?” It is “can you learn a representation that understands the world this way?”</p>
+</section>
+<section id="what-jepa-changes" class="level2">
+<h2 class="anchored" data-anchor-id="what-jepa-changes">What JEPA changes</h2>
+<p>JEPA sidesteps the problem by changing <em>where</em> the prediction happens.</p>
+<p>In the generative setup, the model tries to reconstruct <code>Y</code> itself. In JEPA, you first encode both <code>X</code> and <code>Y</code> into representations <code>s_x</code> and <code>s_y</code>, and then predict <code>s_y</code> from <code>s_x</code>:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  X["X (context)"] --&gt; ex["encoder_x"] --&gt; sx["s_x"]
+  Y["Y (target)"] --&gt; ey["encoder_y"] --&gt; sy["s_y"]
+  sx --&gt; pred["Predictor(s_x, condition)"]
+  pred --&gt; approx["&amp;asymp; s_y"]
+  sy -.-&gt; approx
+
+  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class X,ex,sx,pred ctx;
+  class Y,ey,sy tgt;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The two encoders are not the same. In I-JEPA, <code>encoder_y</code> is an EMA copy of <code>encoder_x</code> with no gradient flowing through it (more on that below).</p>
+<p>The crucial move is that <strong><code>Y</code> is encoded too.</strong> In the act of turning <code>Y</code> into a representation, the unpredictable detail can be thrown away. The exact pen strokes, the fine texture of a background, the face of someone who happens to be in frame — none of it is necessarily required to understand the world. What the representation can keep is the more abstract, more predictable information: “the bottom half is the continuation of a vertical stroke,” “the object is moving in this direction,” “this scene defies gravity.”</p>
+<p>So JEPA does not try to predict <em>how <code>Y</code> looks</em>. It predicts <em>what <code>Y</code> is</em>.</p>
+</section>
+<section id="the-predictor-is-the-p" class="level2">
+<h2 class="anchored" data-anchor-id="the-predictor-is-the-p">The predictor is the “P”</h2>
+<p><code>X</code> and <code>Y</code> are not the same thing. Top half and bottom half, present and future, before-action and after-action are different states. So merely making <code>s_x</code> and <code>s_y</code> identical is not enough — you need a predictor in between.</p>
+<p>That predictor is the <code>P</code> of JEPA — the <em>predictive</em> part.</p>
+<p>In a general world model, the condition is an action <code>a</code>:</p>
+<pre class="text"><code>Predict(s_x, a) ~= s_y</code></pre>
+<p>This is learning a transition: “in state <code>s_x</code>, taking action <code>a</code> lands you in state <code>s_y</code>.” In this sense the predictor is the core of a world model.</p>
+<p>In a still-image implementation like I-JEPA there is no action. There, the condition is a mask token / position token that says <em>which patch to predict</em>. That is not an action as such, but it plays a similar role: a condition that specifies <em>which relation</em> to predict.</p>
+</section>
+<section id="why-it-is-also-cheaper" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-is-also-cheaper">Why it is also cheaper</h2>
+<p>JEPA changes not only <em>how you understand</em> but <em>how you compute</em>.</p>
+<p>A generative model that reconstructs pixels needs a decoder that produces a high-dimensional output. Painting images or video cleanly costs heavy compute. In JEPA the output is just a low-dimensional representation vector. Because it does not paint pixels, pretraining compute drops substantially. The I-JEPA paper shows that predicting in representation space learns far more efficiently than MAE. Not generating a clean image is not a weakness here — for the purpose of representation learning, it is a strength.</p>
+<p>A caveat: this is mainly about <em>pretraining</em> efficiency. If you actually run the kind of inference LeCun describes — imagine action sequences, predict their outcomes with a world model, and minimize an energy — then inference-time search and optimization can add cost back.</p>
+</section>
+<section id="collapse-is-a-second-layer-not-the-core" class="level2">
+<h2 class="anchored" data-anchor-id="collapse-is-a-second-layer-not-the-core">Collapse is a second layer, not the core</h2>
+<p>JEPA has a training pathology called collapse, where the representations all flatten to the same constant. If every input emits the same representation, the <code>Predict(s_x, condition) ~= s_y</code> loss can be made small — but nothing has been learned.</p>
+<p>This matters, but you can set it aside on a first pass. Collapse is an engineering-and-mathematics problem about <em>how to train this idea stably</em>; it is not the conceptual heart of JEPA.</p>
+<p>The heart is simpler:</p>
+<blockquote class="blockquote">
+<p>Don’t force the model to paint unpredictable detail. Make it predict predictable meaning, in representation space.</p>
+</blockquote>
+<p>Collapse prevention is the <em>next</em> layer to learn. In the talk it is framed through information maximization, energy-based models, contrastive methods, and regularized methods. In the I-JEPA paper it is handled with architectural constraints — an EMA target encoder, stop-gradient, and an asymmetric predictor. It helps to keep these two apart: the general theory, and the specific implementation.</p>
+</section>
+<section id="jepa-inside-lecuns-bigger-picture" class="level2">
+<h2 class="anchored" data-anchor-id="jepa-inside-lecuns-bigger-picture">JEPA inside LeCun’s bigger picture</h2>
+<p>JEPA is not merely an image-representation technique. Across the talk, LeCun places it as a <em>component for building a world model</em>.</p>
+<p>In his picture, intelligence is not producing an answer in a fixed number of forward passes. Intelligence is closer to imagining actions internally, predicting their results, and searching for the action that best serves a goal:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  perceive["Perceive current state"] --&gt; imagine["Imagine action sequences"]
+  imagine --&gt; predict["Predict outcomes with world model"]
+  predict --&gt; evaluate["Evaluate objective / energy"]
+  evaluate --&gt; search["Search for a better sequence"]
+  search --&gt; imagine
+
+  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;
+  class perceive,imagine,predict,evaluate,search step;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>What this needs is not a model that generates the future of the world in pixels, but one that can predict the <em>result of an action</em> as an abstract representation. JEPA is the representation learning for that — a transition model, and a foundation for planning.</p>
+</section>
+<section id="the-takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="the-takeaway">The takeaway</h2>
+<p>The most important intuition to carry away from JEPA is to <strong>separate “generation” from “understanding.”</strong></p>
+<p>The ability to produce something that looks plausible and the ability to capture the structure of the world you can act on are not the same. Generative models are strong at the former. What LeCun is aiming at with JEPA is the latter.</p>
+<p>So JEPA is not a method for drawing images or video well. It is a method for extracting, from the world, an abstraction that is predictable and usable for action.</p>
+<p>In one line:</p>
+<blockquote class="blockquote">
+<p>JEPA is not a model that draws the world. It is a model that predicts what the world means.</p>
+</blockquote>
+
+
+</section>
+
+ ]]></description>
+  <category>llm</category>
+  <category>agents</category>
+  <category>engineering</category>
+  <guid>https://your-website-url.example.com/posts/2026-06-19-jepa-world-models/</guid>
+  <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Backrooms (2026): Posing as a Monster Movie, Symbolizing a Broken Inner World</title>
   <link>https://your-website-url.example.com/posts/2026-06-11-backrooms-review/</link>
