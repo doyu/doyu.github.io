@@ -1,0 +1,115 @@
+---
+title: "JEPA：世界を描かず、意味を予測する"
+date: 2026-06-19
+description: "Yann LeCun の JEPA は、世界をピクセルで描き直すのではなく、表現空間で「それが何であるか」を予測する。その転換が表現学習・計算量・world model に対して持つ意味。"
+categories: [llm, agents, engineering]
+source: doyu/log@0609799/memo/2026-06-19_jepa_world_models_lecun.md
+lang: ja
+---
+
+*[English version here](index.qmd)*
+
+> 正式版（canonical）：[NinjaLABO](https://ninjalabo.ai/blogs/jepa-world-models.html)（英語）。
+
+画像や動画のモデルは、たいてい「出力がどれだけきれいに見えるか」で評価される。だが Yann LeCun が [JEPA](https://www.youtube.com/watch?v=72Xj8k5WQX4) について語るとき（"World Models: Enabling the next AI revolution"、ETH Zurich、2026年6月）、出発点はまったく別のところにある。面白い問いは「生成された動画がきれいに見えるか」ではない。「その訓練の結果として、世界を本当に理解する表現が手に入るか」だ。
+
+## 間違った予測対象
+
+生成モデルは、欠損部や未来をそのまま再構成しようとする。画像なら隠れたピクセルを描く。動画なら次のフレームを描く。しかし現実世界では、ありうる未来もありうる細部も多すぎる。手書き数字の下半分、講義室の聴衆の顔、次の瞬間の物体の細かな揺らぎ——どれも入力から一意には決まらない。
+
+この予測不能な細部まで当てさせると、モデルは安全な手を選ぶ。可能な答えを平均しようとするのだ。結果はぼやける。だが本当の問題はぼやけた画像が出ることではない。**その訓練から得られる「表現」が悪くなること**が問題なのだ。LeCun の批判は「生成動画がきれいに見えるか」ではなく、「これで世界を理解する表現が学べるのか」に向いている。
+
+## JEPA の転換
+
+JEPA はこの問題を、**予測する「場所」を変える**ことで避ける。
+
+生成型では、モデルは `Y` そのものを再構成しようとする。JEPA では、まず `X` と `Y` をそれぞれエンコードして表現 `s_x` と `s_y` を作り、`s_x` から `s_y` を予測する。
+
+```{mermaid}
+flowchart LR
+  X["X（文脈）"] --> ex["encoder_x"] --> sx["s_x"]
+  Y["Y（対象）"] --> ey["encoder_y"] --> sy["s_y"]
+  sx --> pred["Predictor(s_x, condition)"]
+  pred --> approx["&asymp; s_y"]
+  sy -.-> approx
+
+  classDef ctx fill:#eef2ff,stroke:#4f46e5,color:#111827;
+  classDef tgt fill:#f0fdf4,stroke:#16a34a,color:#111827;
+  class X,ex,sx,pred ctx;
+  class Y,ey,sy tgt;
+```
+
+ここで `X` と `Y` のエンコーダは別物だ。I-JEPA では `encoder_y` は `encoder_x` の EMA コピーで、勾配を流さない（詳細は後述）。
+
+決定的なのは、**`Y` もエンコードすること**だ。`Y` を表現に変換する段階で、予測不能な細部を捨てられる。ピクセル単位の筆跡、背景の細かな模様、たまたまそこに写っている人の顔——どれも世界を理解するために必ずしも必要ではない。表現空間に残せるのは、もっと抽象的で予測可能な情報だ。「下半分は縦棒の続きだ」「物体はこの方向に動いている」「この場面は重力に反している」。
+
+つまり JEPA は、「`Y` が正確にどう見えるか」を当てない。「`Y` が何であるか」を当てる。
+
+## predictor が「P」である
+
+`X` と `Y` は同じものではない。上半分と下半分、現在と未来、行動前と行動後は、それぞれ別の状態だ。だから `s_x` と `s_y` を単純に同じにするだけでは足りない。間に predictor が必要になる。
+
+この predictor が、JEPA の `P`、つまり predictive の部分である。
+
+一般の world model では、condition は行動 `a` になる。
+
+```text
+Predict(s_x, a) ~= s_y
+```
+
+これは「状態 `s_x` で行動 `a` を取ると次の状態 `s_y` になる」という遷移の学習だ。この意味で、predictor は world model の中核になる。
+
+一方、I-JEPA のような静止画像の実装では行動は存在しない。そこでは condition は「どの位置のパッチを予測するか」を示す mask token / position token になる。これは action そのものではないが、「どの関係を予測するか」を指定する条件として、似た役割を持つ。
+
+## なぜ計算も軽くなるのか
+
+JEPA は、理解の仕方だけでなく計算の仕方も変える。
+
+ピクセルを再構成する生成型では、高次元の出力を作るデコーダが必要だ。画像や動画をきれいに描くには重い計算が要る。JEPA では、出力は低次元の表現ベクトルでよい。ピクセルを描かないので、事前学習の計算が大きく減る。I-JEPA 論文では、表現空間で予測することで MAE より大幅に効率的に学習できることが示されている。「きれいな画像を生成しない」ことは、ここでは弱さではない。表現学習の目的に対しては、むしろ強さになる。
+
+ただし、これは主に**事前学習**の計算効率の話だ。LeCun が語るような「行動列を想像し、world model で結果を予測し、エネルギーを最小化する」推論を本格的に行うなら、推論時には探索や最適化の計算が増えうる。
+
+## collapse は二層目であって、芯ではない
+
+JEPA には collapse という訓練上の病理がある。表現が全部同じ定数に潰れる現象だ。もしすべての入力が同じ表現を出せば、`Predict(s_x, condition) ~= s_y` の損失は小さくできる——だが何も学んでいない。
+
+これは重要だが、最初の理解では脇に置いてよい。collapse は「この考え方をどう安定して訓練するか」という工学的・数学的な課題であり、JEPA の概念の芯ではない。
+
+芯はもっと単純だ。
+
+> 予測不能な細部を無理に描かせるな。
+> 予測可能な意味を、表現空間で当てさせろ。
+
+collapse 防止は、その**次に**学ぶべき層だ。講演では information maximization、energy-based models、contrastive methods、regularized methods という枠組みで説明される。I-JEPA 論文では、EMA target encoder、stop-gradient、非対称 predictor といった architectural constraints が使われる。この二つは、一般理論と具体実装として分けて理解した方がよい。
+
+## LeCun の大きな構想の中での JEPA
+
+JEPA は単なる画像表現学習の技術ではない。講演全体を通して、LeCun は JEPA を **world model を作るための部品**として置いている。
+
+彼の構想では、知能は固定回数の forward pass で答えを出すことではない。知能は、内部で行動を想像し、その結果を予測し、目的に照らして最適な行動を探すことに近い。
+
+```{mermaid}
+flowchart LR
+  perceive["現在の状態を知覚する"] --> imagine["行動列を想像する"]
+  imagine --> predict["world model で結果を予測する"]
+  predict --> evaluate["objective / energy を評価する"]
+  evaluate --> search["よりよい行動列を探索する"]
+  search --> imagine
+
+  classDef step fill:#f8fafc,stroke:#64748b,color:#111827;
+  class perceive,imagine,predict,evaluate,search step;
+```
+
+ここで必要になるのは、世界の未来をピクセルで生成するモデルではなく、**行動の結果を抽象表現として予測できるモデル**だ。JEPA はそのための表現学習であり、遷移モデルであり、planning の土台になる。
+
+## 持ち帰り
+
+JEPA から持ち帰るべき一番大事な直感は、**「生成」と「理解」を分けること**だ。
+
+見た目としてもっともらしいものを作る能力と、行動に使える世界の構造を捉える能力は同じではない。生成モデルは前者に強い。LeCun が JEPA で狙っているのは後者だ。
+
+だから JEPA は、画像や動画をうまく描くための方法ではない。世界から、予測可能で行動に使える抽象を取り出すための方法である。
+
+一言で言えば——
+
+> JEPA は、世界を描くモデルではなく、世界の意味を予測するモデルである。
