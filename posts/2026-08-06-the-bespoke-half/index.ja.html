@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="ソフト化の採算が合わず手作業のまま残っていた領収書収集を、AI エージェントに自然言語で一度だけ教えた13か月の実地報告。どの継ぎ目が prose・ファイル・コードに落ち、何が人間に残り、それがホワイトカラー置換の何を示すか。">
+
+<title>The Bespoke Half — ソフトウェアが取り残した経理作業を、エージェントに教える – doyu.github.io</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6ac2aec46ad7f46b16024ee4409aa65c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">doyu.github.io</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="サーチ"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="ナビゲーションを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">The Bespoke Half — ソフトウェアが取り残した経理作業を、エージェントに教える</h1>
+                  <div>
+        <div class="description">
+          ソフト化の採算が合わず手作業のまま残っていた領収書収集を、AI エージェントに自然言語で一度だけ教えた13か月の実地報告。どの継ぎ目が prose・ファイル・コードに落ち、何が人間に残り、それがホワイトカラー置換の何を示すか。
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">agents</div>
+                <div class="quarto-category">engineering</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">公開</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">2026年8月6日</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><em><a href="../../posts/2026-08-06-the-bespoke-half/index.html">English version here</a></em></p>
+<p><em><a href="../../posts/2026-05-27-progressive-export/index.ja.html">Progressive Export</a> 論の実地報告 — ホワイトカラー労働について。</em></p>
+<section id="要旨" class="level2">
+<h2 class="anchored" data-anchor-id="要旨">要旨</h2>
+<p>ホワイトカラー業務の一部が自動化されずに残ってきたのは、知的に難しいからではない。<strong>一社ごとに個別で、量が少なすぎて、ソフトウェアを書く採算が合わなかったから</strong>である。経理の証憑集めはその典型だ。会社ごとに領収書の在り処が違う——e-invoice、複数の受信箱、ベンダーのポータル——ので、どのコネクタも開発費を回収できない。</p>
+<p>私は自分の会社の帳簿で、別の経済を試した。<strong>手順を AI エージェントに自然言語で一度だけ教え、以後の作業はエージェントにやらせる。</strong> 教えるコストはベンダーあたりおよそ8行。エージェントは13か月・149件の銀行取引を処理した——19ベンダーの領収書が、銀行内の e-invoice、2つのメールアカウント、ログイン必須のポータルに散らばっている。領収書を要する全取引に125枚の文書が付き、欠落はゼロ。会計事務所への受け渡しも、手動アップロードとメール添付から、観客1社のための小さな web アプリに変わった。</p>
+<p>範囲を正直に言う。13か月のうち12か月は一度の遡及パスで再構築したもので、ベンダー辞書はその同じ12か月から書かれ、前向きに月次処理をしたのは正確に1か月である。そして「collected」は文書が保存されたという意味であって、その文書が正しいという意味ではない。</p>
+<p>得られた知見は、時間スケールで割れた分業の形だ。<strong>毎月</strong>残るのは強認証だけ——法が人間に固定している。<strong>散発的に</strong>人間が呼び戻されるのは教えるときだけ——新しいベンダーが初めて現れたとき、教えた手順が壊れたとき。どちらの検出も無料だ。銀行明細は「処理すべき全件」の外部・法定の列挙であり、エージェントが取れなかったものは <em>missing</em> として勝手に浮上する。<strong>恒常的に</strong>残るのは承認と責任。コードは圧力が正当化した場所にだけ現れた——証跡は git に、会計士向けインターフェースは小さな web アプリに——それ以外には現れなかった。orchestration は prose に落ち着いた。月10件の量では、教えることは自動化の試作ではなかった。<strong>その継ぎ目にとって、教えることが自動化そのものだった。</strong></p>
+<p>ホワイトカラー置換が実際に取る形は、これだと思う。コネクタは高い固定費を多数の顧客で償却し、標準化された頭を取る。教えることは手順あたりほぼゼロ円で、bespoke な尾を取る——人間がいまだに手でやっている仕事の多くはこちら側だ。人間に残ったのは難しい部分でも知的な部分でもない。法が個人に固定した認証、教える価値がないほど稀な判断、そして責任。自動化は責任を消さなかった。<strong>再配置し、集中させた。</strong></p>
+<p>これが他所に移るのは、外部の正解データがあり、失敗が安く表面化し、量がソフト化の閾値を下回っている場所である。</p>
+</section>
+<section id="主張" class="level2">
+<h2 class="anchored" data-anchor-id="主張">1. 主張</h2>
+<p>どの会社にも、自動化をすり抜けてきた仕事の山がある。理由は誰もはっきり言わないが単純で、<strong>自動化する価値がなかった</strong>からだ。難しいのではない。一社に固有すぎて、量が少なすぎて、ソフトウェアが正当化されない。私の場合それは経理の証憑集めだった。毎月、銀行明細の全取引について、その裏にある領収書をどこにあろうと探し出し、会計事務所に渡す。</p>
+<p>試した賭けは単純だ。手順を AI エージェントに自然言語で一度だけ教え、以後はエージェントにやらせる。新しいものが現れたら、もう一度だけ教える。コネクタなし、新しい会計プラットフォームなし、workflow の特定の部分が要求しない限りコードもなし。</p>
+<p>観察されたのは、職がひとつの単位として消える光景ではなかった。<strong>workflow が継ぎ目で裂けた。</strong> 反復実行はエージェントへ移り、安定した部分はファイルとひとつの小さなアプリに固まり、人間の役割は教えること・例外・責任に縮んだ。前のエッセイ <a href="../../posts/2026-05-27-progressive-export/index.ja.html">Progressive Export</a> はこのパイプラインを理論として描いた。これはその実地報告である——理論の著者（私）の最初の読みどおりに行かなかった部分も含めて。</p>
+</section>
+<section id="実際にやったことやらなかったこと" class="level2">
+<h2 class="anchored" data-anchor-id="実際にやったことやらなかったこと">2. 実際にやったこと、やらなかったこと</h2>
+<p>素材は私の1人会社の帳簿だ。13か月で149行の銀行明細、月あたり7〜17行。うち125行は領収書を要し、現在すべてに文書が付いている。24行は不要（銀行手数料、税金、入金）。欠落はゼロ。その裏に19本のベンダー別レシピ——各およそ8行の自然言語——と、エージェントが最初から最後まで従う1本の runbook がある。</p>
+<p>合計値より、どう走らせたかの方が重要だ。13か月のうち12か月は、一度の遡及パスで再構築した——ベンダー単位の一括処理で、あるベンダーの欠落月を全部まとめて取り、次のベンダーへ移る形だ。ベンダー別レシピはこのパス<strong>から</strong>書かれた。その後、本来の運用どおり前向きに処理した月は正確に1つ。つまり held-out の証拠は1か月分であり、これは脚注ではなくここに書いておく。<strong>辞書は12か月で訓練され、1か月でテストされた。</strong></p>
+<p>もうひとつ、この報告全体が寄りかかる定義がある。「collected」は取引に対して文書が保存された、という意味でしかない。失敗には音量差がある。エージェントが領収書を取得できなければ、その取引は <em>missing</em> のまま残る——うるさく、見え、検出は無料だ。だがもっともらしくて間違った文書を正しい取引に付けた場合、それは黙って通る。coverage 1.0 が測っているのは収集の完全性であって、正確性ではない。正確性の監査はまだ行っていない。</p>
+<p>納品側も変わった。領収書と照合済み明細を会計事務所へ渡す作業は、手動アップロードとメール添付だった。今はアーカイブの上に載る小さな読み取り専用 web アプリだ。パスワードログイン、月ごとに1ページ、各取引から文書へのリンク。観客は正確に1社の会計事務所で、変更の要望が来ればその日のうちに出せる。</p>
+<p>測っていないもの、したがって主張しないもの：削減された人間の時間、トークンコスト、介入回数、いかなる「ゼロタッチ率」も。</p>
+</section>
+<section id="ソフトウェアが取り残した仕事" class="level2">
+<h2 class="anchored" data-anchor-id="ソフトウェアが取り残した仕事">3. ソフトウェアが取り残した仕事</h2>
+<p>なぜこの仕事は会計ソフト20年の歴史を生き延びたのか。領収書の実際の在り処を見ればいい。あるものは銀行の UI の中から取れる e-invoice で届く。あるものは会社の受信箱に届き、数件は私の個人受信箱に個人宛で届く——何年も前にそうやってアカウントを作ったからだ。あるものはメールの本文としてしか存在せず、ダウンロードする添付がない。あるものはログイン済みブラウザを要するポータルの奥にある。あるベンダーは同じ月に同じ送信元から2回請求する——ユーロのサブスクリプションとドルの API 従量課金——そして両者を混同してはならない。ドルで請求して銀行はユーロで引き落とすベンダーが複数あり、領収書の額面と明細の額面は一致しない。チャージに中国の VAT を上乗せするベンダーもある。</p>
+<p>この散らばり方は二社として同じではない。ソフトウェアベンダーがやるなら、ソースごとにコネクタを作って保守し、それぞれ異なる部分集合しか必要としない顧客たちで償却することになる。長い尾では、この算術は永遠に閉じない。この仕事が手作業のまま残ったのは難しいからではなく、<strong>bespoke</strong> だからだ——技術的には可能、経済的には不合理。</p>
+<p>この算術は身をもって証言できる。この収集作業は創業以来ずっと頭痛の種だった。私はカーネルエンジニアを20年やった。解決するシステムを作る技術は十分手の内にあった。それでも作らなかった。私自身の時間予算が、ソフトウェアベンダーたちと同じテストに落ちたからだ。</p>
+<p>変わったのは初期実装のコストである。私はシステムを設計しなかった。エージェントと並んで実際の作業をした——受信箱を検索し、ポータルを歩き、失敗し、やり直した——そして成功した run が2つの成果物に蒸留された。各ベンダーの領収書の在り処と取り方を記録する辞書（ベンダーあたり約8行、注意点込み）と、エージェントが毎月従う runbook だ。前のエッセイは LLM CLI を「新しい REPL」と呼んだが、実践での感触はまさにそれだった。アーキテクチャは先に描かれたのではない。<strong>動く作業セッションから析出した。</strong></p>
+</section>
+<section id="ひとつの-workflow複数の成熟度" class="level2">
+<h2 class="anchored" data-anchor-id="ひとつの-workflow複数の成熟度">4. ひとつの workflow、複数の成熟度</h2>
+<p>結果に対する私の最初の読みは間違っていて、その訂正がこの報告で一番役に立つ部分だ。私は「パイプラインは skill 段階で止まった——prose が終着点だった」と言いたかった。だが現存するシステムはその要約を拒む：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>継ぎ目</th>
+<th>現在の居場所</th>
+<th>成熟度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ベンダー固有の知識</td>
+<td>辞書</td>
+<td>教えた prose（procedural memory）</td>
+</tr>
+<tr class="even">
+<td>orchestration・例外判断</td>
+<td>runbook</td>
+<td>教えた prose</td>
+</tr>
+<tr class="odd">
+<td>メール／ブラウザ／銀行の操作</td>
+<td>既存の型付きツール</td>
+<td>MCP</td>
+</tr>
+<tr class="even">
+<td>証跡・監査trail</td>
+<td>アーカイブ（git 上のプレーンファイル）</td>
+<td>決定論的</td>
+</tr>
+<tr class="odd">
+<td>状態と欠落の可視化</td>
+<td>取引ごとに1行の status</td>
+<td>構造化テキスト</td>
+</tr>
+<tr class="even">
+<td>会計事務所への納品</td>
+<td>web アプリ</td>
+<td>コード</td>
+</tr>
+<tr class="odd">
+<td>無人実行（スケジュール、リトライ）</td>
+<td>—</td>
+<td>未実装</td>
+</tr>
+<tr class="even">
+<td>正確性の検証</td>
+<td>—</td>
+<td>未実装</td>
+</tr>
+</tbody>
+</table>
+<p>システムは skill 段階で止まらなかった。<strong>orchestration だけがそこに落ち着いた。</strong> 同じ workflow の異なる継ぎ目が、異なる深さまで export された——そしてその深さは、前のエッセイが列挙した export 圧力と、両方向で一致する。</p>
+<p>圧力があった場所では、export が起きた。証跡は私以外の人間が検査できる耐久性を要した：初日から git 上のプレーンファイルへ。納品は外部の当事者に消費される必要があった：web アプリへ。</p>
+<p>圧力がなかった場所では、それでも export を試みて——失敗した。教えた手順の一部をコードに置き換えようと2回動いた。1回目は動くコードまで到達した。決定論的なマッチングエンジンと回帰ベンチだ。そこから学んだのは主に、私が間違った継ぎ目を選んだということだった——形式化できるのは matching だったが、ボトルネックは retrieval だった——しかもベンチ自体が、テストした唯一の月で訓練していたことが判明した。2回目のより重い設計は実装前に停止し、その判定は設計書のヘッダに残っている：<em>over-engineered for ~10 receipts/month</em>。この量では、prose は置き換えるコードより安く、コードの方が良いと証明するためのベンチマークよりはるかに安い。</p>
+<p>圧力があるのにまだ支払われていない場所：スケジューラは今もなく——人間が月を起動する——正確性の検証器もない。そして export が不可能な継ぎ目がひとつある。銀行と行政の認証は、ツールがどれだけ良くなろうと、法によって個人に固定されている。</p>
+<p>つまり前のエッセイのパイプライン——explore、skill、MCP、app——は実在するが、アプリケーション全体が登る梯子ではない。<strong>継ぎ目ごとに適用される圧力の地図</strong>である。orchestration の継ぎ目にとって、月10件の量では、教えることは自動化の試作ではなかった。自動化そのものだった。</p>
+</section>
+<section id="移ったもの残ったもの" class="level2">
+<h2 class="anchored" data-anchor-id="移ったもの残ったもの">5. 移ったもの、残ったもの</h2>
+<p>エージェントに移ったものは列挙しやすい。この作業を苦役にしていたものそのものだからだ。ベンダーごとの探し方を覚えておくこと。同じ検索・ダウンロード・ファイル命名の反復。各文書を取引に紐付けて保存すること。欠落リストの維持。毎月ゼロから手順全体を組み直すこと。</p>
+<p>人間に残ったものは、時間スケールできれいに分かれる。</p>
+<p><strong>毎月</strong> — 認証。銀行ログインと強い本人確認は、法的に個人の行為だ。この床はソフトウェアの向上では侵食されない。能力ではなく規制が決めている。</p>
+<p><strong>散発的に</strong> — 教えることと判断。新しいベンダーが現れる：レシピを一度教える、数分、翌月からはルーチンだ。教えたレシピが壊れる——ベンダーがメール書式やポータルを変える：失敗は <em>missing</em> の行として勝手に表面化し、レシピを一度直す。そして時折、本物の判断を要する取引がある——実は立替精算だった引き落とし、キャンセルと再確定が重なった注文——教える価値がないほど稀なケースで、status ファイル上で手で決める。</p>
+<p><strong>恒常的に</strong> — 承認と責任。誰かがこの月は会計事務所に出せると決め、誰かが帳簿に責任を負う。会計士の署名は技術的な成果物ではないし、この実験のどの部分もそこには触れていない。</p>
+<p>この配置を幸運ではなく安定にしているのが、teach-and-repair のループだ。銀行明細は「計上すべき全件」の外部・法定の列挙である。エージェントが取り損ねたものは、監視コストゼロで missing の行として現れる。うるさい失敗は自分で自分を取り締まる。静かな方——間違った文書が collected として通る——がこのシステムの本当の急所であり、その率は不明である、というのが正直な記述だ。</p>
+<p>ここで自動化は責任を消さなかった。<strong>再配置し、集中させた</strong>：実行から、教えること・例外・署名へ。</p>
+</section>
+<section id="ふたつの経済とホワイトカラー置換の形" class="level2">
+<h2 class="anchored" data-anchor-id="ふたつの経済とホワイトカラー置換の形">6. ふたつの経済と、ホワイトカラー置換の形</h2>
+<p>bespoke な半分を自動化する方法はふたつあり、コスト構造が正反対だ。</p>
+<p><strong>コネクタ経済</strong>は統合を一度作り、多数の顧客で償却する。ヘルシンキのある YC スタートアップが、この賭けを最も強い形で走らせている。会計事務所とプラットフォームの垂直統合、自社元帳、内部で手作業をこなすエージェント、結果に署名する有資格の会計士。ソースあたりの固定費は高いが、仕事が標準化され量があるところでは勝つ。分布の頭に対しては正しいアーキテクチャだ。</p>
+<p><strong>教える経済</strong>——この実験——は手順あたりの固定費がほぼない。ベンダーあたり8行の prose を、workflow を既に知っている本人が教える。コネクタが永遠にペイしない場所——会社固有の散らばりの長い尾——でちょうど勝つ。両者は今日は補完、周縁では競合であり、そしてひとつのレジームが両者を融合させる。私が教えたことの多くは、実は私の会社に固有ではない。「この銀行の e-invoice は明細行からダウンロードできる」「EU 域外の SaaS 請求はリバースチャージ」「Stripe の領収書はメール本文で届く」。これらは世界についての事実だ。ある国の1人会社向けレシピ集はテンプレートとして出荷でき、private に残るのはアカウント固有の情報だけになる。<strong>教えたレシピが共有可能になった瞬間、教える経済はプラットフォームの様相を帯び始め、ふたつの経済の区別は溶ける。</strong></p>
+<p>このひとつの小さな実験は、「AI がホワイトカラーを置き換える」という大きな主張について何を示唆するか。慎重に、4つ。</p>
+<p>置換の単位は職名ではなく、workflow の継ぎ目である。最初に消えるのは必ずしも「簡単な」仕事ではない——ソフト化する価値がなかった長い尾であり、それは別の集合だ。LLM は判断を置き換える前に、<strong>手順化の経済を変える</strong>。高くついていたのは領収書の意味を判断する工程ではなく、市場規模1の retrieval を作る工程だった。そして現実的な到達点は人間ゼロではない。zero-touch の happy path と、例外対応の人間——実行者から、教える人・例外の所有者・署名者へ移った人間だ。</p>
+<p>この実験がまだ答えていないこと。次の実験が答えられるように挙げておく。</p>
+<ul>
+<li>前向きの月次実行は1回。次の11か月がこの報告より多くを語る。</li>
+<li>人間の時間もトークンコストも未計測。効率の主張は定性的なものに留まる。</li>
+<li>正確性の監査がなく、静かな失敗の率は不明。</li>
+<li>スケジューラがなく、今も人間が月を起動する。</li>
+<li>移植性は未検証——ここで教えた skill はすべて、1人の人間・1つの会社・1つの規模に属している。</li>
+<li>このスタックは会計ソフトへのロックインを、ひとつの有能なエージェントランタイムへの依存と引き換えにした。それもまたロックインであり、場所が変わっただけだ。</li>
+</ul>
+<p>前のエッセイは <em>(to be researched)</em> と印を付けた問いで終わっていた。必要になったとき LLM が skill を自動で作る機構、である。この実験はその機構を作らなかった。もっと小さな、しかしおそらく前提となることをした。<strong>欠けている機械がどこに属するかを突き止めた</strong>——export 圧力の検出、候補 skill の受け入れ、配備後の検証。検証は、この領域に限っては銀行明細と一緒に無料で付いてきた。3つの部品のうち1つだ。残りの2つが次の実験であり、この workflow はいまや、それを走らせられる field site である。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "コピーしました");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "コピーしました");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
