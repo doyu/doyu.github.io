@@ -1,0 +1,40 @@
+# doyu's Blog: LLM Engineering Essays & Film Reviews
+
+> A bilingual (English/Japanese) personal blog built with Quarto. It collects
+> essays on LLM apps, agents, and harness engineering alongside film and drama
+> reviews. Each post is published in both English (index.qmd) and Japanese
+> (index.ja.qmd).
+
+<!-- BEGIN AUTO -->
+## Site
+
+- [index.qmd](index.qmd): Quarto blog home page listing posts newest-first (Japanese duplicates excluded).
+- [about.qmd](about.qmd): About page with author profile and social links.
+
+## Essays on LLMs & Engineering
+
+- [Progressive Export (EN)](posts/2026-05-27-progressive-export/index.qmd): Harness engineering for LLM apps — explore in LLM CLI, export to skills, promote to MCP tools.
+- [Progressive Export (JA)](posts/2026-05-27-progressive-export/index.ja.qmd): Japanese version of the Progressive Export harness-engineering essay.
+- [Skills as Compound Interest (EN)](posts/2026-06-02-skill-compound-interest/index.qmd): Writing skills compounds like interest; judgment, not the skill pile, is the principal that lasts.
+- [Skills as Compound Interest (JA)](posts/2026-06-02-skill-compound-interest/index.ja.qmd): Japanese version of the "Skills as Compound Interest" essay.
+- [JEPA: Predict the Meaning (EN)](posts/2026-06-19-jepa-world-models/index.qmd): LeCun's JEPA — predict meaning in representation space, not pixels; foundation for world models.
+- [JEPA: Predict the Meaning (JA)](posts/2026-06-19-jepa-world-models/index.ja.qmd): Japanese version of the JEPA world-models essay.
+- [The Bespoke Half (EN)](posts/2026-08-06-the-bespoke-half/index.qmd): 13-month field test of teaching an agent bookkeeping receipt collection; prose as the automation.
+- [The Bespoke Half (JA)](posts/2026-08-06-the-bespoke-half/index.ja.qmd): Japanese version of The Bespoke Half field report.
+
+## Film & Drama Reviews
+
+- [Sato and Sato (EN)](posts/2026-03-14-sato-and-sato-review/index.qmd): Review of Sato and Sato (2025) — a no-one-to-blame divorce tragedy of timing, capacity, and luck.
+- [Sato and Sato (JA)](posts/2026-03-14-sato-and-sato-review/index.ja.qmd): Japanese version of the Sato and Sato (2025) film review.
+- [Backrooms (EN)](posts/2026-06-11-backrooms-review/index.qmd): Review of A24's Backrooms (2026) — a broken-mind metaphor posing as a monster movie. 6/10.
+- [Backrooms (JA)](posts/2026-06-11-backrooms-review/index.ja.qmd): Japanese version of the Backrooms (2026) film review.
+- [Anora (EN)](posts/2026-08-08-anora-review/index.qmd): Review of Anora (2024) — not about poverty but invisibility: a fair fight the world never records.
+- [Anora (JA)](posts/2026-08-08-anora-review/index.ja.qmd): Japanese version of the Anora (2024) film review.
+- [Notes from the Last Row (EN)](posts/2026-08-08-notes-from-the-last-row-review/index.qmd): Review of Notes from the Last Row (2026) — strip a man of everything; what remains is desire for story.
+- [Notes from the Last Row (JA)](posts/2026-08-08-notes-from-the-last-row-review/index.ja.qmd): Japanese version of the Notes from the Last Row (2026) series review.
+
+## Travel & Cruise Reviews
+
+- [MSC Bellissima vs NCL Prima (EN)](posts/2026-05-13-msc-bellissima-vs-ncl-prima-review/index.qmd): Why NCL Prima beat MSC Bellissima Japan — cruise philosophy, route design, and market maturity.
+- [MSC Bellissima vs NCL Prima (JA)](posts/2026-05-13-msc-bellissima-vs-ncl-prima-review/index.ja.qmd): Japanese version of the MSC Bellissima vs NCL Prima cruise comparison.
+<!-- END AUTO -->
