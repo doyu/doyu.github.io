@@ -47,3 +47,18 @@ From the wife to Nomoto, from Nomoto to Takumi and Ryunosuke — the same words 
 I also repeat other people's words in a way that sounds right. When I do, are they borrowed, or have they really become mine?
 
 That's why the film is funny and still leaves me uneasy.
+
+```{=html}
+<script>
+// Move the poster figure into the title banner, above the title.
+document.addEventListener('DOMContentLoaded', function () {
+  var fig = document.querySelector('#quarto-document-content .quarto-figure');
+  var title = document.querySelector('#title-block-header .quarto-title');
+  if (!fig || !title) return;
+  var cap = fig.querySelector('figcaption');
+  if (cap) cap.remove();
+  fig.style.marginBottom = '1rem';
+  title.insertBefore(fig, title.firstChild);
+});
+</script>
+```

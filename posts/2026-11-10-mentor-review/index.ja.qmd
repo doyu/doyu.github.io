@@ -47,3 +47,18 @@ image: https://img.youtube.com/vi/1ZvQfAy9G3k/maxresdefault.jpg
 自分も、人の言葉をそれっぽく口にすることがある。そのとき、それは借り物の言葉なのか、本当に腹落ちした自分の言葉なのか。
 
 だから、笑えるのに居心地が悪い。
+
+```{=html}
+<script>
+// Move the poster figure into the title banner, above the title.
+document.addEventListener('DOMContentLoaded', function () {
+  var fig = document.querySelector('#quarto-document-content .quarto-figure');
+  var title = document.querySelector('#title-block-header .quarto-title');
+  if (!fig || !title) return;
+  var cap = fig.querySelector('figcaption');
+  if (cap) cap.remove();
+  fig.style.marginBottom = '1rem';
+  title.insertBefore(fig, title.firstChild);
+});
+</script>
+```
