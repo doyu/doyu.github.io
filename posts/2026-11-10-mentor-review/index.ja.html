@@ -192,6 +192,18 @@ ul.task-list li input[type="checkbox"] {
 <p>妻から埜本へ、埜本から拓海と龍之介へ。同じ言葉が受け継がれても、その人の中にある痛みや欲求によって、果たす役割は変わっていく。借りたものの下に何があるのか。それは、口にする言葉の立派さだけでは見えてこない。</p>
 <p>自分も、人の言葉をそれっぽく口にすることがある。そのとき、それは借り物の言葉なのか、本当に腹落ちした自分の言葉なのか。</p>
 <p>だから、笑えるのに居心地が悪い。</p>
+<script>
+// Move the poster figure into the title banner, above the title.
+document.addEventListener('DOMContentLoaded', function () {
+  var fig = document.querySelector('#quarto-document-content .quarto-figure');
+  var title = document.querySelector('#title-block-header .quarto-title');
+  if (!fig || !title) return;
+  var cap = fig.querySelector('figcaption');
+  if (cap) cap.remove();
+  fig.style.marginBottom = '1rem';
+  title.insertBefore(fig, title.firstChild);
+});
+</script>
 
 
 </section>

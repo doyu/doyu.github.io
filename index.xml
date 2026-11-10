@@ -50,6 +50,18 @@
 <p>From the wife to Nomoto, from Nomoto to Takumi and Ryunosuke — the same words get handed down, but what they do changes with the pain and wants inside each person. What lies beneath the borrowed words can’t be read from how fine the words sound.</p>
 <p>I also repeat other people’s words in a way that sounds right. When I do, are they borrowed, or have they really become mine?</p>
 <p>That’s why the film is funny and still leaves me uneasy.</p>
+<script>
+// Move the poster figure into the title banner, above the title.
+document.addEventListener('DOMContentLoaded', function () {
+  var fig = document.querySelector('#quarto-document-content .quarto-figure');
+  var title = document.querySelector('#title-block-header .quarto-title');
+  if (!fig || !title) return;
+  var cap = fig.querySelector('figcaption');
+  if (cap) cap.remove();
+  fig.style.marginBottom = '1rem';
+  title.insertBefore(fig, title.firstChild);
+});
+</script>
 
 
 </section>
